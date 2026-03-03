@@ -28,6 +28,7 @@ jobs:
       - name: Install R packages
         run: |
           install.packages(c(
+            "plyr",
             "dplyr",
             "ggplot2",
             "repr",
