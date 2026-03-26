@@ -56,7 +56,7 @@ writeLines(
 
 
 ```{r, warning=FALSE, message=FALSE, results = 'hide', echo = FALSE}
-pakh_ton <- read_excel("C:/Users/Nhungnt27/Desktop/3. Hàng hóa P.TK/Đơn tồn_hủy/3.R_pakh.xlsx")
+pakh_ton <- read_excel("data/3.R_pakh.xlsx")
 now <- format(Sys.time(), "%d/%m/%Y %H:%M:%S")
 ```
 
