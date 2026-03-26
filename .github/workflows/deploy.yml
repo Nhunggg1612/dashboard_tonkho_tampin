@@ -57,6 +57,7 @@ jobs:
             "dplyr",
             "tidyr",
             "tidyverse",
+            "readxl",
             "stringr",
             "stringi",
             "ggplot2",

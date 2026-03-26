@@ -618,6 +618,26 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
+<script>
+  const CHECK_INTERVAL = 60000; // kiểm tra mỗi 60 giây
+  
+  async function getLastBuild() {
+    const res = await fetch('/last-build.json?t=' + Date.now());
+    const data = await res.json();
+    return data.buildTime;
+  }
+
+  (async () => {
+    const initialBuild = await getLastBuild();
+    
+    setInterval(async () => {
+      const currentBuild = await getLastBuild();
+      if (currentBuild !== initialBuild) {
+        window.location.reload();
+      }
+    }, CHECK_INTERVAL);
+  })();
+</script>
 
 
 
