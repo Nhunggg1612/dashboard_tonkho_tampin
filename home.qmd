@@ -437,6 +437,8 @@ browsable(
             wrapper.style.padding = '16px';
             wrapper.innerHTML = tableHtml;
             document.body.appendChild(wrapper);
+            
+            
 
             setTimeout(function() {
               html2canvas(wrapper, {
