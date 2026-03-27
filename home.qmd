@@ -190,199 +190,13 @@ ticket_chitiet[] <- lapply(ticket_chitiet, unlist)
 library(reactable)
 library(crosstalk)
 library(htmltools)
-
-# Bước 1: Bọc data bằng SharedData
-shared_data <- SharedData$new(ticket_chitiet)
-
-# Bước 2: Tạo các filter bên ngoài
-filters <- div(
-  style = "display: flex; gap: 20px; align-items: flex-end; margin-bottom: 16px;",
-  
-  div(
-    style = "width: 250px;",
-    tags$label("Đơn vị điều hành", style = "font-weight: bold; display: block;"),
-    filter_select("don_vi_dieu_hanh", "", shared_data, ~`Đơn vị điều hành`, multiple = FALSE)
-  ),
-  
-  div(
-    style = "width: 250px;",
-    tags$label("Trạng thái", style = "font-weight: bold; display: block;"),
-    filter_select("trang_thai", "", shared_data, ~`Trạng thái`, multiple = FALSE)
-  ),
-  
-  # ✅ Nút Reset
-  div(
-    style = "margin-top: 20px;",
-    tags$button(
-      "🔄 Reset",
-      style = "padding: 6px 14px; cursor: pointer; border: 1px solid #ccc;
-               border-radius: 4px; background: #f5f5f5; font-size: 14px;",
-      onclick = "
-        // Reset tất cả filter của crosstalk
-        var selects = document.querySelectorAll('.selectized');
-        selects.forEach(function(el) {
-          if (el.selectize) el.selectize.clear();
-        });
-      "
-    )
-  ),
-  # Nút tải CSV
-  div(
-    style = "margin-top: 20px;",
-    tags$button(
-      "⬇ Tải CSV",
-      style = "padding: 6px 14px; cursor: pointer; border: 1px solid #28a745;
-               border-radius: 4px; background: #28a745; color: white; font-size: 14px;",
-      onclick = "Reactable.downloadDataCSV('bang-chitiet', 'danh_sach_ticket.csv')"
-    )
-  ),
-  
-  # Nút tải PNG
-  div(
-    style = "margin-top: 20px;",
-    tags$button(
-      "📷 Tải PNG",
-      style = "padding: 6px 14px; cursor: pointer; border: 1px solid #007bff;
-               border-radius: 4px; background: #007bff; color: white; font-size: 14px;",
-      onclick = "
-        var script = document.createElement('script');
-        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
-        script.onload = function() {
-          var table = document.querySelector('.ReactTable');
-          
-          // ← Bấm nút hiện tất cả rows (-1 = show all)
-          var pageSizeSelect = table.querySelector('select[aria-label=\"rows per page\"]');
-          var oldPageSize = null;
-          if (pageSizeSelect) {
-            oldPageSize = pageSizeSelect.value;
-            pageSizeSelect.value = -1;
-            pageSizeSelect.dispatchEvent(new Event('change', { bubbles: true }));
-          } else {
-            // Tìm nút phân trang và click Next cho đến hết
-            // Dùng cách khác: set pageSize qua reactable API
-            var pageBtn = table.querySelector('[aria-label=\"Show all rows\"]');
-            if (pageBtn) pageBtn.click();
-          }
-          
-          setTimeout(function() {
-            // Lưu style cũ
-            var oldWidth = table.style.width;
-            var oldOverflow = table.style.overflow;
-            var oldMaxWidth = table.style.maxWidth;
-            
-            // Mở rộng bảng
-            table.style.width = 'max-content';
-            table.style.maxWidth = 'none';
-            table.style.overflow = 'visible';
-            
-            // Wrap text
-            var allCells = table.querySelectorAll('.rt-td, .rt-th');
-            var oldWhiteSpace = [];
-            allCells.forEach(function(cell, i) {
-              oldWhiteSpace[i] = cell.style.whiteSpace;
-              cell.style.whiteSpace = 'normal';
-              cell.style.wordBreak = 'break-word';
-            });
-            
-            setTimeout(function() {
-              html2canvas(table, {
-                scale: 2,
-                backgroundColor: '#ffffff',
-                useCORS: true,
-                scrollX: 0,
-                scrollY: 0,
-                windowWidth: table.scrollWidth,
-                width: table.scrollWidth,
-                height: table.scrollHeight
-              }).then(function(canvas) {
-                // Khôi phục style
-                table.style.width = oldWidth;
-                table.style.overflow = oldOverflow;
-                table.style.maxWidth = oldMaxWidth;
-                allCells.forEach(function(cell, i) {
-                  cell.style.whiteSpace = oldWhiteSpace[i];
-                });
-                
-                // Trả về pageSize cũ
-                if (pageSizeSelect && oldPageSize) {
-                  pageSizeSelect.value = oldPageSize;
-                  pageSizeSelect.dispatchEvent(new Event('change', { bubbles: true }));
-                }
-                
-                // Tải ảnh
-                var link = document.createElement('a');
-                link.download = 'danh_sach_ticket.png';
-                link.href = canvas.toDataURL('image/png');
-                link.click();
-              });
-            }, 500);
-          }, 800);  // ← chờ bảng load đủ rows
-        };
-        document.head.appendChild(script);
-      "
-    )
-  )
-)
-
-
-
-
-# Bước 3: Tạo colDef tự động (20 cột)
-custom_width <- c(
-  "Sản phẩm" = 150,
-  "Chi tiết"         = 300,
-  "Tên khách hàng"   = 120,
-  "Địa chỉ"          = 250
-) 
-col_defs <- setNames(
-  lapply(names(ticket_chitiet), function(col) {
-    colDef(
-      name        = col,
-      headerStyle = list(color = "black", background = "#F5DEB3",
-                         whiteSpace = "normal", textAlign = "center"),
-      aggregate   = "unique",
-      align       = "left",
-      width       = ifelse(col %in% names(custom_width), custom_width[[col]], 100)
-    )
-  }),
-  names(ticket_chitiet)
-)
-
-# Bước 4: Ghép filter + bảng
-browsable(
-  tagList(
-    filters,
-    reactable(
-      shared_data, minRows = 3,width = 1500, height = "auto",         # ← dùng shared_data thay vì df gốc
-      elementId = "bang-chitiet",
-      theme = reactableTheme(
-        style = list(fontSize = "13px"),
-        rowStyle = list(
-        `&:hover` = list(
-        backgroundColor = "#FFE4CC !important",
-        cursor = "pointer"
-    )
-  )
-),
-      columns         = col_defs,
-      bordered        = TRUE,
-      striped         = TRUE,
-      highlight       = TRUE,
-      resizable       = TRUE,
-      defaultPageSize = 5
-    )
-  )
-)
-```
-
-
-```{r}
-library(reactable)
-library(crosstalk)
-library(htmltools)
+library(jsonlite)
 
 # Bước 1: SharedData
 shared_data <- SharedData$new(ticket_chitiet)
+
+# ← Nhúng toàn bộ data vào JS
+data_json <- toJSON(ticket_chitiet, auto_unbox = TRUE, na = "null")
 
 # Bước 2: Filters
 filters <- div(
@@ -471,106 +285,182 @@ browsable(
       defaultPageSize = 5
     ),
     
-    # ← Script đặt CUỐI CÙNG sau khi DOM xong
+    # ← Nhúng data JSON từ R
+    tags$script(HTML(paste0("window._fullData = ", data_json, ";"))),
+    
     tags$script(HTML("
       (function() {
-        function loadScript(url, callback) {
+        function loadScript(url, cb) {
           var s = document.createElement('script');
           s.src = url;
-          s.onload = callback;
+          s.onload = cb;
           s.onerror = function() { alert('Không load được: ' + url); };
           document.head.appendChild(s);
         }
 
-        // ── Tải Excel ──────────────────────────────────────────
+        // ── Lấy data đang được lọc từ crosstalk ──
+        function getFilteredData() {
+          // Lấy các key đang được filter từ crosstalk
+          var visibleKeys = null;
+          try {
+            var ct = crosstalk.group('SharedData');
+            if (ct && ct.var('filter').get()) {
+              visibleKeys = ct.var('filter').get();
+            }
+          } catch(e) {}
+
+          var allData = window._fullData || [];
+          
+          // Lấy headers từ DOM
+          var table = document.getElementById('bang-chitiet');
+          var headers = [];
+          table.querySelectorAll('.rt-th').forEach(function(th) {
+            var t = th.innerText.trim();
+            if (t) headers.push(t);
+          });
+
+          // Lấy rows đang hiển thị từ DOM (tất cả trang)
+          // Vì data đã được filter bởi crosstalk → dùng DOM để lấy đúng rows
+          var rows = [];
+          table.querySelectorAll('.rt-tr-group').forEach(function(row) {
+            var cells = row.querySelectorAll('.rt-td');
+            if (!cells.length) return;
+            // Bỏ qua rows bị ẩn
+            if (row.style.display === 'none') return;
+            var r = {};
+            cells.forEach(function(cell, i) {
+              if (headers[i]) r[headers[i]] = cell.innerText.trim();
+            });
+            rows.push(r);
+          });
+
+          return { headers: headers, rows: rows };
+        }
+
+        // ── Lấy TẤT CẢ data đang lọc (từ JSON, không giới hạn page) ──
+        function getAllFilteredData() {
+          var table = document.getElementById('bang-chitiet');
+          var headers = [];
+          table.querySelectorAll('.rt-th').forEach(function(th) {
+            var t = th.innerText.trim();
+            if (t) headers.push(t);
+          });
+
+          // Lấy giá trị filter hiện tại từ selectize
+          var filters = {};
+          document.querySelectorAll('.selectized').forEach(function(el) {
+            if (el.selectize) {
+              var val = el.selectize.getValue();
+              if (val) {
+                var id = el.closest('[id]') ? el.closest('[id]').id : null;
+                filters[el.id || id] = val;
+              }
+            }
+          });
+
+          // Filter data từ JSON gốc
+          var allData = window._fullData || [];
+          var filtered = allData.filter(function(row) {
+            var show = true;
+            // Filter Đơn vị điều hành
+            var donVi = document.querySelector('#don_vi_dieu_hanh + .selectize-control');
+            var donViVal = null;
+            if (donVi) {
+              var inp = donVi.querySelector('.selectize-input .item');
+              if (inp) donViVal = inp.getAttribute('data-value') || inp.innerText.trim();
+            }
+            if (donViVal && row['Đơn vị điều hành'] != donViVal) show = false;
+
+            // Filter Trạng thái
+            var trangThai = document.querySelector('#trang_thai + .selectize-control');
+            var trangThaiVal = null;
+            if (trangThai) {
+              var inp2 = trangThai.querySelector('.selectize-input .item');
+              if (inp2) trangThaiVal = inp2.getAttribute('data-value') || inp2.innerText.trim();
+            }
+            if (trangThaiVal && row['Trạng thái'] != trangThaiVal) show = false;
+
+            return show;
+          });
+
+          return { headers: headers, rows: filtered };
+        }
+
+        // ── Tải Excel ──
         window._taiExcel = function() {
           function doExcel() {
-            var tableId = 'bang-chitiet';
-            Reactable.setPageSize(tableId, 99999);
-            setTimeout(function() {
-              var table = document.getElementById(tableId);
-              var headers = [];
-              table.querySelectorAll('.rt-th').forEach(function(th) {
-                var t = th.innerText.trim();
-                if (t) headers.push(t);
-              });
-              var rows = [];
-              table.querySelectorAll('.rt-tr-group').forEach(function(row) {
-                var cells = row.querySelectorAll('.rt-td');
-                if (!cells.length) return;
-                var r = {};
-                cells.forEach(function(cell, i) {
-                  if (headers[i]) r[headers[i]] = cell.innerText.trim();
-                });
-                rows.push(r);
-              });
-              var wb = XLSX.utils.book_new();
-              var ws = XLSX.utils.json_to_sheet(rows, { header: headers });
-              ws['!cols'] = headers.map(function(h) { return { wch: Math.max(h.length, 15) }; });
-              XLSX.utils.book_append_sheet(wb, ws, 'Danh sach ticket');
-              XLSX.writeFile(wb, 'danh_sach_ticket.xlsx');
-              Reactable.setPageSize(tableId, 5);
-            }, 1000);
+            var d = getAllFilteredData();
+            if (!d.rows.length) { alert('Không có dữ liệu!'); return; }
+            var wb = XLSX.utils.book_new();
+            var ws = XLSX.utils.json_to_sheet(d.rows, { header: d.headers });
+            ws['!cols'] = d.headers.map(function(h) {
+              return { wch: Math.max(h.length, 15) };
+            });
+            XLSX.utils.book_append_sheet(wb, ws, 'Danh sach ticket');
+            XLSX.writeFile(wb, 'danh_sach_ticket.xlsx');
           }
-          if (!window.XLSX) {
+          window.XLSX ? doExcel() :
             loadScript('https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js', doExcel);
-          } else {
-            doExcel();
-          }
         };
 
-        // ── Tải PNG ────────────────────────────────────────────
+        // ── Tải PNG ──
         window._taiPNG = function() {
           function doPNG() {
-            var tableId = 'bang-chitiet';
-            var table = document.getElementById(tableId);
-            Reactable.setPageSize(tableId, 99999);
-            setTimeout(function() {
-              var ow = table.style.width, oo = table.style.overflow, om = table.style.maxWidth;
-              table.style.width = 'max-content';
-              table.style.maxWidth = 'none';
-              table.style.overflow = 'visible';
-              var cells = table.querySelectorAll('.rt-td, .rt-th');
-              var os = [];
-              cells.forEach(function(c, i) {
-                os[i] = { ws: c.style.whiteSpace, wb: c.style.wordBreak };
-                c.style.whiteSpace = 'normal';
-                c.style.wordBreak = 'break-word';
+            var d = getAllFilteredData();
+            if (!d.rows.length) { alert('Không có dữ liệu!'); return; }
+
+            // Tạo bảng HTML ẩn với tất cả dòng
+            var tableHtml = '<table style=\"border-collapse:collapse;font-size:13px;font-family:Arial;\">';
+            // Header
+            tableHtml += '<tr>';
+            d.headers.forEach(function(h) {
+              tableHtml += '<th style=\"background:#F5DEB3;border:1px solid #ccc;padding:6px 8px;text-align:center;white-space:normal;word-break:break-word;\">' + h + '</th>';
+            });
+            tableHtml += '</tr>';
+            // Rows
+            d.rows.forEach(function(row, idx) {
+              var bg = idx % 2 === 0 ? '#ffffff' : '#f9f9f9';
+              tableHtml += '<tr style=\"background:' + bg + '\">';
+              d.headers.forEach(function(h) {
+                tableHtml += '<td style=\"border:1px solid #ccc;padding:5px 8px;white-space:normal;word-break:break-word;vertical-align:top;\">' + (row[h] || '') + '</td>';
               });
-              setTimeout(function() {
-                html2canvas(table, {
-                  scale: 2, backgroundColor: '#ffffff', useCORS: true,
-                  scrollX: 0, scrollY: 0,
-                  windowWidth: table.scrollWidth,
-                  width: table.scrollWidth,
-                  height: table.scrollHeight
-                }).then(function(canvas) {
-                  table.style.width = ow;
-                  table.style.overflow = oo;
-                  table.style.maxWidth = om;
-                  cells.forEach(function(c, i) {
-                    c.style.whiteSpace = os[i].ws;
-                    c.style.wordBreak = os[i].wb;
-                  });
-                  Reactable.setPageSize(tableId, 5);
-                  var a = document.createElement('a');
-                  a.download = 'danh_sach_ticket.png';
-                  a.href = canvas.toDataURL('image/png');
-                  document.body.appendChild(a);
-                  a.click();
-                  document.body.removeChild(a);
-                }).catch(function(e) {
-                  alert('Lỗi PNG: ' + e.message);
-                  Reactable.setPageSize(tableId, 5);
-                });
-              }, 1000);
-            }, 1000);
+              tableHtml += '</tr>';
+            });
+            tableHtml += '</table>';
+
+            // Tạo div ẩn
+            var wrapper = document.createElement('div');
+            wrapper.style.position = 'fixed';
+            wrapper.style.top = '-99999px';
+            wrapper.style.left = '-99999px';
+            wrapper.style.background = '#ffffff';
+            wrapper.style.padding = '16px';
+            wrapper.innerHTML = tableHtml;
+            document.body.appendChild(wrapper);
+
+            setTimeout(function() {
+              html2canvas(wrapper, {
+                scale: 2,
+                backgroundColor: '#ffffff',
+                useCORS: true,
+                width: wrapper.scrollWidth,
+                height: wrapper.scrollHeight
+              }).then(function(canvas) {
+                document.body.removeChild(wrapper);
+                var a = document.createElement('a');
+                a.download = 'danh_sach_ticket.png';
+                a.href = canvas.toDataURL('image/png');
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+              }).catch(function(e) {
+                document.body.removeChild(wrapper);
+                alert('Lỗi PNG: ' + e.message);
+              });
+            }, 500);
           }
-          if (!window.html2canvas) {
+          window.html2canvas ? doPNG() :
             loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js', doPNG);
-          } else {
-            doPNG();
-          }
         };
 
       })();
@@ -578,4 +468,6 @@ browsable(
   )
 )
 ```
+
+
 
