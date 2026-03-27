@@ -20,6 +20,10 @@ website:
 
 format:
   html:
+    embed-resources: true    # ← nhúng toàn bộ JS/CSS vào HTML
+    self-contained: true
+    theme: cosmo
+    toc: true
     include-after-body:
       - text: |
           <script>
