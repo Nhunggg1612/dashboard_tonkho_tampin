@@ -7,7 +7,6 @@ on:
     - cron: '0 7 * * *'
     - cron: '0 10 * * *'
   workflow_dispatch:
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -43,15 +42,15 @@ jobs:
             libglpk-dev
 
       - name: Cache R packages
-        id: cache-r                          # ← thêm id
+        id: cache-r
         uses: actions/cache@v3
         with:
           path: ${{ env.R_LIBS_USER }}
           key: ${{ runner.os }}-r-4.4.0-${{ hashFiles('**/DESCRIPTION') }}
-          restore-keys: ${{ runner.os }}-r-4.4.0-   # ← dùng cache cũ nếu không match
+          restore-keys: ${{ runner.os }}-r-4.4.0-
 
       - name: Install R packages
-        if: steps.cache-r.outputs.cache-hit != 'true'   # ← giờ hoạt động đúng
+        if: steps.cache-r.outputs.cache-hit != 'true'
         run: |
           install.packages("pak", repos = "https://r-lib.github.io/p/pak/stable/")
           pak::pak(c(
@@ -68,6 +67,14 @@ jobs:
         run: quarto render
         env:
           GCP_SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+
+      - name: Commit rendered site       # ← thêm bước này
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+          git add _site/
+          git diff --staged --quiet || git commit -m "update rendered site"
+          git push
 
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v3
