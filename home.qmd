@@ -471,5 +471,232 @@ browsable(
 )
 ```
 
+```{r,out.width = '150%', echo = FALSE, warning=FALSE, message=FALSE}
+library(reactable)
+library(crosstalk)
+library(htmltools)
+library(jsonlite)
+
+# ── Đặt group name cố định để JS có thể bind ──
+CT_GROUP <- "ticket_group_01"
+
+shared_data <- SharedData$new(ticket_chitiet, group = CT_GROUP)
+
+# Nhúng toàn bộ data + metadata vào JS
+data_json      <- toJSON(ticket_chitiet, auto_unbox = TRUE, na = "null")
+col_names_json <- toJSON(names(ticket_chitiet), auto_unbox = FALSE)
+
+# ── Tạo col_widths JSON để dùng trong cả R (reactable) lẫn JS (Excel) ──
+custom_width <- c(
+  "Sản phẩm"       = 150,
+  "Chi tiết"        = 300,
+  "Tên khách hàng"  = 120,
+  "Địa chỉ"         = 250
+)
+col_widths_r <- sapply(names(ticket_chitiet), function(col) {
+  if (col %in% names(custom_width)) custom_width[[col]] else 100
+})
+col_widths_json <- toJSON(as.list(col_widths_r), auto_unbox = TRUE)
+
+# ── Nút Download ──
+buttons <- div(
+  style = "display: flex; gap: 10px; margin-bottom: 12px;",
+  tags$button("📥 Tải Excel",
+    id    = "btn-dl-excel",
+    style = "padding: 6px 16px; cursor: pointer; border: 1px solid #217346;
+             border-radius: 4px; background: #217346; color: white; font-size: 14px;"
+  ),
+  tags$button("🖼️ Tải PNG",
+    id    = "btn-dl-png",
+    style = "padding: 6px 16px; cursor: pointer; border: 1px solid #2c7bb6;
+             border-radius: 4px; background: #2c7bb6; color: white; font-size: 14px;"
+  )
+)
+
+# ── Filters ──
+filters <- div(
+  style = "display: flex; gap: 20px; align-items: flex-end; margin-bottom: 16px; flex-wrap: wrap;",
+  div(
+    style = "width: 250px;",
+    tags$label("Đơn vị điều hành", style = "font-weight: bold; display: block;"),
+    filter_select("don_vi_dieu_hanh", "", shared_data, ~`Đơn vị điều hành`, multiple = FALSE)
+  ),
+  div(
+    style = "width: 250px;",
+    tags$label("Trạng thái", style = "font-weight: bold; display: block;"),
+    filter_select("trang_thai", "", shared_data, ~`Trạng thái`, multiple = FALSE)
+  ),
+  div(
+    style = "margin-top: 20px;",
+    tags$button("🔄 Reset",
+      style   = "padding: 6px 14px; cursor: pointer; border: 1px solid #ccc;
+                 border-radius: 4px; background: #f5f5f5; font-size: 14px;",
+      onclick = "document.querySelectorAll('.selectized').forEach(function(el){
+                   if(el.selectize) el.selectize.clear();
+                 });"
+    )
+  )
+)
+
+# ── colDef ──
+col_defs <- setNames(
+  lapply(names(ticket_chitiet), function(col) {
+    colDef(
+      name        = col,
+      headerStyle = list(color = "black", background = "#F5DEB3",
+                         whiteSpace = "normal", textAlign = "center"),
+      aggregate   = "unique",
+      align       = "left",
+      width       = col_widths_r[[col]]
+    )
+  }),
+  names(ticket_chitiet)
+)
+
+# ── JavaScript: Excel + PNG ──
+js_code <- sprintf('
+(function () {
+
+  /* === Dữ liệu nhúng từ R === */
+  var FULL_DATA        = %s;   /* toàn bộ data frame */
+  var COL_NAMES        = %s;   /* tên cột theo thứ tự */
+  var COL_WIDTHS       = %s;   /* { "Tên cột": px, ... } */
+  var CT_GROUP         = "%s";
+  var TABLE_ID         = "bang-chitiet";
+  var DEFAULT_PG_SIZE  = 5;
+
+  /* === Theo dõi filter crosstalk === */
+  var currentKeys = null; /* null = không filter = tất cả hàng */
+
+  function initCT() {
+    if (typeof crosstalk === "undefined") { setTimeout(initCT, 100); return; }
+    var fh = new crosstalk.FilterHandle(CT_GROUP);
+    fh.on("change", function (e) {
+      currentKeys = (e.value && e.value.length > 0) ? e.value : null;
+    });
+  }
+  initCT();
+
+  /* === Lấy data đúng với filter hiện tại === */
+  /* Key mặc định của crosstalk = index hàng 1-based (string) */
+  function getFilteredData() {
+    if (!currentKeys) return FULL_DATA;
+    var keySet = new Set(currentKeys.map(String));
+    return FULL_DATA.filter(function (_, i) {
+      return keySet.has(String(i + 1));
+    });
+  }
+
+  /* === Tiện ích load script === */
+  function loadScript(src, cb) {
+    if (document.querySelector("script[src=\\"" + src + "\\"]")) { cb && cb(); return; }
+    var s    = document.createElement("script");
+    s.src    = src;
+    s.onload = cb || function () {};
+    document.head.appendChild(s);
+  }
+
+  /* ============================================================
+     NÚT EXCEL
+     - SheetJS community: hỗ trợ xlsx UTF-8 (tiếng Việt OK)
+     - Đặt độ rộng cột theo wpx = giá trị pixel từ reactable
+  ============================================================ */
+  loadScript(
+    "https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js",
+    function () {
+      document.getElementById("btn-dl-excel").addEventListener("click", function () {
+        var data = getFilteredData();
+        if (!data.length) { alert("Không có dữ liệu để xuất!"); return; }
+
+        /* Tạo worksheet */
+        var ws = XLSX.utils.json_to_sheet(data, { header: COL_NAMES });
+
+        /* Độ rộng cột (wpx = pixel) */
+        ws["!cols"] = COL_NAMES.map(function (col) {
+          return { wpx: COL_WIDTHS[col] || 100 };
+        });
+
+        /* Đóng gói và xuất file .xlsx (UTF-8, đọc được tiếng Việt) */
+        var wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, "Data");
+        XLSX.writeFile(wb, "bang_chitiet.xlsx");
+      });
+    }
+  );
+
+  /* ============================================================
+     NÚT PNG
+     - Tạm thời setPageSize = tổng số hàng sau filter → hiện đủ hàng
+     - html2canvas chụp DOM thật → độ rộng cột, font, màu giữ nguyên
+     - Sau khi chụp → restore lại pagination
+  ============================================================ */
+  loadScript(
+    "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js",
+    function () {
+      document.getElementById("btn-dl-png").addEventListener("click", function () {
+        var btn      = this;
+        var filtered = getFilteredData();
+        if (!filtered.length) { alert("Không có dữ liệu để xuất!"); return; }
+
+        btn.disabled    = true;
+        btn.textContent = "⏳ Đang tạo...";
+
+        /* Hiện toàn bộ hàng để chụp đủ */
+        Reactable.setPageSize(TABLE_ID, filtered.length);
+
+        /* Chờ DOM re-render xong */
+        setTimeout(function () {
+          var el = document.getElementById(TABLE_ID);
+          html2canvas(el, {
+            scale       : 2,          /* độ phân giải gấp đôi */
+            useCORS     : true,
+            logging     : false,
+            windowWidth : el.scrollWidth + 40,
+            width       : el.scrollWidth
+          }).then(function (canvas) {
+
+            /* Tải ảnh */
+            var a    = document.createElement("a");
+            a.download = "bang_chitiet.png";
+            a.href     = canvas.toDataURL("image/png");
+            a.click();
+
+            /* Khôi phục pagination */
+            Reactable.setPageSize(TABLE_ID, DEFAULT_PG_SIZE);
+            btn.disabled    = false;
+            btn.textContent = "🖼️ Tải PNG";
+          });
+        }, 700); /* 700ms đủ để reactable re-render */
+      });
+    }
+  );
+
+})();
+', data_json, col_names_json, col_widths_json, CT_GROUP)
+
+# ── Render ──
+browsable(
+  tagList(
+    buttons,
+    filters,
+    reactable(
+      shared_data, minRows = 3, width = 1500, height = "auto",
+      elementId = "bang-chitiet",
+      theme = reactableTheme(
+        style    = list(fontSize = "13px"),
+        rowStyle = list(`&:hover` = list(backgroundColor = "#FFE4CC !important",
+                                        cursor = "pointer"))
+      ),
+      columns         = col_defs,
+      bordered        = TRUE,
+      striped         = TRUE,
+      highlight       = TRUE,
+      resizable       = TRUE,
+      defaultPageSize = 5
+    ),
+    tags$script(HTML(js_code))
+  )
+)
+```
 
 
