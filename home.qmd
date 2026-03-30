@@ -69,7 +69,7 @@ now <- format(
 ```{r, warning=FALSE, message=FALSE, results = 'hide', echo = FALSE}
 pakh_ton %>%
   group_by(giai_doan, linh_vuc, he_thong, phong_dieuhanh) %>%
-  summarise(tong = n_distinct(na.omit(ma_HD)),
+  summarise(tong = n(),
             trong_han = sum(!is.na(ma_HD) & trang_thai == "Trong hạn", na.rm = TRUE),
             sap_qua_han = sum(!is.na(ma_HD) & trang_thai == "Sắp quá hạn", na.rm = TRUE),
             qua_han = sum(!is.na(ma_HD) & trang_thai == "Quá hạn", na.rm = TRUE)) -> pakh_ton_bc
