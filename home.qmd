@@ -470,7 +470,10 @@ default_pin    <- "Longi615"
 plot_default   <- plot_ton %>% filter(Loai_pin == default_pin)
 
 # Toàn bộ data theo JSON để JS filter
-all_data_json  <- toJSON(plot_ton, auto_unbox = TRUE, na = "null")
+plot_ton_json <- plot_ton %>%
+  mutate(across(where(is.factor), as.character))
+
+all_data_json <- toJSON(plot_ton_json, auto_unbox = TRUE, na = "null")
 loai_pin_json  <- toJSON(loai_pin_list, auto_unbox = TRUE)
 
 # ── Hàm tạo chart từ data đã lọc ───────────────────────────
@@ -494,7 +497,20 @@ make_chart_data <- function(df) {
 }
 
 default_data      <- make_chart_data(plot_default)
-default_data_json <- toJSON(default_data, auto_unbox = TRUE, na = "null")
+default_data_json <- toJSON(
+  list(
+    ma_moi       = as.character(default_data$ma_moi),
+    tong_ton     = default_data$tong_ton,
+    tong_pin_can = default_data$tong_pin_can,
+    ty_le        = default_data$ty_le,
+    kv_groups    = list(
+      KV     = as.character(default_data$kv_groups$KV),
+      n_cols = default_data$kv_groups$n_cols
+    ),
+    n_total = default_data$n_total
+  ),
+  auto_unbox = TRUE, na = "null"
+)
 
 # ── Tạo filter dropdown ─────────────────────────────────────
 filter_ui <- div(
