@@ -435,4 +435,332 @@ shiny::fluidRow(
 )
 ```
 
+### <span style="color: #C35817;font-family: cambria;">**2. Biểu đồ tồn kho - pin cần cấp**</span>
+```{r, warning=FALSE, message=FALSE, results = 'hide', echo = FALSE}
+###BẢNG BIỂU ĐỒ
+tong_ton[-c(1:5),c(1:4,16)] -> plot_ton
+plot_ton %>%
+  mutate(
+    ty_le = tong_pin_can*100/tong_ton
+  ) -> plot_ton
+```
+
+```{r,out.width = '120%',fig.width=7, fig.height=4, echo = FALSE, warning=FALSE, message=FALSE}
+library(dplyr)
+library(jsonlite)
+library(highcharter)
+library(htmlwidgets)
+library(htmltools)
+
+# ── Chuẩn bị data ──────────────────────────────────────────
+thu_tu_kv <- plot_ton %>%
+  group_by(KV) %>%
+  summarise(tong = sum(tong_ton, na.rm = TRUE)) %>%
+  arrange(desc(tong)) %>%
+  pull(KV)
+
+plot_ton$KV    <- factor(plot_ton$KV, levels = thu_tu_kv)
+plot_ton       <- plot_ton %>% arrange(KV, ma_moi)
+
+# Lấy danh sách Loai_pin
+loai_pin_list  <- sort(unique(plot_ton$Loai_pin))
+default_pin    <- "Longi615"
+
+# Lọc data mặc định
+plot_default   <- plot_ton %>% filter(Loai_pin == default_pin)
+
+# Toàn bộ data theo JSON để JS filter
+all_data_json  <- toJSON(plot_ton, auto_unbox = TRUE, na = "null")
+loai_pin_json  <- toJSON(loai_pin_list, auto_unbox = TRUE)
+
+# ── Hàm tạo chart từ data đã lọc ───────────────────────────
+make_chart_data <- function(df) {
+  kv_groups <- df %>%
+    mutate(idx = row_number() - 1) %>%
+    group_by(KV) %>%
+    summarise(n_cols = n(), .groups = "drop")
+
+  list(
+    ma_moi       = df$ma_moi,
+    tong_ton     = round(df$tong_ton, 0),
+    tong_pin_can = round(df$tong_pin_can, 0),
+    ty_le        = round(df$ty_le, 0),
+    kv_groups    = list(
+      KV     = as.character(kv_groups$KV),
+      n_cols = kv_groups$n_cols
+    ),
+    n_total = nrow(df)
+  )
+}
+
+default_data      <- make_chart_data(plot_default)
+default_data_json <- toJSON(default_data, auto_unbox = TRUE, na = "null")
+
+# ── Tạo filter dropdown ─────────────────────────────────────
+filter_ui <- div(
+  style = "margin-bottom: 12px; display: flex; align-items: center; gap: 10px;",
+  tags$label("Loại pin:", 
+    style = "font-weight:bold; font-family:Cambria; font-size:14px;"),
+  tags$select(
+    id = "filter_loai_pin",
+    style = "padding:4px 10px; font-size:13px; font-family:Cambria;
+             border:1px solid #ccc; border-radius:4px; cursor:pointer;",
+    lapply(loai_pin_list, function(p) {
+      if (p == default_pin) {
+        tags$option(value = p, selected = "selected", p)
+      } else {
+        tags$option(value = p, p)
+      }
+    })
+  )
+)
+
+# ── Tạo highchart ───────────────────────────────────────────
+hc <- highchart() %>%
+  hc_chart(type = "column", marginBottom = 80) %>%
+  hc_xAxis(
+    categories = default_data$ma_moi,
+    labels     = list(style = list(fontSize = "11px", fontFamily = "cambria")),
+    crosshair  = list(width = 40, color = "rgba(180,180,180,0.2)", zIndex = 0)
+  ) %>%
+  hc_title(
+    text   = "Tỷ lệ số pin cần cấp so với số pin tồn kho",
+    margin = 20, align = "center",
+    style  = list(color = "black", fontWeight = "bold",
+                  fontFamily = "cambria", fontSize = "20px")
+  ) %>%
+  hc_plotOptions(
+    column = list(states = list(hover    = list(color = NULL),
+                                inactive = list(opacity = 0.3))),
+    series = list(states = list(inactive = list(opacity = 0.3)))
+  ) %>%
+  hc_yAxis_multiples(
+    list(lineWidth = 3,
+         title  = list(text  = "Số pin",
+                       style = list(fontWeight = "bold", fontSize = "15px", fontFamily = "cambria")),
+         labels = list(style = list(fontSize = "12px", fontFamily = "cambria"))),
+    list(showLastLabel = TRUE, opposite = TRUE,
+         title  = list(text  = "%HT",
+                       style = list(fontWeight = "bold", fontSize = "15px", fontFamily = "cambria")),
+         labels = list(style = list(fontSize = "12px", fontFamily = "cambria")))
+  ) %>%
+  hc_add_series(
+    name = "Tổng pin tồn",
+    data = as.list(default_data$tong_ton),
+    states = list(hover = list(color = "#808080"))
+  ) %>%
+  hc_add_series(
+    name = "Số pin cần cấp",
+    data = as.list(default_data$tong_pin_can),
+    states = list(hover = list(color = "#8DB600"))
+  ) %>%
+  hc_add_series(
+    name       = "Tỷ lệ (%)",
+    data       = as.list(default_data$ty_le),
+    type       = "spline", yAxis = 1,
+    dataLabels = list(enabled = TRUE, format = "{y}%")
+  ) %>%
+  hc_tooltip(
+    shared = TRUE, useHTML = TRUE,
+    formatter = JS("
+      function() {
+        var s = '<b>' + this.x + '</b><br/>';
+        var tong_ton = 0, tong_pin_can = 0, ty_le = 0;
+        for (var i = 0; i < this.points.length; i++) {
+          var nm  = this.points[i].series.name;
+          var val = this.points[i].y;
+          if (nm === 'Tổng pin tồn')   tong_ton     = val;
+          if (nm === 'Số pin cần cấp') tong_pin_can = val;
+          if (nm === 'Tỷ lệ (%)')      ty_le        = val;
+        }
+        s += '<span style=\"color:#D9D9D9\">●</span> Tổng pin tồn: <b>' +
+               Highcharts.numberFormat(tong_ton, 0, '.', ',') + '</b><br/>';
+        s += '<span style=\"color:#C84309\">●</span> Số pin cần cấp: <b>' +
+               Highcharts.numberFormat(tong_pin_can, 0, '.', ',') + '</b><br/>';
+        s += '<span style=\"color:#645889\">●</span> Tỷ lệ (%): <b>' + ty_le + '%</b>';
+        return s;
+      }
+    ")
+  ) %>%
+  hc_colors(c("#D9D9D9", "#C84309", "#645889")) %>%
+  hc_legend(
+    labels = list(style = list(color = "black", fontWeight = "bold",
+                               fontFamily = "cambria", fontSize = "14px"))
+  ) %>%
+  hc_exporting(enabled = TRUE, filename = "ton-kho-pin")
+
+# ── onRender với filter ─────────────────────────────────────
+hc <- onRender(hc, paste0("
+function(el, x) {
+  var allData     = ", all_data_json, ";
+  var defaultData = ", default_data_json, ";
+
+  function getFilteredData(loaiPin) {
+    var filtered = allData.filter(function(r) {
+      return r.Loai_pin === loaiPin;
+    });
+
+    // Sắp xếp theo KV
+    filtered.sort(function(a, b) {
+      if (a.KV < b.KV) return -1;
+      if (a.KV > b.KV) return 1;
+      return a.ma_moi < b.ma_moi ? -1 : 1;
+    });
+
+    var kvMap = {};
+    filtered.forEach(function(r) {
+      if (!kvMap[r.KV]) kvMap[r.KV] = 0;
+      kvMap[r.KV]++;
+    });
+
+    return {
+      ma_moi       : filtered.map(function(r) { return r.ma_moi; }),
+      tong_ton     : filtered.map(function(r) { return Math.round(r.tong_ton || 0); }),
+      tong_pin_can : filtered.map(function(r) { return Math.round(r.tong_pin_can || 0); }),
+      ty_le        : filtered.map(function(r) { return Math.round(r.ty_le || 0); }),
+      kv_groups    : {
+        KV     : Object.keys(kvMap),
+        n_cols : Object.values(kvMap)
+      },
+      n_total : filtered.length
+    };
+  }
+
+  function drawKVLabels(chart, groups, N, el) {
+    var pLeft  = chart.plotLeft;
+    var pRight = chart.chartWidth - pLeft - chart.plotWidth;
+    var colW   = chart.plotWidth / N;
+    var nGroups = groups.KV.length;
+    var pullUp  = chart.marginBottom - 25;
+
+    el.style.position = 'relative';
+
+    var old = el.querySelectorAll('._kv_sep, ._kv_row');
+    old.forEach(function(o) { o.parentNode.removeChild(o); });
+
+    var cumCols = 0;
+    for (var i = 0; i < nGroups - 1; i++) {
+      cumCols += groups.n_cols[i];
+      var sepX = pLeft + cumCols * colW;
+      var sep  = document.createElement('div');
+      sep.className = '_kv_sep';
+      sep.style.cssText = [
+        'position:absolute',
+        'left:'   + Math.round(sepX) + 'px',
+        'top:'    + chart.plotTop + 'px',
+        'width:1px',
+        'height:' + (chart.plotHeight + 18) + 'px',
+        'border-left:1px dashed #999999',
+        'pointer-events:none',
+        'z-index:3'
+      ].join(';');
+      el.appendChild(sep);
+    }
+
+    var row = document.createElement('div');
+    row.className = '_kv_row';
+    row.style.cssText = [
+      'display:flex',
+      'margin-top:-' + pullUp + 'px',
+      'padding-left:' + pLeft + 'px',
+      'padding-right:' + pRight + 'px',
+      'width:' + chart.chartWidth + 'px',
+      'box-sizing:border-box',
+      'pointer-events:none'
+    ].join(';');
+
+    for (var j = 0; j < nGroups; j++) {
+      var cell = document.createElement('div');
+      cell.textContent = groups.KV[j];
+      cell.style.cssText = [
+        'flex:' + groups.n_cols[j],
+        'text-align:center',
+        'font-size:12px',
+        'font-family:Cambria,serif',
+        'font-weight:bold',
+        'color:#333333',
+        'border-top:2px solid #555555',
+        'padding-top:4px'
+      ].join(';');
+      row.appendChild(cell);
+    }
+    el.appendChild(row);
+  }
+
+  function updateChart(loaiPin) {
+    var d = getFilteredData(loaiPin);
+    var container = el.querySelector('.highcharts-container');
+    if (!container) return;
+
+    var chart = null;
+    for (var i = 0; i < Highcharts.charts.length; i++) {
+      var c = Highcharts.charts[i];
+      if (c && c.renderTo && el.contains(c.renderTo)) { chart = c; break; }
+    }
+    if (!chart) return;
+
+    // Cập nhật categories
+    chart.xAxis[0].setCategories(d.ma_moi, false);
+
+    // Cập nhật series
+    chart.series[0].setData(d.tong_ton,     false);
+    chart.series[1].setData(d.tong_pin_can, false);
+    chart.series[2].setData(d.ty_le,        false);
+
+    chart.redraw();
+
+    setTimeout(function() {
+      drawKVLabels(chart, d.kv_groups, d.n_total, el);
+    }, 300);
+  }
+
+  function tryDraw() {
+    var container = el.querySelector('.highcharts-container');
+    if (!container) { setTimeout(tryDraw, 200); return; }
+
+    var chart = null;
+    for (var i = 0; i < Highcharts.charts.length; i++) {
+      var c = Highcharts.charts[i];
+      if (c && c.renderTo && el.contains(c.renderTo)) { chart = c; break; }
+    }
+    if (!chart || !chart.plotWidth || chart.plotWidth === 0) {
+      setTimeout(tryDraw, 200); return;
+    }
+
+    drawKVLabels(chart, defaultData.kv_groups, defaultData.n_total, el);
+
+    // Gắn sự kiện filter
+    var sel = document.getElementById('filter_loai_pin');
+    if (sel) {
+      sel.addEventListener('change', function() {
+        updateChart(this.value);
+      });
+    }
+  }
+
+  setTimeout(tryDraw, 300);
+  setTimeout(tryDraw, 800);
+  setTimeout(tryDraw, 1500);
+}
+"))
+
+# ── Ghép filter + chart ─────────────────────────────────────
+browsable(tagList(filter_ui, hc))
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
