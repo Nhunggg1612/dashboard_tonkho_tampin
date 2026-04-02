@@ -436,6 +436,7 @@ shiny::fluidRow(
 ```
 
 ### <span style="color: #C35817;font-family: cambria;">**2. Biểu đồ tồn kho - pin cần cấp**</span>
+#### <span style="color: ##3366CC;font-family: cambria;">**2.1. Tỷ lệ pin cần cấp so với pin tồn kho**</span>
 ```{r, warning=FALSE, message=FALSE, results = 'hide', echo = FALSE}
 ###BẢNG BIỂU ĐỒ
 tong_ton[-c(1:5),c(1:4,16)] -> plot_ton
@@ -754,10 +755,13 @@ browsable(
 ```
 
 
+#### <span style="color: ##3366CC;font-family: cambria;">**2.2. Số pin còn dư - thiếu sau khi cấp**</span>
+
 ```{r, warning=FALSE, message=FALSE, results = 'hide', echo = FALSE}
 ###BẢNG BIỂU ĐỒ TỒN PIN SAU KHI CẤP
 tong_ton[-c(1:5),c(1:3,17)] -> plot_du
 ```
+
 
 ```{r, out.width='120%', echo=FALSE, warning=FALSE, message=FALSE}
 library(dplyr)
@@ -774,7 +778,11 @@ plot_default  <- plot_du %>%
   filter(Loai_pin == default_pin) %>%
   arrange(KV, ma_moi)
 
-all_data_json <- toJSON(plot_du, auto_unbox = TRUE, na = "null")
+# Convert factor → character
+plot_du_json <- plot_du %>%
+  mutate(across(where(is.factor), as.character))
+
+all_data_json <- toJSON(plot_du_json, auto_unbox = TRUE, na = "null")
 
 # ── Hàm tạo màu theo giá trị ───────────────────────────────
 make_colored_data <- function(df) {
@@ -787,12 +795,28 @@ make_colored_data <- function(df) {
   })
 }
 
-default_colored  <- make_colored_data(plot_default)
-default_cats     <- plot_default$ma_moi
+# ── Tạo KV groups từ data mặc định ─────────────────────────
+make_kv_groups <- function(df) {
+  kv_groups <- df %>%
+    group_by(KV) %>%
+    summarise(n_cols = n(), .groups = "drop")
+  list(
+    KV     = as.character(kv_groups$KV),
+    n_cols = kv_groups$n_cols
+  )
+}
+
+default_colored   <- make_colored_data(plot_default)
+default_cats      <- plot_default$ma_moi
+default_kv_groups <- make_kv_groups(plot_default)
+default_n_total   <- nrow(plot_default)
+
 default_data_json <- toJSON(
   list(
-    ma_moi       = plot_default$ma_moi,
-    du_pin_saucap = round(plot_default$du_pin_saucap, 0)
+    ma_moi        = plot_default$ma_moi,
+    du_pin_saucap = round(plot_default$du_pin_saucap, 0),
+    kv_groups     = default_kv_groups,
+    n_total       = default_n_total
   ),
   auto_unbox = TRUE, na = "null"
 )
@@ -818,7 +842,7 @@ filter_ui <- div(
 
 # ── Highchart ───────────────────────────────────────────────
 hc <- highchart() %>%
-  hc_chart(type = "column") %>%
+  hc_chart(type = "column", marginBottom = 80) %>%
   hc_title(
     text  = "Dư pin sau cấp theo tỉnh",
     align = "center",
@@ -831,7 +855,7 @@ hc <- highchart() %>%
     crosshair  = TRUE
   ) %>%
   hc_yAxis(
-    title  = list(
+    title = list(
       text  = "Số pin dư",
       style = list(fontWeight = "bold", fontSize = "14px", fontFamily = "cambria")
     ),
@@ -841,10 +865,10 @@ hc <- highchart() %>%
     ))
   ) %>%
   hc_add_series(
-    name       = "Dư pin sau cấp",
-    data       = default_colored,
+    name         = "Dư pin sau cấp",
+    data         = default_colored,
     showInLegend = FALSE,
-    dataLabels = list(
+    dataLabels   = list(
       enabled = TRUE,
       format  = "{y}",
       style   = list(fontSize = "10px", fontFamily = "cambria",
@@ -872,10 +896,11 @@ hc <- highchart() %>%
   ) %>%
   hc_exporting(enabled = TRUE, filename = "du-pin-sau-cap")
 
-# ── onRender với filter ─────────────────────────────────────
+# ── onRender với filter + KV labels ────────────────────────
 hc <- onRender(hc, paste0("
 function(el, x) {
-  var allData = ", all_data_json, ";
+  var allData     = ", all_data_json, ";
+  var defaultData = ", default_data_json, ";
 
   function getChart() {
     for (var i = 0; i < Highcharts.charts.length; i++) {
@@ -894,7 +919,7 @@ function(el, x) {
     });
   }
 
-  function updateChart(loaiPin) {
+  function getFilteredData(loaiPin) {
     var filtered = allData.filter(function(r) {
       return r.Loai_pin === loaiPin;
     });
@@ -903,25 +928,110 @@ function(el, x) {
       if (a.KV > b.KV) return 1;
       return a.ma_moi < b.ma_moi ? -1 : 1;
     });
+    var kvMap = {};
+    filtered.forEach(function(r) {
+      if (!kvMap[r.KV]) kvMap[r.KV] = 0;
+      kvMap[r.KV]++;
+    });
+    return {
+      cats      : filtered.map(function(r) { return r.ma_moi; }),
+      vals      : filtered.map(function(r) { return r.du_pin_saucap; }),
+      kv_groups : { KV: Object.keys(kvMap), n_cols: Object.values(kvMap) },
+      n_total   : filtered.length
+    };
+  }
 
-    var cats    = filtered.map(function(r) { return r.ma_moi; });
-    var vals    = filtered.map(function(r) { return r.du_pin_saucap; });
-    var colored = makeColoredData(vals);
+  function drawKVLabels(chart, groups, N, el) {
+    var pLeft   = chart.plotLeft;
+    var pRight  = chart.chartWidth - pLeft - chart.plotWidth;
+    var colW    = chart.plotWidth / N;
+    var nGroups = groups.KV.length;
+    var pullUp  = chart.marginBottom - 25;
 
+    el.style.position = 'relative';
+    el.querySelectorAll('._kv_sep, ._kv_row').forEach(function(o) {
+      o.parentNode.removeChild(o);
+    });
+
+    // Đường nét đứt phân chia KV
+    var cumCols = 0;
+    for (var i = 0; i < nGroups - 1; i++) {
+      cumCols += groups.n_cols[i];
+      var sep = document.createElement('div');
+      sep.className = '_kv_sep';
+      sep.style.cssText = [
+        'position:absolute',
+        'left:' + Math.round(pLeft + cumCols * colW) + 'px',
+        'top:' + chart.plotTop + 'px',
+        'width:1px',
+        'height:' + (chart.plotHeight + 18) + 'px',
+        'border-left:1px dashed #999999',
+        'pointer-events:none',
+        'z-index:3'
+      ].join(';');
+      el.appendChild(sep);
+    }
+
+    // Label tên KV bên dưới
+    var row = document.createElement('div');
+    row.className = '_kv_row';
+    row.style.cssText = [
+      'display:flex',
+      'margin-top:-' + pullUp + 'px',
+      'padding-left:' + pLeft + 'px',
+      'padding-right:' + pRight + 'px',
+      'width:' + chart.chartWidth + 'px',
+      'box-sizing:border-box',
+      'pointer-events:none'
+    ].join(';');
+
+    for (var j = 0; j < nGroups; j++) {
+      var cell = document.createElement('div');
+      cell.textContent = groups.KV[j];
+      cell.style.cssText = [
+        'flex:' + groups.n_cols[j],
+        'text-align:center',
+        'font-size:12px',
+        'font-family:Cambria,serif',
+        'font-weight:bold',
+        'color:#333333',
+        'border-top:2px solid #555555',
+        'padding-top:4px'
+      ].join(';');
+      row.appendChild(cell);
+    }
+    el.appendChild(row);
+  }
+
+  function updateChart(loaiPin) {
+    var d     = getFilteredData(loaiPin);
     var chart = getChart();
     if (!chart) return;
 
-    chart.xAxis[0].setCategories(cats, false);
-    chart.series[0].setData(colored, false);
+    chart.xAxis[0].setCategories(d.cats, false);
+    chart.series[0].setData(makeColoredData(d.vals), false);
     chart.redraw();
+
+    setTimeout(function() {
+      drawKVLabels(chart, d.kv_groups, d.n_total, el);
+    }, 300);
   }
 
   function init() {
     var chart = getChart();
     if (!chart || !chart.plotWidth) { setTimeout(init, 300); return; }
 
-    var sel = document.getElementById('filter_loai_pin_du');
+    // Vẽ KV labels mặc định
+    drawKVLabels(chart, defaultData.kv_groups, defaultData.n_total, el);
+
+    // Gắn sự kiện filter
+    var wrapper = el.closest('.filter-chart-block-du');
+    var sel = wrapper
+      ? wrapper.querySelector('select')
+      : document.getElementById('filter_loai_pin_du');
+
     if (sel) {
+      updateChart(sel.value);
       sel.addEventListener('change', function() {
         updateChart(this.value);
       });
@@ -930,15 +1040,17 @@ function(el, x) {
 
   setTimeout(init, 300);
   setTimeout(init, 800);
+  setTimeout(init, 1500);
 }
 "))
 
 # ── Ghép filter + chart ─────────────────────────────────────
-browsable(tagList(filter_ui, hc))
+browsable(
+  div(class = "filter-chart-block-du",
+    tagList(filter_ui, hc)
+  )
+)
 ```
-
-
-
 
 
 
