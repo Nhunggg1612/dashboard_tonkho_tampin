@@ -114,7 +114,7 @@ nv_b2b %>%
   summarise(tong_pin_b2b = sum(so_pin)) -> nv_b2b_bc
 ```
 
-```{r}
+```{r, warning=FALSE, message=FALSE, results = 'hide', echo = FALSE}
 ###BẢNG TỔNG HỢP
 tong_ton <- full_join(ton_wms_bc, ton_diduong_bc, by = c("ma_moi", "KV", "Loai_pin"))
 tong_ton <- full_join(tong_ton, ton_chuanhap_bc, by = c("ma_moi", "KV", "Loai_pin"))
