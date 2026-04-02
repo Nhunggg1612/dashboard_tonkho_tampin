@@ -23,4 +23,7 @@ format:
     theme: cosmo
     css: styles.css
     toc: false
+    page-layout: full
+    grid:
+      body-width: 1200px 
     smooth-scroll: true

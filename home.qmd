@@ -719,42 +719,65 @@ function(el, x) {
   }
 
   function init() {
-    var chart = getChart();
-    if (!chart || !chart.plotWidth) { setTimeout(init, 300); return; }
+  var chart = getChart();
+  if (!chart || !chart.plotWidth) { setTimeout(init, 300); return; }
 
-    // Vẽ KV labels mặc định
-    drawKVLabels(chart, defaultData.kv_groups, defaultData.n_total, el);
+  // ← Thêm 2 dòng này
+  chart.reflow();
+  window.dispatchEvent(new Event('resize'));
 
-    // ← Dùng el.closest() để tìm filter trong cùng block
-    var wrapper = el.closest('.filter-chart-block');
-    var sel = wrapper
-      ? wrapper.querySelector('select')
-      : document.getElementById('filter_loai_pin');
+  drawKVLabels(chart, defaultData.kv_groups, defaultData.n_total, el);
 
-    if (sel) {
-      // Sync chart với giá trị mặc định của dropdown
-      updateChart(sel.value);
+  var wrapper = el.closest('.filter-chart-block');
+  var sel = wrapper
+    ? wrapper.querySelector('select')
+    : document.getElementById('filter_loai_pin');
 
-      sel.addEventListener('change', function() {
-        updateChart(this.value);
-      });
-    }
+  if (sel) {
+    updateChart(sel.value);
+    sel.addEventListener('change', function() {
+      updateChart(this.value);
+    });
   }
+}
 
-  setTimeout(init, 300);
-  setTimeout(init, 800);
-  setTimeout(init, 1500);
+setTimeout(init, 300);
+setTimeout(init, 800);
+setTimeout(init, 1500);
+
+// ← Thêm reflow khi trang load xong
+window.addEventListener('load', function() {
+  setTimeout(function() {
+    var chart = getChart();
+    if (chart) {
+      chart.reflow();
+      window.dispatchEvent(new Event('resize'));
+    }
+  }, 500);
+});
 }
 "))
 
 # ── Ghép filter + chart ─────────────────────────────────────
 browsable(
-  div(
-    style = "width:100%;",
-  div(class = "filter-chart-block",
-    tagList(filter_ui, hc)
+  tagList(
+    tags$style(HTML("
+      .filter-chart-block {
+        width: 100% !important;
+        display: block !important;
+      }
+      .filter-chart-block > div,
+      .filter-chart-block .highcharts-container,
+      .filter-chart-block svg.highcharts-root {
+        width: 100% !important;
+      }
+    ")),
+    div(
+      class = "filter-chart-block",
+      style = "width:100% !important; display:block;",
+      tagList(filter_ui, hc)
+    )
   )
-)
 )
 
 ```
@@ -768,7 +791,7 @@ tong_ton[-c(1:5),c(1:3,17)] -> plot_du
 ```
 
 
-```{r, out.width='150%', echo=FALSE, warning=FALSE, message=FALSE}
+```{r, out.width='180%', echo=FALSE, warning=FALSE, message=FALSE}
 library(dplyr)
 library(jsonlite)
 library(highcharter)
@@ -1054,11 +1077,13 @@ function(el, x) {
 # ── Ghép filter + chart ─────────────────────────────────────
 browsable(
   div(
-    style = "width:100%;",
-  div(class = "filter-chart-block-du",
-    tagList(filter_ui, hc)
+    style = "width:100%; overflow-x:auto;",
+    div(
+      style = "min-width:1400px;",   # ← tăng số này để chart rộng hơn
+      class = "filter-chart-block",
+      tagList(filter_ui, hc)
+    )
   )
-)
 )
 ```
 

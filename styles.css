@@ -236,3 +236,15 @@ nav.navbar {
   color: var(--nav-text-active) !important;
   font-weight: 600 !important;
 }
+body .quarto-container,
+body .container,
+body .container-fluid,
+body #quarto-content,
+body .page-columns,
+body .page-full,
+body main.content {
+  max-width: 100% !important;
+  width: 100% !important;
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+}
