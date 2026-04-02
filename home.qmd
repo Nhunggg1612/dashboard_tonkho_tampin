@@ -446,7 +446,7 @@ plot_ton %>%
   ) -> plot_ton
 ```
 
-```{r,out.width = '120%',fig.width=7, fig.height=4, echo = FALSE, warning=FALSE, message=FALSE}
+```{r,out.width = '150%',fig.width=7, fig.height=4, echo = FALSE, warning=FALSE, message=FALSE}
 library(dplyr)
 library(jsonlite)
 library(highcharter)
@@ -763,7 +763,7 @@ tong_ton[-c(1:5),c(1:3,17)] -> plot_du
 ```
 
 
-```{r, out.width='120%', echo=FALSE, warning=FALSE, message=FALSE}
+```{r, out.width='150%', echo=FALSE, warning=FALSE, message=FALSE}
 library(dplyr)
 library(jsonlite)
 library(highcharter)
