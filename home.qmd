@@ -750,8 +750,188 @@ browsable(tagList(filter_ui, hc))
 ```
 
 
+```{r, warning=FALSE, message=FALSE, results = 'hide', echo = FALSE}
+###BẢNG BIỂU ĐỒ TỒN PIN SAU KHI CẤP
+tong_ton[-c(1:5),c(1:3,17)] -> plot_du
+```
 
+```{r, out.width='120%', echo=FALSE, warning=FALSE, message=FALSE}
+library(dplyr)
+library(jsonlite)
+library(highcharter)
+library(htmlwidgets)
+library(htmltools)
 
+# ── Chuẩn bị data ──────────────────────────────────────────
+loai_pin_list <- sort(unique(plot_du$Loai_pin))
+default_pin   <- "Longi615"
+
+plot_default  <- plot_du %>%
+  filter(Loai_pin == default_pin) %>%
+  arrange(KV, ma_moi)
+
+all_data_json <- toJSON(plot_du, auto_unbox = TRUE, na = "null")
+
+# ── Hàm tạo màu theo giá trị ───────────────────────────────
+make_colored_data <- function(df) {
+  lapply(seq_len(nrow(df)), function(i) {
+    val <- df$du_pin_saucap[i]
+    list(
+      y     = round(val, 0),
+      color = if (!is.na(val) && val >= 0) "#2ECC71" else "#E74C3C"
+    )
+  })
+}
+
+default_colored  <- make_colored_data(plot_default)
+default_cats     <- plot_default$ma_moi
+default_data_json <- toJSON(
+  list(
+    ma_moi       = plot_default$ma_moi,
+    du_pin_saucap = round(plot_default$du_pin_saucap, 0)
+  ),
+  auto_unbox = TRUE, na = "null"
+)
+
+# ── Filter UI ───────────────────────────────────────────────
+filter_ui <- div(
+  style = "margin-bottom:12px; display:flex; align-items:center; gap:10px;",
+  tags$label("Loại pin:",
+    style = "font-weight:bold; font-family:Cambria; font-size:14px;"),
+  tags$select(
+    id = "filter_loai_pin_du",
+    style = "padding:4px 10px; font-size:13px; font-family:Cambria;
+             border:1px solid #ccc; border-radius:4px; cursor:pointer;",
+    lapply(loai_pin_list, function(p) {
+      if (p == default_pin) {
+        tags$option(value = p, selected = "selected", p)
+      } else {
+        tags$option(value = p, p)
+      }
+    })
+  )
+)
+
+# ── Highchart ───────────────────────────────────────────────
+hc <- highchart() %>%
+  hc_chart(type = "column") %>%
+  hc_title(
+    text  = "Dư pin sau cấp theo tỉnh",
+    align = "center",
+    style = list(color = "black", fontWeight = "bold",
+                 fontFamily = "cambria", fontSize = "18px")
+  ) %>%
+  hc_xAxis(
+    categories = default_cats,
+    labels     = list(style = list(fontSize = "11px", fontFamily = "cambria")),
+    crosshair  = TRUE
+  ) %>%
+  hc_yAxis(
+    title  = list(
+      text  = "Số pin dư",
+      style = list(fontWeight = "bold", fontSize = "14px", fontFamily = "cambria")
+    ),
+    labels = list(style = list(fontSize = "12px", fontFamily = "cambria")),
+    plotLines = list(list(
+      value = 0, color = "#333333", width = 1.5, zIndex = 5
+    ))
+  ) %>%
+  hc_add_series(
+    name       = "Dư pin sau cấp",
+    data       = default_colored,
+    showInLegend = FALSE,
+    dataLabels = list(
+      enabled = TRUE,
+      format  = "{y}",
+      style   = list(fontSize = "10px", fontFamily = "cambria",
+                     fontWeight = "bold", textOutline = "none")
+    )
+  ) %>%
+  hc_tooltip(
+    useHTML = TRUE,
+    formatter = JS("
+      function() {
+        var color = this.y >= 0 ? '#2ECC71' : '#E74C3C';
+        return '<b>' + this.x + '</b><br/>' +
+               '<span style=\"color:' + color + '\">●</span> ' +
+               'Dư pin sau cấp: <b>' +
+               Highcharts.numberFormat(this.y, 0, '.', ',') +
+               '</b>';
+      }
+    ")
+  ) %>%
+  hc_plotOptions(
+    column = list(
+      borderRadius = 3,
+      states = list(hover = list(brightness = 0.1))
+    )
+  ) %>%
+  hc_exporting(enabled = TRUE, filename = "du-pin-sau-cap")
+
+# ── onRender với filter ─────────────────────────────────────
+hc <- onRender(hc, paste0("
+function(el, x) {
+  var allData = ", all_data_json, ";
+
+  function getChart() {
+    for (var i = 0; i < Highcharts.charts.length; i++) {
+      var c = Highcharts.charts[i];
+      if (c && c.renderTo && el.contains(c.renderTo)) return c;
+    }
+    return null;
+  }
+
+  function makeColoredData(arr) {
+    return arr.map(function(v) {
+      return {
+        y: Math.round(v || 0),
+        color: (v >= 0) ? '#2ECC71' : '#E74C3C'
+      };
+    });
+  }
+
+  function updateChart(loaiPin) {
+    var filtered = allData.filter(function(r) {
+      return r.Loai_pin === loaiPin;
+    });
+    filtered.sort(function(a, b) {
+      if (a.KV < b.KV) return -1;
+      if (a.KV > b.KV) return 1;
+      return a.ma_moi < b.ma_moi ? -1 : 1;
+    });
+
+    var cats    = filtered.map(function(r) { return r.ma_moi; });
+    var vals    = filtered.map(function(r) { return r.du_pin_saucap; });
+    var colored = makeColoredData(vals);
+
+    var chart = getChart();
+    if (!chart) return;
+
+    chart.xAxis[0].setCategories(cats, false);
+    chart.series[0].setData(colored, false);
+    chart.redraw();
+  }
+
+  function init() {
+    var chart = getChart();
+    if (!chart || !chart.plotWidth) { setTimeout(init, 300); return; }
+
+    var sel = document.getElementById('filter_loai_pin_du');
+    if (sel) {
+      sel.addEventListener('change', function() {
+        updateChart(this.value);
+      });
+    }
+  }
+
+  setTimeout(init, 300);
+  setTimeout(init, 800);
+}
+"))
+
+# ── Ghép filter + chart ─────────────────────────────────────
+browsable(tagList(filter_ui, hc))
+```
 
 
 
