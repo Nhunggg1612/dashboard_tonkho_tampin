@@ -1,5 +1,5 @@
 ---
-title: "Báo cáo PAKH tồn chưa đóng"
+title: "Báo cáo Tồn kho tấm pin"
 format:
   html:
     page-layout: full
@@ -56,385 +56,383 @@ writeLines(
 
 
 ```{r, warning=FALSE, message=FALSE, results = 'hide', echo = FALSE}
-pakh_ton <- read_excel("data/3.R_pakh.xlsx")
+nv_aio <- read_excel("data/nv_aio_bc.xlsx")
+ton_di_duong <- read_excel("data/ton_di_duong_bc.xlsx")
+ton_wms <- read_excel("data/ton_wms_bc.xlsx")
+ton_chuanhap <- read_excel("data/ton_chuanhap.xlsx")
+khu_vuc <- read_excel("data/ton_chuanhap.xlsx", sheet = "Sheet2")
+nv_b2b <- read_excel("data/ton_chuanhap.xlsx", sheet = "B2B")
 now <- format(
   as.POSIXct(Sys.time(), tz = "Asia/Ho_Chi_Minh"), 
   "%d/%m/%Y %H:%M:%S"
 )
 ```
 
-## <span style="color: #C35817;font-family: cambria;">**I. DANH SÁCH TICKET CÒN TỒN CHƯA XỬ LÝ ĐẾN ** <strong>`r now`</strong></span>
+```{r, warning=FALSE, message=FALSE, results = 'hide', echo = FALSE}
+nv_aio <- left_join(nv_aio, khu_vuc, by = "ma_moi")
+ton_di_duong <- left_join(ton_di_duong, khu_vuc, by = "ma_moi")
+ton_di_duong$Loai_kho <- "CNCT"
+ton_wms <- left_join(ton_wms, khu_vuc, by = "ma_moi")
+nv_b2b <- left_join(nv_b2b, khu_vuc, by = "ma_moi")
+ton_chuanhap$Loai_kho <- "CNCT"
+```
+
+
+```{r, warning=FALSE, message=FALSE, results = 'hide', echo = FALSE}
+ton_wms %>%
+  group_by(ma_moi, KV, Loai_pin) %>%
+  summarise(tong_ton_wms = sum(so_pin),
+            kho_kv_wms = sum(so_pin[Loai_kho == "KV1" | Loai_kho == "KV2" | Loai_kho == "KV3"], na.rm = TRUE),
+            kho_cnct_wms = sum(so_pin[Loai_kho == "CNCT"], na.rm = TRUE),
+            kho_ttqh_wms = sum(so_pin[Loai_kho == "TTQH"], na.rm = TRUE),
+            kho_cn_wms = sum(so_pin[Loai_kho == "CN"], na.rm = TRUE),
+            kho_cn_coHD_wms = sum(so_pin[Loai_kho == "CN" & so_HD > 0], na.rm = TRUE)) -> ton_wms_bc
+
+ton_di_duong %>%
+  group_by(ma_moi, KV, Loai_pin) %>%
+  summarise(tong_ton_diduong = sum(so_pin_hd),
+            kho_cnct_diduong = sum(so_pin_hd[Loai_kho == "CNCT"], na.rm = TRUE)) -> ton_diduong_bc
+
+ton_chuanhap %>%
+  group_by(ma_moi, KV, Loai_pin) %>%
+  summarise(tong_ton_chuanhap = sum(so_pin),
+            kho_cnct_chuanhap = sum(so_pin[Loai_kho == "CNCT"], na.rm = TRUE)) -> ton_chuanhap_bc
+```
+
+```{r, warning=FALSE, message=FALSE, results = 'hide', echo = FALSE}
+nv_aio %>%
+  group_by(ma_moi, KV, Loai_pin) %>%
+  summarise(tong_so_HD = sum(so_HD),
+            tong_gtri_HD = sum(gtri_HD)/10^6,
+            tong_pin_b2c = sum(so_pin_hd),
+            so_HD_tamung = sum(so_da_tam_ung),
+            so_pin_tamung = sum(so_pin_tam_ung)) -> nv_aio_bc
+
+nv_b2b %>%
+  filter(hang_hethong != "Đã xuất ra công trình") %>%
+  group_by(ma_moi, KV, Loai_pin) %>%
+  summarise(tong_pin_b2b = sum(so_pin)) -> nv_b2b_bc
+```
+
+```{r}
+###BẢNG TỔNG HỢP
+tong_ton <- full_join(ton_wms_bc, ton_diduong_bc, by = c("ma_moi", "KV", "Loai_pin"))
+tong_ton <- full_join(tong_ton, ton_chuanhap_bc, by = c("ma_moi", "KV", "Loai_pin"))
+tong_ton[is.na(tong_ton)] <- 0
+tong_ton <- tong_ton %>%
+  mutate(tong_ton = tong_ton_wms + tong_ton_diduong + tong_ton_chuanhap,
+         ton_kv = kho_kv_wms,
+         ton_cnct = kho_cnct_wms + kho_cnct_diduong + kho_cnct_chuanhap,
+         kho_cn_noHD = kho_cn_wms - kho_cn_coHD_wms)
+
+tong_ton <- tong_ton[c(1:3, 14, 4, 10, 12, 15, 16, 7, 8,9,17)]
+
+tong_ton <- full_join(tong_ton, nv_aio_bc, by = c("ma_moi", "KV", "Loai_pin"))
+tong_ton <- full_join(tong_ton, nv_b2b_bc, by = c("ma_moi", "KV", "Loai_pin"))
+tong_ton[is.na(tong_ton)] <- 0
+tong_ton <- tong_ton %>%
+  mutate(tong_pin_can = so_pin_tamung + tong_pin_b2b,
+         du_pin_saucap = tong_ton - tong_pin_can)
+tong_ton <- tong_ton[-c(14:17)]
+
+tong_ton <- tong_ton %>%
+  mutate(ma_moi = case_when(
+    ma_moi == "COV1-Công ty CP Công trình Viettel" ~ "COV1",
+    ma_moi == "COV2-Công ty CP Công trình Viettel" ~ "COV2",
+    ma_moi == "COV3-Công ty CP Công trình Viettel" ~ "COV3",
+    TRUE ~ ma_moi
+  ))
+
+tong_ton <- tong_ton %>%
+  filter(Loai_pin != "TCT_Pin khác" & Loai_pin != "CN_Pin khác" )
+
+tong_ton <- tong_ton %>% arrange(Loai_pin, KV, ma_moi)
+
+tong_ton %>%
+  group_by(Loai_pin) %>%
+  summarise(tong_ton = sum(tong_ton),
+            tong_ton_wms = sum(tong_ton_wms),
+            tong_ton_diduong = sum(tong_ton_diduong),
+            tong_ton_chuanhap = sum(tong_ton_chuanhap),
+            ton_kv = sum(ton_kv),
+            ton_cnct = sum(ton_cnct),
+            kho_ttqh_wms = sum(kho_ttqh_wms),
+            kho_cn_wms = sum(kho_cn_wms),
+            kho_cn_coHD_wms = sum(kho_cn_coHD_wms),
+            kho_cn_noHD = sum(kho_cn_noHD),
+            so_pin_tamung = sum(so_pin_tamung),
+            tong_pin_b2b = sum(tong_pin_b2b),
+            tong_pin_can = sum(tong_pin_can),
+            du_pin_saucap = sum(du_pin_saucap)) -> tong_ton_x
+tong_ton_x$ma_moi <- "Tổng"
+tong_ton_x$KV <- "Tổng"
+tong_ton_x <- tong_ton_x[c(16, 17, 1:15)]
+tong_ton <- rbind(tong_ton_x, tong_ton)
+```
+
+
+## <span style="color: #C35817;font-family: cambria;">**I. TỒN KHO TẤM PIN ĐẾN ** <strong>`r now`</strong></span>
 ### <span style="color: #C35817;font-family: cambria;">**1. Tổng quan**</span>
 
 ```{r, warning=FALSE, message=FALSE, results = 'hide', echo = FALSE}
-pakh_ton %>%
-  group_by(giai_doan, linh_vuc, he_thong, phong_dieuhanh) %>%
-  summarise(tong = n(),
-            trong_han = sum(!is.na(ma_HD) & trang_thai == "Trong hạn", na.rm = TRUE),
-            sap_qua_han = sum(!is.na(ma_HD) & trang_thai == "Sắp quá hạn", na.rm = TRUE),
-            qua_han = sum(!is.na(ma_HD) & trang_thai == "Quá hạn", na.rm = TRUE)) -> pakh_ton_bc
+kq1x <- unlist(tong_ton[1])
+kq2x <- unlist(tong_ton[2])
+kq3x <- unlist(tong_ton[3])
+kq4x <- accounting(unlist(tong_ton[c(1:nrow(tong_ton)),4]), digits = 2L, format = "d", big.mark = ",")
+kq5x <- accounting(unlist(tong_ton[c(1:nrow(tong_ton)),5]), digits = 2L, format = "d", big.mark = ",")
+kq6x <- accounting(unlist(tong_ton[c(1:nrow(tong_ton)),6]), digits = 2L, format = "d", big.mark = ",")
+kq7x <- accounting(unlist(tong_ton[c(1:nrow(tong_ton)),7]), digits = 2L, format = "d", big.mark = ",")
+kq8x <- accounting(unlist(tong_ton[c(1:nrow(tong_ton)),8]), digits = 2L, format = "d", big.mark = ",")
+kq9x <- accounting(unlist(tong_ton[c(1:nrow(tong_ton)),9]), digits = 2L, format = "d", big.mark = ",")
+kq10x <- accounting(unlist(tong_ton[c(1:nrow(tong_ton)),10]), digits = 2L, format = "d", big.mark = ",")
+kq11x <- accounting(unlist(tong_ton[c(1:nrow(tong_ton)),11]), digits = 2L, format = "d", big.mark = ",")
+kq12x <- accounting(unlist(tong_ton[c(1:nrow(tong_ton)),12]), digits = 2L, format = "d", big.mark = ",")
+kq13x <- accounting(unlist(tong_ton[c(1:nrow(tong_ton)),13]), digits = 2L, format = "d", big.mark = ",")
+kq14x <- accounting(unlist(tong_ton[c(1:nrow(tong_ton)),14]), digits = 2L, format = "d", big.mark = ",")
+kq15x <- accounting(unlist(tong_ton[c(1:nrow(tong_ton)),15]), digits = 2L, format = "d", big.mark = ",")
+kq16x <- accounting(unlist(tong_ton[c(1:nrow(tong_ton)),16]), digits = 2L, format = "d", big.mark = ",")
+kq17x <- accounting(unlist(tong_ton[c(1:nrow(tong_ton)),17]), digits = 2L, format = "d", big.mark = ",")
 
-pakh_ton_bc <- pakh_ton_bc %>%
-  arrange(phong_dieuhanh, desc(giai_doan))
-```
-
-```{r, warning=FALSE, message=FALSE, results = 'hide', echo = FALSE}
-kq1x <- unlist(pakh_ton_bc[1])
-kq2x <- unlist(pakh_ton_bc[2])
-kq3x <- unlist(pakh_ton_bc[3])
-kq4x <- unlist(pakh_ton_bc[4])
-kq5x <- accounting(unlist(pakh_ton_bc[c(1:nrow(pakh_ton_bc)),5]), digits = 2L, format = "d", big.mark = ",")
-kq6x <- accounting(unlist(pakh_ton_bc[c(1:nrow(pakh_ton_bc)),6]), digits = 2L, format = "d", big.mark = ",")
-kq7x <- accounting(unlist(pakh_ton_bc[c(1:nrow(pakh_ton_bc)),7]), digits = 2L, format = "d", big.mark = ",")
-kq8x <- accounting(unlist(pakh_ton_bc[c(1:nrow(pakh_ton_bc)),8]), digits = 2L, format = "d", big.mark = ",")
-
-
-pakh_ton_bc_tb <- data.frame(kq1x,kq2x, kq3x, kq4x,kq5x,kq6x,kq7x,kq8x)
-pakh_ton_bc_tb[5:8] <- lapply(pakh_ton_bc_tb[5:8], as.numeric)
-rownames(pakh_ton_bc_tb) <- NULL
+tong_ton_tb <- data.frame(kq1x,kq2x, kq3x, kq4x,kq5x,kq6x,kq7x,kq8x,kq9x,kq10x,kq11x, kq12x,kq13x,kq14x,kq15x,kq16x,kq17x)
+tong_ton_tb[4:17] <- lapply(tong_ton_tb[4:17], as.numeric)
+rownames(tong_ton_tb) <- NULL
 ```
 
 ```{r,out.width = '150%', echo = FALSE, warning=FALSE, message=FALSE}
-library(crosstalk)
 library(reactable)
-shared_pakh_ton_bc_tb <- SharedData$new(pakh_ton_bc_tb)
+
+loai_pin_values <- sort(unique(tong_ton_tb$kq3x))
+
+update_footer_js <- "
+function updateFooters() {
+  setTimeout(function() {
+    var state = Reactable.getState('tong_ton_table');
+    if (!state || !state.sortedRows) return;
+  }, 150);
+}
+"
+
+filters <- tagList(
+  tags$script(HTML(update_footer_js)),
+  div(
+    style = "display: flex; gap: 20px; align-items: flex-end; margin-bottom: 16px; flex-wrap: wrap;",
+    div(
+      style = "width: 250px;",
+      tags$label("Loại pin", style = "font-weight: bold; display: block; margin-bottom: 4px;"),
+      tags$select(
+        id = "filter_loai_pin",
+        style = "width: 100%; padding: 6px 10px; border: 1px solid #ccc;
+                 border-radius: 4px; font-size: 14px; height: 34px;",
+        onchange = "Reactable.setFilter('tong_ton_table', 'kq3x', this.value || undefined);",
+        tags$option(value = "", "-- Tất cả --"),
+        lapply(loai_pin_values, function(v) tags$option(value = v, v))
+      )
+    ),
+    div(
+      style = "margin-top: 20px;",
+      tags$button("\U0001f504 Reset",
+        style = "padding: 6px 14px; cursor: pointer; border: 1px solid #ccc;
+                 border-radius: 4px; background: #f5f5f5; font-size: 14px;",
+        onclick = "
+          document.getElementById('filter_loai_pin').value = '';
+          Reactable.setFilter('tong_ton_table', 'kq3x', undefined);
+        "
+      )
+    ),
+    div(
+      style = "margin-top: 20px;",
+      tags$button("\u2b07 T\u1ea3i Excel",
+        style = "padding: 6px 14px; cursor: pointer; border: 1px solid #28a745;
+                 border-radius: 4px; background: #28a745; color: white; font-size: 14px;",
+        onclick = "window._taiExcel && window._taiExcel(this)"
+      )
+    )
+  )
+)
 
 shiny::fluidRow(
   shiny::column(
     9,
-    reactable(shared_pakh_ton_bc_tb, minRows = 3,width = 800, height = "auto", pagination = FALSE,
-  resizable = TRUE,
-  wrap = TRUE,
-  searchable = TRUE,
-  bordered = TRUE, highlight = TRUE, style = list(fontSize = "16px"),
-  theme = reactableTheme(
-  headerStyle = list(background = "#F56222"),
-  rowStyle = list(
-    `&:hover` = list(
-      backgroundColor = "#FFE4CC !important",
-      cursor = "pointer"
-    )
+    filters,
+    reactable(tong_ton_tb,
+              elementId = "tong_ton_table",
+              minRows = 3, width = 1720, height = "auto", pagination = FALSE, groupBy = "kq2x",
+              columnGroups = list(
+                colGroup("Tổng tồn kho", columns = c("kq3x","kq4x","kq5x","kq6x","kq7x"), sticky = "left",
+                         headerStyle = list(color = "white", background = "#F56222", whiteSpace = "normal", textAlign = "center")),
+                colGroup("Loại kho", columns = c("kq8x","kq9x","kq10x","kq11x","kq12x","kq13x"), sticky = "left",
+                         headerStyle = list(color = "white", background = "#009900", whiteSpace = "normal", textAlign = "center")),
+                colGroup("Số pin cần cấp", columns = c("kq14x","kq15x","kq16x","kq17x"), sticky = "left",
+                         headerStyle = list(color = "white", background = "#3333CC", whiteSpace = "normal", textAlign = "center"))
+              ),
+              resizable = TRUE, searchable = TRUE,
+              bordered = TRUE, highlight = TRUE, style = list(fontSize = "16px"),
+              rowStyle = JS("
+  function(rowInfo, state) {
+    // Hàng tổng: KV = 'Tổng' → chữ đỏ
+    if (rowInfo.values['kq2x'] && rowInfo.values['kq2x'].toString().startsWith('T\u1ed5ng')) {
+      return {
+        color: '#CC0000',
+        fontWeight: 'bold',
+        background: '#FFF5F5',
+        borderTop: '2px solid #CC0000',
+        borderBottom: '2px solid #CC0000'
+      };
+    }
+    // Group rows khác
+    if (rowInfo.subRows && rowInfo.subRows.length > 0) {
+      return { backgroundColor: '#FFFFFF', fontWeight: 'bold', color: '#000000',
+               borderLeft: '2px solid transparent', transition: 'background-color 0.2s ease' };
+    }
+    // Leaf rows
+    return { borderLeft: '2px solid #ffa62d', backgroundColor: '#f5f5f5',
+             transition: 'background-color 0.2s ease' };
+  }
+"),
+              theme = reactableTheme(
+                headerStyle = list(background = "#F56222"),
+                rowStyle = list(`&:hover` = list(backgroundColor = "#FFE4CC !important", cursor = "pointer"))
+              ),
+              defaultColDef = colDef(
+  style = list(whiteSpace = "nowrap"),          # ← cell không wrap
+  headerStyle = list(
+    whiteSpace = "normal",                       # ← header wrap
+    wordBreak = "break-word",
+    textAlign = "center"
   )
 ),
-  defaultColDef = colDef(
-    #headerStyle = list(color = "black", background = "#F5DEB3", whiteSpace = "normal",textAlign = "center"),
-    footerStyle = list(fontWeight = "bold", color = "#B22222")
-  ),
-  striped = FALSE,
-  columns = list(
-    
-    kq1x = colDef(name = "Giai đoạn", headerStyle = list(color = "black", background = "#F5DEB3", whiteSpace = "normal",textAlign = "center"),
-      aggregate = "unique",
-     align = "left", width = 100, footer = "Tổng"),
-    
-    kq2x = colDef(name = "Lĩnh vực", headerStyle = list(color = "black", background = "#F5DEB3", whiteSpace = "normal",textAlign = "center"),
-      aggregate = "unique",
-     align = "left", width = 100, footer = "Tổng"),
-    
-    kq3x = colDef(name = "Hệ thống", headerStyle = list(color = "black", background = "#F5DEB3", whiteSpace = "normal",textAlign = "center"),
-      aggregate = "unique",
-     align = "left", width = 100, footer = "Tổng"),
-    
-    kq4x = colDef(name = "Đơn vị phụ trách", headerStyle = list(color = "black", background = "#F5DEB3", whiteSpace = "normal",textAlign = "center"),
-      aggregate = "unique",
-     align = "left", width = 120, footer = "Tổng"),
-    
-    kq5x = colDef(name = "Tổng đơn tồn", headerStyle = list(color = "black", background = "#C8E2B1", whiteSpace = "normal",textAlign = "center"),
-      aggregate = "sum", align = "right", width = 90, footer = function(values) sprintf("%.0f", sum(values))),
-    
-    
-    kq6x = colDef(name = "Trong hạn", headerStyle = list(color = "black", background = "#BFCAE6", whiteSpace = "normal",textAlign = "center"),
-      aggregate = "sum", align = "right", width = 90, footer = function(values) sprintf("%.0f", sum(values))),
-    
-    kq7x = colDef(name = "Sắp quá hạn", headerStyle = list(color = "black", background = "#BFCAE6", whiteSpace = "normal",textAlign = "center"),
-      aggregate = "sum", align = "right", width = 100, format = colFormat(digits = 0, separators = TRUE), footer = function(values) sprintf("%s", format(sum(values), big.mark = ",", digits = 2L))),
-    
-    kq8x = colDef(
-  name        = "Quá hạn",
-  headerStyle = list(color = "black", background = "#BFCAE6",
-                     whiteSpace = "normal", textAlign = "center"),
-  aggregate   = "sum",
-  align       = "right",
-  width       = 100,
-  format      = colFormat(digits = 0, separators = TRUE),
-  footer      = function(values) sprintf("%s", format(sum(values), big.mark = ",", digits = 2L)),
-  
-  # ✅ Thêm vào đây
-  style = function(value) {
-    if (!is.na(value) && value > 0) {
-      list(
-        color           = "#B22222",      # Chữ đỏ đậm
-        fontWeight      = "bold",
-        backgroundColor = "#FFE4E1"       # Nền đỏ nhạt
-      )
-    }
-  }
-)
+              striped = FALSE,
+              columns = list(
 
-  )
-)))
-```
-
-### <span style="color: #C35817;font-family: cambria;">**2. Danh sách chi tiết**</span>
-
-```{r, warning=FALSE, message=FALSE, results = 'hide', echo = FALSE}
-ticket_chitiet <- pakh_ton[c(2,3,4,5,6,10:12,15:20,22:24,27:29)]
-n1 <- c("Mã tỉnh", "Lĩnh vực", "Ngành hàng", "Sản phẩm", "Mã HĐ", "Tên khách hàng", "SĐT", "Địa chỉ", "Giai đoạn", "Nhóm sự cố", "Loại sự cố", "Chi tiết", "Ngày bắt đầu", "Ngày kết thúc", "Trạng thái", "Tên nhân viên", "Mã nhân viên", "Hệ thống", "Đơn vị điều hành", "AM chuyên quản")
-colnames(ticket_chitiet) <- n1
-ticket_chitiet[] <- lapply(ticket_chitiet, unlist)
-```
-
-
-```{r,out.width = '150%', echo = FALSE, warning=FALSE, message=FALSE}
-library(reactable)
-library(crosstalk)
-library(htmltools)
-library(jsonlite)
-
-CT_GROUP    <- "bang_chitiet_group"
-shared_data <- SharedData$new(ticket_chitiet, group = CT_GROUP)
-
-data_json      <- toJSON(ticket_chitiet, auto_unbox = TRUE, na = "null")
-col_names_json <- toJSON(names(ticket_chitiet), auto_unbox = FALSE)
-
-custom_width <- c(
-  "Sản phẩm"      = 150,
-  "Chi tiết"       = 300,
-  "Tên khách hàng" = 120,
-  "Địa chỉ"        = 250
-)
-col_widths_r <- sapply(names(ticket_chitiet), function(col) {
-  if (col %in% names(custom_width)) custom_width[[col]] else 100
-})
-col_widths_json <- toJSON(as.list(col_widths_r), auto_unbox = TRUE)
-
-# ── Filters ──
-filters <- div(
-  style = "display: flex; gap: 20px; align-items: flex-end; margin-bottom: 16px; flex-wrap: wrap;",
-  div(
-    style = "width: 250px;",
-    tags$label("Đơn vị điều hành", style = "font-weight: bold; display: block;"),
-    filter_select("don_vi_dieu_hanh", "", shared_data, ~`Đơn vị điều hành`, multiple = FALSE)
-  ),
-  div(
-    style = "width: 250px;",
-    tags$label("Trạng thái", style = "font-weight: bold; display: block;"),
-    filter_select("trang_thai", "", shared_data, ~`Trạng thái`, multiple = FALSE)
-  ),
-  div(
-    style = "margin-top: 20px;",
-    tags$button("🔄 Reset",
-      style   = "padding: 6px 14px; cursor: pointer; border: 1px solid #ccc;
-                 border-radius: 4px; background: #f5f5f5; font-size: 14px;",
-      onclick = "document.querySelectorAll('.selectized').forEach(function(el){
-                   if(el.selectize) el.selectize.clear();
-                 });"
-    )
-  ),
-  div(
-    style = "margin-top: 20px;",
-    tags$button("⬇ Tải Excel",
-      style   = "padding: 6px 14px; cursor: pointer; border: 1px solid #28a745;
-                 border-radius: 4px; background: #28a745; color: white; font-size: 14px;",
-      onclick = "window._taiExcel && window._taiExcel(this)"
-    )
-  ),
-  div(
-    style = "margin-top: 20px;",
-    tags$button("📷 Tải PNG",
-      style   = "padding: 6px 14px; cursor: pointer; border: 1px solid #007bff;
-                 border-radius: 4px; background: #007bff; color: white; font-size: 14px;",
-      onclick = "window._taiPNG && window._taiPNG(this)"
-    )
-  )
-)
-
-# ── colDef ──
-col_defs <- setNames(
-  lapply(names(ticket_chitiet), function(col) {
-    colDef(
-      name        = col,
-      headerStyle = list(color = "black", background = "#F5DEB3",
-                         whiteSpace = "normal", textAlign = "center"),
-      aggregate   = "unique",
-      align       = "left",
-      width       = col_widths_r[[col]]
-    )
-  }),
-  names(ticket_chitiet)
-)
-
-# ── JavaScript: dùng paste0 thay sprintf để tránh lỗi % ──
-js_vars <- paste0(
-  "var FULL_DATA  = ", data_json, ";\n",
-  "var COL_NAMES  = ", col_names_json, ";\n",
-  "var COL_WIDTHS = ", col_widths_json, ";\n",
-  "var CT_GROUP   = '", CT_GROUP, "';\n"
-)
-
-js_logic <- "
-(function () {
-
-  var activeKeys = null;
-
-  function initFilter() {
-    if (typeof crosstalk === 'undefined') { setTimeout(initFilter, 150); return; }
-    var fh = new crosstalk.FilterHandle(CT_GROUP);
-    fh.on('change', function (e) {
-      activeKeys = (e.value && e.value.length > 0) ? e.value : null;
-    });
-  }
-  initFilter();
-
-  function getFilteredData() {
-    if (!activeKeys) return FULL_DATA;
-    var keySet = new Set(activeKeys.map(String));
-    return FULL_DATA.filter(function (_, i) {
-      return keySet.has(String(i + 1));
-    });
-  }
-
-  function loadScript(url, cb) {
-    if (document.querySelector('script[src=\"' + url + '\"]')) { cb && cb(); return; }
-    var s = document.createElement('script');
-    s.src = url;
-    s.onload = cb || function () {};
-    s.onerror = function () { alert('Không load được: ' + url); };
-    document.head.appendChild(s);
-  }
-
-  function setBtnState(btn, loading, label) {
-    if (!btn) return;
-    btn.disabled    = loading;
-    btn.textContent = loading ? '⏳ Đang tạo...' : label;
-  }
-
-  /* ── EXCEL ── */
-  window._taiExcel = function (btn) {
-    function doExcel() {
-      setBtnState(btn, true);
-      var rows = getFilteredData();
-      if (!rows.length) {
-        alert('Không có dữ liệu để xuất!');
-        setBtnState(btn, false, '⬇ Tải Excel');
-        return;
+                kq1x = colDef(name = "Mã tỉnh",
+  headerStyle = list(color = "black", background = "#F5DEB3", whiteSpace = "normal", textAlign = "center"),
+  aggregate = JS("function(values, rows) { return values.join(', ') }"),
+  aggregated = JS("function(cellInfo) {
+    return React.createElement('span', {
+      title: cellInfo.value,   // tooltip xem đầy đủ khi hover
+      style: {
+        cursor: 'help',
+        fontWeight: 'bold',
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        display: 'block',
+        maxWidth: '100px'
       }
-      var ws = XLSX.utils.json_to_sheet(rows, { header: COL_NAMES });
-      ws['!cols'] = COL_NAMES.map(function (col) {
-        return { wch: Math.max(Math.round((COL_WIDTHS[col] || 100) / 7), 8) };
-      });
-      var wb = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(wb, ws, 'Danh sach ticket');
-      XLSX.writeFile(wb, 'danh_sach_ticket.xlsx');
-      setBtnState(btn, false, '⬇ Tải Excel');
-    }
-    window.XLSX
-      ? doExcel()
-      : loadScript('https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js', doExcel);
-  };
-
-  /* ── PNG ── */
-  window._taiPNG = function (btn) {
-    function doPNG() {
-      setBtnState(btn, true);
-      var rows = getFilteredData();
-      if (!rows.length) {
-        alert('Không có dữ liệu để xuất!');
-        setBtnState(btn, false, '📷 Tải PNG');
-        return;
+    }, cellInfo.value);
+  }"),
+  style = JS("
+    function(rowInfo, state) {
+      if (rowInfo.subRows && rowInfo.subRows.length > 0) {
+        return {
+          cursor: 'help',
+          fontWeight: 'bold',
+          backgroundColor: '#f5f5f5',
+          textDecoration: 'underline dotted',
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis'
+        };
+      } else {
+        return {
+          backgroundColor: '#f5f5f5',
+          whiteSpace: 'nowrap'
+        };
       }
-
-      var totalWidth = COL_NAMES.reduce(function (s, col) {
-        return s + (COL_WIDTHS[col] || 100);
-      }, 0);
-
-      var html = '<table style=\"border-collapse:collapse;font-size:13px;'
-               + 'font-family:Arial,sans-serif;width:' + totalWidth + 'px;\">'
-               + '<colgroup>';
-      COL_NAMES.forEach(function (col) {
-        html += '<col style=\"width:' + (COL_WIDTHS[col] || 100) + 'px\">';
-      });
-      html += '</colgroup><thead><tr>';
-      COL_NAMES.forEach(function (col) {
-        html += '<th style=\"background:#F5DEB3;border:1px solid #ccc;'
-             +  'padding:6px 8px;text-align:center;white-space:normal;'
-             +  'word-break:break-word;\">' + col + '</th>';
-      });
-      html += '</tr></thead><tbody>';
-      rows.forEach(function (row, idx) {
-        var bg = idx % 2 === 0 ? '#ffffff' : '#f5f5f5';
-        html += '<tr style=\"background:' + bg + '\">';
-        COL_NAMES.forEach(function (col) {
-          var txt = (row[col] === null || row[col] === undefined) ? '' : String(row[col]);
-          html += '<td style=\"border:1px solid #ccc;padding:5px 8px;'
-               +  'white-space:normal;word-break:break-word;'
-               +  'vertical-align:top;\">' + txt + '</td>';
-        });
-        html += '</tr>';
-      });
-      html += '</tbody></table>';
-
-      var wrapper = document.createElement('div');
-      wrapper.style.cssText = 'position:fixed;top:-99999px;left:-99999px;'
-                            + 'background:#ffffff;padding:16px;'
-                            + 'width:' + (totalWidth + 32) + 'px;';
-      wrapper.innerHTML = html;
-      document.body.appendChild(wrapper);
-
-      html2canvas(wrapper, {
-        scale: 2,
-        backgroundColor: '#ffffff',
-        useCORS: true,
-        width: wrapper.scrollWidth,
-        height: wrapper.scrollHeight
-      }).then(function (canvas) {
-        document.body.removeChild(wrapper);
-        var a = document.createElement('a');
-        a.download = 'danh_sach_ticket.png';
-        a.href = canvas.toDataURL('image/png');
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        setBtnState(btn, false, '📷 Tải PNG');
-      }).catch(function (e) {
-        document.body.removeChild(wrapper);
-        alert('Lỗi PNG: ' + e.message);
-        setBtnState(btn, false, '📷 Tải PNG');
-      });
     }
-    window.html2canvas
-      ? doPNG()
-      : loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js', doPNG);
-  };
+  "),
+  align = "left", width = 100),
 
-})();
-"
+                kq2x = colDef(name = "KV",
+                  headerStyle = list(color = "black", background = "#F5DEB3", whiteSpace = "normal", textAlign = "center"),
+                  cell = JS("function(cellInfo) {
+                    return '<span title=\"Group ' + cellInfo.value + '\">' + cellInfo.value + '</span>' }"),
+                  html = TRUE, aggregate = "count", align = "left", width = 150),
 
-# ── Render ──
-browsable(
-  tagList(
-    filters,
-    reactable(
-      shared_data, minRows = 3, width = 1500, height = "auto",
-      elementId = "bang-chitiet",
-      theme = reactableTheme(
-        style    = list(fontSize = "13px"),
-        rowStyle = list(`&:hover` = list(backgroundColor = "#FFE4CC !important",
-                                        cursor = "pointer"))
-      ),
-      columns         = col_defs,
-      bordered        = TRUE,
-      striped         = TRUE,
-      highlight       = TRUE,
-      resizable       = TRUE,
-      defaultPageSize = 5
-    ),
-    # Inject biến R vào JS riêng → tránh sprintf
-    tags$script(HTML(js_vars)),
-    tags$script(HTML(js_logic))
+                kq3x  = colDef(name = "Loại pin",
+                  headerStyle = list(color = "black", background = "#F5DEB3", whiteSpace = "normal", textAlign = "center"),
+                  aggregate = "count", align = "right", width = 90),
+
+                kq4x  = colDef(name = "Tổng tồn kho",
+                  headerStyle = list(color = "black", background = "#F5DEB3", whiteSpace = "normal", textAlign = "center"),
+                  aggregate = "sum", align = "right", width = 100,
+                  format = colFormat(digits = 0, separators = TRUE)),
+
+                kq5x  = colDef(name = "Tồn trên WMS",
+                  headerStyle = list(color = "black", background = "#F5DEB3", whiteSpace = "normal", textAlign = "center"),
+                  aggregate = "sum", align = "right", width = 100,
+                  format = colFormat(digits = 0, separators = TRUE)),
+
+                kq6x  = colDef(name = "Tồn đi đường",
+                  headerStyle = list(color = "black", background = "#F5DEB3", whiteSpace = "normal", textAlign = "center"),
+                  aggregate = "sum", align = "right", width = 100,
+                  format = colFormat(digits = 0, separators = TRUE)),
+
+                kq7x  = colDef(name = "Chưa nhập kho",
+                  headerStyle = list(color = "black", background = "#F5DEB3", whiteSpace = "normal", textAlign = "center"),
+                  aggregate = "sum", align = "right", width = 100,
+                  format = colFormat(digits = 0, separators = TRUE)),
+
+                kq8x  = colDef(name = "Kho KV",
+                  headerStyle = list(color = "black", background = "#C8E2B1", whiteSpace = "normal", textAlign = "center"),
+                  aggregate = "sum", align = "right", width = 90),
+
+                kq9x  = colDef(name = "Kho CNCT",
+                  headerStyle = list(color = "black", background = "#C8E2B1", whiteSpace = "normal", textAlign = "center"),
+                  aggregate = "sum", align = "right", width = 100,
+                  format = colFormat(digits = 0, separators = TRUE)),
+
+                kq10x = colDef(name = "Kho TTQH",
+                  headerStyle = list(color = "black", background = "#C8E2B1", whiteSpace = "normal", textAlign = "center"),
+                  aggregate = "sum", align = "right", width = 100,
+                  format = colFormat(digits = 0, separators = TRUE)),
+
+                kq11x = colDef(name = "Kho cá nhân",
+                  headerStyle = list(color = "black", background = "#C8E2B1", whiteSpace = "normal", textAlign = "center"),
+                  aggregate = "sum", align = "right", width = 100,
+                  format = colFormat(digits = 0, separators = TRUE)),
+
+                kq12x = colDef(name = "Kho CN có HĐ",
+                  headerStyle = list(color = "black", background = "#C8E2B1", whiteSpace = "normal", textAlign = "center"),
+                  aggregate = "sum", align = "right", width = 100,
+                  format = colFormat(digits = 0, separators = TRUE)),
+
+                kq13x = colDef(name = "Kho CN không HĐ",
+                  headerStyle = list(color = "black", background = "#C8E2B1", whiteSpace = "normal", textAlign = "center"),
+                  aggregate = "sum", align = "right", width = 100,
+                  format = colFormat(digits = 0, separators = TRUE)),
+
+                kq14x = colDef(name = "B2C đã tạm ứng",
+                  headerStyle = list(color = "black", background = "#BFCAE6", whiteSpace = "normal", textAlign = "center"),
+                  aggregate = "sum", align = "right", width = 90),
+
+                kq15x = colDef(name = "B2B",
+                  headerStyle = list(color = "black", background = "#BFCAE6", whiteSpace = "normal", textAlign = "center"),
+                  aggregate = "sum", align = "right", width = 100),
+
+                kq16x = colDef(name = "Tổng pin cần",
+                  headerStyle = list(color = "black", background = "#BFCAE6", whiteSpace = "normal", textAlign = "center"),
+                  aggregate = "sum", align = "right", width = 90),
+
+                kq17x = colDef(name = "Dư pin sau cấp",
+  headerStyle = list(color = "black", background = "#BFCAE6", whiteSpace = "normal", textAlign = "center"),
+  aggregate = "sum", align = "right", width = 100,
+  format = colFormat(digits = 0, separators = TRUE),
+  style = JS("
+    function(rowInfo) {
+      var val = rowInfo.values['kq17x'];
+      if (val < 0) {
+        return { background: '#FFE5E5', color: '#CC0000', fontWeight: 'bold' };
+      } else if (val > 0) {
+        return { background: '#E5F5E5', color: '#006600', fontWeight: 'bold' };
+      }
+      return {};
+    }
+  "))
+              )
+    )
   )
 )
 ```
-
 
 

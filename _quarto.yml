@@ -11,9 +11,7 @@ website:
     pinned: true
     left:
       - href: home.qmd
-        text: TICKET PAKH TỒN
-      - href: blog.qmd
-        text: TICKET PAKH PHÁT SINH TRONG THÁNG
+        text: TỒN KHO TẤM PIN
   page-footer:
     left: "© {2025} Nguyễn Thị Trang Nhung"
     right: "Data Analyst"
