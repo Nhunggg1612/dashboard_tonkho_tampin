@@ -24,24 +24,3 @@ format:
     css: styles.css
     toc: false
     smooth-scroll: true
-    include-after-body:
-      - text: |
-          <script>
-            const CHECK_INTERVAL = 60000;
-            
-            async function getLastBuild() {
-              const res = await fetch('/last-build.json?t=' + Date.now());
-              const data = await res.json();
-              return data.buildTime;
-            }
-            (async () => {
-              const initialBuild = await getLastBuild();
-              
-              setInterval(async () => {
-                const currentBuild = await getLastBuild();
-                if (currentBuild !== initialBuild) {
-                  window.location.reload();
-                }
-              }, CHECK_INTERVAL);
-            })();
-          </script>
