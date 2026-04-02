@@ -611,59 +611,57 @@ function(el, x) {
   var allData     = ", all_data_json, ";
   var defaultData = ", default_data_json, ";
 
+  function getChart() {
+    for (var i = 0; i < Highcharts.charts.length; i++) {
+      var c = Highcharts.charts[i];
+      if (c && c.renderTo && el.contains(c.renderTo)) return c;
+    }
+    return null;
+  }
+
   function getFilteredData(loaiPin) {
     var filtered = allData.filter(function(r) {
       return r.Loai_pin === loaiPin;
     });
-
-    // Sắp xếp theo KV
     filtered.sort(function(a, b) {
       if (a.KV < b.KV) return -1;
       if (a.KV > b.KV) return 1;
       return a.ma_moi < b.ma_moi ? -1 : 1;
     });
-
     var kvMap = {};
     filtered.forEach(function(r) {
       if (!kvMap[r.KV]) kvMap[r.KV] = 0;
       kvMap[r.KV]++;
     });
-
     return {
       ma_moi       : filtered.map(function(r) { return r.ma_moi; }),
       tong_ton     : filtered.map(function(r) { return Math.round(r.tong_ton || 0); }),
       tong_pin_can : filtered.map(function(r) { return Math.round(r.tong_pin_can || 0); }),
       ty_le        : filtered.map(function(r) { return Math.round(r.ty_le || 0); }),
-      kv_groups    : {
-        KV     : Object.keys(kvMap),
-        n_cols : Object.values(kvMap)
-      },
-      n_total : filtered.length
+      kv_groups    : { KV: Object.keys(kvMap), n_cols: Object.values(kvMap) },
+      n_total      : filtered.length
     };
   }
 
   function drawKVLabels(chart, groups, N, el) {
-    var pLeft  = chart.plotLeft;
-    var pRight = chart.chartWidth - pLeft - chart.plotWidth;
-    var colW   = chart.plotWidth / N;
+    var pLeft   = chart.plotLeft;
+    var pRight  = chart.chartWidth - pLeft - chart.plotWidth;
+    var colW    = chart.plotWidth / N;
     var nGroups = groups.KV.length;
     var pullUp  = chart.marginBottom - 25;
 
     el.style.position = 'relative';
-
-    var old = el.querySelectorAll('._kv_sep, ._kv_row');
-    old.forEach(function(o) { o.parentNode.removeChild(o); });
+    el.querySelectorAll('._kv_sep, ._kv_row').forEach(function(o) { o.parentNode.removeChild(o); });
 
     var cumCols = 0;
     for (var i = 0; i < nGroups - 1; i++) {
       cumCols += groups.n_cols[i];
-      var sepX = pLeft + cumCols * colW;
-      var sep  = document.createElement('div');
+      var sep = document.createElement('div');
       sep.className = '_kv_sep';
       sep.style.cssText = [
         'position:absolute',
-        'left:'   + Math.round(sepX) + 'px',
-        'top:'    + chart.plotTop + 'px',
+        'left:' + Math.round(pLeft + cumCols * colW) + 'px',
+        'top:' + chart.plotTop + 'px',
         'width:1px',
         'height:' + (chart.plotHeight + 18) + 'px',
         'border-left:1px dashed #999999',
@@ -704,64 +702,54 @@ function(el, x) {
   }
 
   function updateChart(loaiPin) {
-    var d = getFilteredData(loaiPin);
-    var container = el.querySelector('.highcharts-container');
-    if (!container) return;
-
-    var chart = null;
-    for (var i = 0; i < Highcharts.charts.length; i++) {
-      var c = Highcharts.charts[i];
-      if (c && c.renderTo && el.contains(c.renderTo)) { chart = c; break; }
-    }
+    var d     = getFilteredData(loaiPin);
+    var chart = getChart();
     if (!chart) return;
-
-    // Cập nhật categories
     chart.xAxis[0].setCategories(d.ma_moi, false);
-
-    // Cập nhật series
     chart.series[0].setData(d.tong_ton,     false);
     chart.series[1].setData(d.tong_pin_can, false);
     chart.series[2].setData(d.ty_le,        false);
-
     chart.redraw();
-
     setTimeout(function() {
       drawKVLabels(chart, d.kv_groups, d.n_total, el);
     }, 300);
   }
 
-  function tryDraw() {
-    var container = el.querySelector('.highcharts-container');
-    if (!container) { setTimeout(tryDraw, 200); return; }
+  function init() {
+    var chart = getChart();
+    if (!chart || !chart.plotWidth) { setTimeout(init, 300); return; }
 
-    var chart = null;
-    for (var i = 0; i < Highcharts.charts.length; i++) {
-      var c = Highcharts.charts[i];
-      if (c && c.renderTo && el.contains(c.renderTo)) { chart = c; break; }
-    }
-    if (!chart || !chart.plotWidth || chart.plotWidth === 0) {
-      setTimeout(tryDraw, 200); return;
-    }
-
+    // Vẽ KV labels mặc định
     drawKVLabels(chart, defaultData.kv_groups, defaultData.n_total, el);
 
-    // Gắn sự kiện filter
-    var sel = document.getElementById('filter_loai_pin');
+    // ← Dùng el.closest() để tìm filter trong cùng block
+    var wrapper = el.closest('.filter-chart-block');
+    var sel = wrapper
+      ? wrapper.querySelector('select')
+      : document.getElementById('filter_loai_pin');
+
     if (sel) {
+      // Sync chart với giá trị mặc định của dropdown
+      updateChart(sel.value);
+
       sel.addEventListener('change', function() {
         updateChart(this.value);
       });
     }
   }
 
-  setTimeout(tryDraw, 300);
-  setTimeout(tryDraw, 800);
-  setTimeout(tryDraw, 1500);
+  setTimeout(init, 300);
+  setTimeout(init, 800);
+  setTimeout(init, 1500);
 }
 "))
 
 # ── Ghép filter + chart ─────────────────────────────────────
-browsable(tagList(filter_ui, hc))
+browsable(
+  div(class = "filter-chart-block",
+    tagList(filter_ui, hc)
+  )
+)
 
 ```
 
