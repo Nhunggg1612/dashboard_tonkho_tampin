@@ -9,15 +9,15 @@
   {
     "objectID": "home.html",
     "href": "home.html",
-    "title": "Báo cáo PAKH tồn chưa đóng",
+    "title": "Báo cáo Tồn kho tấm pin",
     "section": "",
-    "text": "Đơn vị điều hành\n\n\n\n\n\n\n\n\n\nTrạng thái\n\n\n\n\n\n\n\n\n\n🔄 Reset\n\n\n⬇ Tải Excel\n\n\n📷 Tải PNG"
+    "text": "###BẢNG TỔNG HỢP\ntong_ton &lt;- full_join(ton_wms_bc, ton_diduong_bc, by = c(\"ma_moi\", \"KV\", \"Loai_pin\"))\ntong_ton &lt;- full_join(tong_ton, ton_chuanhap_bc, by = c(\"ma_moi\", \"KV\", \"Loai_pin\"))\ntong_ton[is.na(tong_ton)] &lt;- 0\ntong_ton &lt;- tong_ton %&gt;%\n  mutate(tong_ton = tong_ton_wms + tong_ton_diduong + tong_ton_chuanhap,\n         ton_kv = kho_kv_wms,\n         ton_cnct = kho_cnct_wms + kho_cnct_diduong + kho_cnct_chuanhap,\n         kho_cn_noHD = kho_cn_wms - kho_cn_coHD_wms)\n\ntong_ton &lt;- tong_ton[c(1:3, 14, 4, 10, 12, 15, 16, 7, 8,9,17)]\n\ntong_ton &lt;- full_join(tong_ton, nv_aio_bc, by = c(\"ma_moi\", \"KV\", \"Loai_pin\"))\ntong_ton &lt;- full_join(tong_ton, nv_b2b_bc, by = c(\"ma_moi\", \"KV\", \"Loai_pin\"))\ntong_ton[is.na(tong_ton)] &lt;- 0\ntong_ton &lt;- tong_ton %&gt;%\n  mutate(tong_pin_can = so_pin_tamung + tong_pin_b2b,\n         du_pin_saucap = tong_ton - tong_pin_can)\ntong_ton &lt;- tong_ton[-c(14:17)]\n\ntong_ton &lt;- tong_ton %&gt;%\n  mutate(ma_moi = case_when(\n    ma_moi == \"COV1-Công ty CP Công trình Viettel\" ~ \"COV1\",\n    ma_moi == \"COV2-Công ty CP Công trình Viettel\" ~ \"COV2\",\n    ma_moi == \"COV3-Công ty CP Công trình Viettel\" ~ \"COV3\",\n    TRUE ~ ma_moi\n  ))\n\ntong_ton &lt;- tong_ton %&gt;%\n  filter(Loai_pin != \"TCT_Pin khác\" & Loai_pin != \"CN_Pin khác\" )\n\ntong_ton &lt;- tong_ton %&gt;% arrange(Loai_pin, KV, ma_moi)\n\ntong_ton %&gt;%\n  group_by(Loai_pin) %&gt;%\n  summarise(tong_ton = sum(tong_ton),\n            tong_ton_wms = sum(tong_ton_wms),\n            tong_ton_diduong = sum(tong_ton_diduong),\n            tong_ton_chuanhap = sum(tong_ton_chuanhap),\n            ton_kv = sum(ton_kv),\n            ton_cnct = sum(ton_cnct),\n            kho_ttqh_wms = sum(kho_ttqh_wms),\n            kho_cn_wms = sum(kho_cn_wms),\n            kho_cn_coHD_wms = sum(kho_cn_coHD_wms),\n            kho_cn_noHD = sum(kho_cn_noHD),\n            so_pin_tamung = sum(so_pin_tamung),\n            tong_pin_b2b = sum(tong_pin_b2b),\n            tong_pin_can = sum(tong_pin_can),\n            du_pin_saucap = sum(du_pin_saucap)) -&gt; tong_ton_x\ntong_ton_x$ma_moi &lt;- \"Tổng\"\ntong_ton_x$KV &lt;- \"Tổng\"\ntong_ton_x &lt;- tong_ton_x[c(16, 17, 1:15)]\ntong_ton &lt;- rbind(tong_ton_x, tong_ton)"
   },
   {
-    "objectID": "home.html#i.-danh-sách-ticket-còn-tồn-chưa-xử-lý-đến-02042026-083820",
-    "href": "home.html#i.-danh-sách-ticket-còn-tồn-chưa-xử-lý-đến-02042026-083820",
-    "title": "Báo cáo PAKH tồn chưa đóng",
-    "section": "",
-    "text": "Đơn vị điều hành\n\n\n\n\n\n\n\n\n\nTrạng thái\n\n\n\n\n\n\n\n\n\n🔄 Reset\n\n\n⬇ Tải Excel\n\n\n📷 Tải PNG"
+    "objectID": "home.html#i.-tồn-kho-tấm-pin-đến-02042026-143613",
+    "href": "home.html#i.-tồn-kho-tấm-pin-đến-02042026-143613",
+    "title": "Báo cáo Tồn kho tấm pin",
+    "section": "I. TỒN KHO TẤM PIN ĐẾN  02/04/2026 14:36:13",
+    "text": "I. TỒN KHO TẤM PIN ĐẾN  02/04/2026 14:36:13\n\n1. Tổng quan\n\n\n\n\n\n\n\nLoại pin\n\n-- Tất cả --\nJA 615\nJA 620\nJA 625\nLongi 615\nLongi 620\n\n\n\n🔄 Reset\n\n\n⬇ Tải Excel"
   }
 ]
