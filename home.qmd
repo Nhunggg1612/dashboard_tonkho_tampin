@@ -464,7 +464,7 @@ plot_ton       <- plot_ton %>% arrange(KV, ma_moi)
 
 # Lấy danh sách Loai_pin
 loai_pin_list  <- sort(unique(plot_ton$Loai_pin))
-default_pin    <- "Longi615"
+default_pin    <- "Longi 615"
 
 # Lọc data mặc định
 plot_default   <- plot_ton %>% filter(Loai_pin == default_pin)
@@ -780,7 +780,7 @@ library(htmltools)
 
 # ── Chuẩn bị data ──────────────────────────────────────────
 loai_pin_list <- sort(unique(plot_du$Loai_pin))
-default_pin   <- "Longi615"
+default_pin   <- "Longi 615"
 
 plot_default  <- plot_du %>%
   filter(Loai_pin == default_pin) %>%
