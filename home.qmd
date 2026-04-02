@@ -534,7 +534,9 @@ filter_ui <- div(
 
 # ── Tạo highchart ───────────────────────────────────────────
 hc <- highchart() %>%
-  hc_chart(type = "column", marginBottom = 80) %>%
+  hc_chart(type = "column", marginBottom = 80,
+           width        = NULL,      # ← NULL = tự động full width
+    reflow       = TRUE ) %>%
   hc_xAxis(
     categories = default_data$ma_moi,
     labels     = list(style = list(fontSize = "11px", fontFamily = "cambria")),
@@ -747,9 +749,12 @@ function(el, x) {
 
 # ── Ghép filter + chart ─────────────────────────────────────
 browsable(
+  div(
+    style = "width:100%;",
   div(class = "filter-chart-block",
     tagList(filter_ui, hc)
   )
+)
 )
 
 ```
@@ -842,7 +847,9 @@ filter_ui <- div(
 
 # ── Highchart ───────────────────────────────────────────────
 hc <- highchart() %>%
-  hc_chart(type = "column", marginBottom = 80) %>%
+  hc_chart(type = "column", marginBottom = 80,
+           width        = NULL,      # ← NULL = tự động full width
+    reflow       = TRUE ) %>%
   hc_title(
     text  = "Dư pin sau cấp theo tỉnh",
     align = "center",
@@ -1046,9 +1053,12 @@ function(el, x) {
 
 # ── Ghép filter + chart ─────────────────────────────────────
 browsable(
+  div(
+    style = "width:100%;",
   div(class = "filter-chart-block-du",
     tagList(filter_ui, hc)
   )
+)
 )
 ```
 
