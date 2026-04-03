@@ -137,9 +137,9 @@ tong_ton <- tong_ton[-c(14:17)]
 
 tong_ton <- tong_ton %>%
   mutate(ma_moi = case_when(
-    ma_moi == "COV1-Công ty CP Công trình Viettel" ~ "COV1",
-    ma_moi == "COV2-Công ty CP Công trình Viettel" ~ "COV2",
-    ma_moi == "COV3-Công ty CP Công trình Viettel" ~ "COV3",
+    ma_moi == "COV1-Công ty CP Công trình Viettel" ~ "0COV1",
+    ma_moi == "COV2-Công ty CP Công trình Viettel" ~ "0COV2",
+    ma_moi == "COV3-Công ty CP Công trình Viettel" ~ "0COV3",
     TRUE ~ ma_moi
   ))
 
@@ -210,6 +210,13 @@ function updateFooters() {
     if (!state || !state.sortedRows) return;
   }, 150);
 }
+
+// Khởi tạo filter mặc định khi trang load
+document.addEventListener('DOMContentLoaded', function() {
+  setTimeout(function() {
+    Reactable.setFilter('tong_ton_table', 'kq3x', 'Longi 615');
+  }, 300);
+});
 "
 
 filters <- tagList(
@@ -225,7 +232,13 @@ filters <- tagList(
                  border-radius: 4px; font-size: 14px; height: 34px;",
         onchange = "Reactable.setFilter('tong_ton_table', 'kq3x', this.value || undefined);",
         tags$option(value = "", "-- Tất cả --"),
-        lapply(loai_pin_values, function(v) tags$option(value = v, v))
+        lapply(loai_pin_values, function(v) {
+               if (v == "Longi 615") {
+                   tags$option(value = v, v, selected = "selected")
+               } else {
+                  tags$option(value = v, v)
+                       }
+                  })
       )
     ),
     div(
