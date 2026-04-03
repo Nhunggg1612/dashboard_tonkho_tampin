@@ -393,26 +393,29 @@ shiny::fluidRow(
                   format = colFormat(digits = 0, separators = TRUE)),
 
                 kq12x = colDef(name = "Kho CN có HĐ",
-                  headerStyle = list(color = "black", background = "#C8E2B1", whiteSpace = "normal", textAlign = "center"),
+                  headerStyle = list(color = "black", background = "#E6F1D8", whiteSpace = "normal", textAlign = "center"),
                   aggregate = "sum", align = "right", width = 100,
                   format = colFormat(digits = 0, separators = TRUE)),
 
                 kq13x = colDef(name = "Kho CN không HĐ",
-                  headerStyle = list(color = "black", background = "#C8E2B1", whiteSpace = "normal", textAlign = "center"),
+                  headerStyle = list(color = "black", background = "#E6F1D8", whiteSpace = "normal", textAlign = "center"),
                   aggregate = "sum", align = "right", width = 100,
                   format = colFormat(digits = 0, separators = TRUE)),
 
                 kq14x = colDef(name = "B2C đã tạm ứng",
-                  headerStyle = list(color = "black", background = "#BFCAE6", whiteSpace = "normal", textAlign = "center"),
-                  aggregate = "sum", align = "right", width = 90),
+                  headerStyle = list(color = "black", background = "#CAE5E8", whiteSpace = "normal", textAlign = "center"),
+                  aggregate = "sum", align = "right", width = 90,
+                  format = colFormat(digits = 0, separators = TRUE)),
 
                 kq15x = colDef(name = "B2B",
-                  headerStyle = list(color = "black", background = "#BFCAE6", whiteSpace = "normal", textAlign = "center"),
-                  aggregate = "sum", align = "right", width = 100),
+                  headerStyle = list(color = "black", background = "#CAE5E8", whiteSpace = "normal", textAlign = "center"),
+                  aggregate = "sum", align = "right", width = 100,
+                  format = colFormat(digits = 0, separators = TRUE)),
 
                 kq16x = colDef(name = "Tổng pin cần",
                   headerStyle = list(color = "black", background = "#BFCAE6", whiteSpace = "normal", textAlign = "center"),
-                  aggregate = "sum", align = "right", width = 90),
+                  aggregate = "sum", align = "right", width = 90,
+                  format = colFormat(digits = 0, separators = TRUE)),
 
                 kq17x = colDef(name = "Dư pin sau cấp",
   headerStyle = list(color = "black", background = "#BFCAE6", whiteSpace = "normal", textAlign = "center"),
