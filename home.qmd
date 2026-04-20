@@ -108,6 +108,24 @@ nv_aio %>%
             so_HD_tamung = sum(so_da_tam_ung),
             so_pin_tamung = sum(so_pin_tam_ung)) -> nv_aio_bc
 
+#dung_chot <- read_excel("data/ton_chuanhap.xlsx", sheet = "Dung_chot")
+#dung_chot <- left_join(dung_chot, khu_vuc, by = "ma_moi")
+#dung_chot$gtri[is.na(dung_chot$gtri)] <- 0
+#dung_chot$so_pin[is.na(dung_chot$so_pin)] <- 0
+#dung_chot %>%
+#  filter(is.na(doanh_thu) & Loai_pin == "JA 620") %>%
+#  group_by(ma_moi, KV, Loai_pin) %>%
+#  summarise(tong_so_HD = n_distinct(na.omit(ma_HD)),
+#            tong_gtri_HD = sum(gtri)/10^6,
+#            tong_pin_b2c = sum(so_pin),
+#            so_HD_tamung = n_distinct(na.omit(ma_HD)),
+#            so_pin_tamung = sum(so_pin)) -> dung_chot_bc
+
+#nv_aio_bc %>%
+#  filter(Loai_pin != "JA 620") -> nv_aio_bc
+
+#nv_aio_bc <- rbind(nv_aio_bc, dung_chot_bc)
+
 nv_b2b %>%
   filter(hang_hethong != "Đã xuất ra công trình") %>%
   group_by(ma_moi, KV, Loai_pin) %>%
@@ -388,7 +406,8 @@ shiny::fluidRow(
 
                 kq8x  = colDef(name = "Kho KV",
                   headerStyle = list(color = "black", background = "#C8E2B1", whiteSpace = "normal", textAlign = "center"),
-                  aggregate = "sum", align = "right", width = 90),
+                  aggregate = "sum", align = "right", width = 90,
+                  format = colFormat(digits = 0, separators = TRUE)),
 
                 kq9x  = colDef(name = "Kho CNCT",
                   headerStyle = list(color = "black", background = "#C8E2B1", whiteSpace = "normal", textAlign = "center"),
