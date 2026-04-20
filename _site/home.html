@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,6 +10,9 @@
 
 <title>Báo cáo Tồn kho tấm pin – Nguyễn Nhung</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -31,15 +34,16 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./images/favicon.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-4440b0c57fa6b651c956a857cd970f51.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-de29bc41c80f7fa06cc4ce2205e783a3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,111 +73,61 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 <script src="site_libs/core-js-2.5.3/shim.min.js"></script>
-
 <script src="site_libs/react-18.2.0/react.min.js"></script>
-
 <script src="site_libs/react-18.2.0/react-dom.min.js"></script>
-
 <script src="site_libs/reactwidget-2.0.0/react-tools.js"></script>
-
 <script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
-
-<link href="site_libs/reactable-0.4.4/reactable.css" rel="stylesheet">
-
-<script src="site_libs/reactable-binding-0.4.4/reactable.js"></script>
-
-<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
-
+<link href="site_libs/reactable-0.4.5/reactable.css" rel="stylesheet">
+<script src="site_libs/reactable-binding-0.4.5/reactable.js"></script>
+<link href="site_libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
 <script src="site_libs/jquery-3.5.1/jquery.min.js"></script>
-
 <script src="site_libs/proj4js-2.3.15/proj4.js"></script>
-
 <link href="site_libs/highcharts-9.3.1/css/motion.css" rel="stylesheet">
-
 <script src="site_libs/highcharts-9.3.1/highcharts.js"></script>
-
 <script src="site_libs/highcharts-9.3.1/highcharts-3d.js"></script>
-
 <script src="site_libs/highcharts-9.3.1/highcharts-more.js"></script>
-
 <script src="site_libs/highcharts-9.3.1/modules/stock.js"></script>
-
 <script src="site_libs/highcharts-9.3.1/modules/map.js"></script>
-
 <script src="site_libs/highcharts-9.3.1/modules/data.js"></script>
-
 <script src="site_libs/highcharts-9.3.1/modules/exporting.js"></script>
-
 <script src="site_libs/highcharts-9.3.1/modules/offline-exporting.js"></script>
-
 <script src="site_libs/highcharts-9.3.1/modules/drilldown.js"></script>
-
 <script src="site_libs/highcharts-9.3.1/modules/item-series.js"></script>
-
 <script src="site_libs/highcharts-9.3.1/modules/overlapping-datalabels.js"></script>
-
 <script src="site_libs/highcharts-9.3.1/modules/annotations.js"></script>
-
 <script src="site_libs/highcharts-9.3.1/modules/export-data.js"></script>
-
 <script src="site_libs/highcharts-9.3.1/modules/funnel.js"></script>
-
 <script src="site_libs/highcharts-9.3.1/modules/heatmap.js"></script>
-
 <script src="site_libs/highcharts-9.3.1/modules/treemap.js"></script>
-
 <script src="site_libs/highcharts-9.3.1/modules/sankey.js"></script>
-
 <script src="site_libs/highcharts-9.3.1/modules/dependency-wheel.js"></script>
-
 <script src="site_libs/highcharts-9.3.1/modules/organization.js"></script>
-
 <script src="site_libs/highcharts-9.3.1/modules/solid-gauge.js"></script>
-
 <script src="site_libs/highcharts-9.3.1/modules/streamgraph.js"></script>
-
 <script src="site_libs/highcharts-9.3.1/modules/sunburst.js"></script>
-
 <script src="site_libs/highcharts-9.3.1/modules/vector.js"></script>
-
 <script src="site_libs/highcharts-9.3.1/modules/wordcloud.js"></script>
-
 <script src="site_libs/highcharts-9.3.1/modules/xrange.js"></script>
-
 <script src="site_libs/highcharts-9.3.1/modules/tilemap.js"></script>
-
 <script src="site_libs/highcharts-9.3.1/modules/venn.js"></script>
-
 <script src="site_libs/highcharts-9.3.1/modules/gantt.js"></script>
-
 <script src="site_libs/highcharts-9.3.1/modules/timeline.js"></script>
-
 <script src="site_libs/highcharts-9.3.1/modules/parallel-coordinates.js"></script>
-
 <script src="site_libs/highcharts-9.3.1/modules/bullet.js"></script>
-
 <script src="site_libs/highcharts-9.3.1/modules/coloraxis.js"></script>
-
 <script src="site_libs/highcharts-9.3.1/modules/dumbbell.js"></script>
-
 <script src="site_libs/highcharts-9.3.1/modules/lollipop.js"></script>
-
 <script src="site_libs/highcharts-9.3.1/modules/series-label.js"></script>
-
 <script src="site_libs/highcharts-9.3.1/plugins/motion.js"></script>
-
 <script src="site_libs/highcharts-9.3.1/custom/reset.js"></script>
-
 <script src="site_libs/highcharts-9.3.1/modules/boost.js"></script>
-
 <script src="site_libs/highchart-binding-0.9.4/highchart.js"></script>
-
 
 
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -246,8 +200,8 @@ ul.task-list li input[type="checkbox"] {
   margin: auto;
 }
 </style>
-<section id="i.-tồn-kho-tấm-pin-đến-20042026-093041" class="level2">
-<h2 class="anchored" data-anchor-id="i.-tồn-kho-tấm-pin-đến-20042026-093041"><span style="color: #C35817;font-family: cambria;"><strong>I. TỒN KHO TẤM PIN ĐẾN </strong> <strong>20/04/2026 09:30:41</strong></span></h2>
+<section id="i.-tồn-kho-tấm-pin-đến-20042026-093221" class="level2">
+<h2 class="anchored" data-anchor-id="i.-tồn-kho-tấm-pin-đến-20042026-093221"><span style="color: #C35817;font-family: cambria;"><strong>I. TỒN KHO TẤM PIN ĐẾN </strong> <strong>20/04/2026 09:32:21</strong></span></h2>
 <section id="tổng-quan" class="level3">
 <h3 class="anchored" data-anchor-id="tổng-quan"><span style="color: #C35817;font-family: cambria;"><strong>1. Tổng quan</strong></span></h3>
 <div class="cell">
@@ -342,8 +296,8 @@ document.addEventListener('DOMContentLoaded', function() {
 <option value="Longi 620">Longi 620</option>
 </select>
 </div>
-<div class="highchart html-widget html-fill-item" id="htmlwidget-78213df8fbe0bdbf72c3" style="width:100%;height:500px;"></div>
-<script type="application/json" data-for="htmlwidget-78213df8fbe0bdbf72c3">{"x":{"hc_opts":{"chart":{"reflow":true,"type":"column","marginBottom":80},"title":{"text":"Tỷ lệ số pin cần cấp so với số pin tồn kho","margin":20,"align":"center","style":{"color":"black","fontWeight":"bold","fontFamily":"cambria","fontSize":"20px"}},"yAxis":[{"lineWidth":3,"title":{"text":"Số pin","style":{"fontWeight":"bold","fontSize":"15px","fontFamily":"cambria"}},"labels":{"style":{"fontSize":"12px","fontFamily":"cambria"}}},{"showLastLabel":true,"opposite":true,"title":{"text":"%HT","style":{"fontWeight":"bold","fontSize":"15px","fontFamily":"cambria"}},"labels":{"style":{"fontSize":"12px","fontFamily":"cambria"}}}],"credits":{"enabled":false},"exporting":{"enabled":true,"filename":"ton-kho-pin"},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0,"states":{"inactive":{"opacity":0.3}}},"treemap":{"layoutAlgorithm":"squarified"},"column":{"states":{"hover":{"color":null},"inactive":{"opacity":0.3}}}},"xAxis":{"categories":["0COV1","HNI","HPG","LCI","NBH","TQG","Tổng","0COV3","AGG","DTP","HCM","DNG","GLI","KHA","TTH"],"labels":{"style":{"fontSize":"11px","fontFamily":"cambria"}},"crosshair":{"width":40,"color":"rgba(180,180,180,0.2)","zIndex":0}},"series":[{"name":"Tổng pin tồn","data":[5,20,4,1,46,14,158,19,0,1,0,3,16,5,24],"states":{"hover":{"color":"#808080"}}},{"name":"Số pin cần cấp","data":[0,27,0,0,0,12,80,0,0,1,0,0,16,0,24],"states":{"hover":{"color":"#8DB600"}}},{"name":"Tỷ lệ (%)","data":[0,135,0,0,0,86,51,0,null,100,null,0,100,0,100],"type":"spline","yAxis":1,"dataLabels":{"enabled":true,"format":"{y}%"}}],"tooltip":{"shared":true,"useHTML":true,"formatter":"\n      function() {\n        var s = '<b>' + this.x + '<\/b><br/>';\n        var tong_ton = 0, tong_pin_can = 0, ty_le = 0;\n        for (var i = 0; i < this.points.length; i++) {\n          var nm  = this.points[i].series.name;\n          var val = this.points[i].y;\n          if (nm === 'Tổng pin tồn')   tong_ton     = val;\n          if (nm === 'Số pin cần cấp') tong_pin_can = val;\n          if (nm === 'Tỷ lệ (%)')      ty_le        = val;\n        }\n        s += '<span style=\"color:#D9D9D9\">●<\/span> Tổng pin tồn: <b>' +\n               Highcharts.numberFormat(tong_ton, 0, '.', ',') + '<\/b><br/>';\n        s += '<span style=\"color:#C84309\">●<\/span> Số pin cần cấp: <b>' +\n               Highcharts.numberFormat(tong_pin_can, 0, '.', ',') + '<\/b><br/>';\n        s += '<span style=\"color:#645889\">●<\/span> Tỷ lệ (%): <b>' + ty_le + '%<\/b>';\n        return s;\n      }\n    "},"colors":["#D9D9D9","#C84309","#645889"],"legend":{"labels":{"style":{"color":"black","fontWeight":"bold","fontFamily":"cambria","fontSize":"14px"}}}},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadCSV":"Download CSV","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","downloadXLS":"Download XLS","drillUpText":"◁ Back to {series.name}","exitFullscreen":"Exit from full screen","exportData":{"annotationHeader":"Annotations","categoryDatetimeHeader":"DateTime","categoryHeader":"Category"},"hideData":"Hide data table","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbolMagnitude":1000,"numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"shortWeekdays":["Sat","Sun","Mon","Tue","Wed","Thu","Fri"],"thousandsSep":" ","viewData":"View data table","viewFullscreen":"View in full screen","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":"cambria","debug":false},"evals":["hc_opts.tooltip.formatter"],"jsHooks":{"render":[{"code":"\nfunction(el, x) {\n  var allData     = [{\"ma_moi\":\"0COV1\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"tong_ton\":18,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"0COV1\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"tong_ton\":2438,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"0COV1\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"tong_ton\":9255,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"0COV1\",\"KV\":\"KV1\",\"Loai_pin\":\"Jinko 570\",\"tong_ton\":4,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"0COV1\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 615\",\"tong_ton\":5,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"0COV1\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":8732,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"BNH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"tong_ton\":13,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"BNH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"tong_ton\":46,\"tong_pin_can\":46,\"ty_le\":100},{\"ma_moi\":\"BNH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"tong_ton\":668,\"tong_pin_can\":698,\"ty_le\":104.491},{\"ma_moi\":\"BNH\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 585\",\"tong_ton\":9,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"BNH\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":52,\"tong_pin_can\":50,\"ty_le\":96.1538},{\"ma_moi\":\"CBG\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"tong_ton\":174,\"tong_pin_can\":130,\"ty_le\":74.7126},{\"ma_moi\":\"DBN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"tong_ton\":2,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"DBN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"tong_ton\":328,\"tong_pin_can\":209,\"ty_le\":63.7195},{\"ma_moi\":\"HNI\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"tong_ton\":58,\"tong_pin_can\":131,\"ty_le\":225.8621},{\"ma_moi\":\"HNI\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"tong_ton\":663,\"tong_pin_can\":531,\"ty_le\":80.0905},{\"ma_moi\":\"HNI\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"tong_ton\":773,\"tong_pin_can\":1068,\"ty_le\":138.163},{\"ma_moi\":\"HNI\",\"KV\":\"KV1\",\"Loai_pin\":\"Jinko 585\",\"tong_ton\":2,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"HNI\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 615\",\"tong_ton\":20,\"tong_pin_can\":27,\"ty_le\":135},{\"ma_moi\":\"HNI\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":823,\"tong_pin_can\":730,\"ty_le\":88.6999},{\"ma_moi\":\"HPG\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"tong_ton\":85,\"tong_pin_can\":83,\"ty_le\":97.6471},{\"ma_moi\":\"HPG\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"tong_ton\":1016,\"tong_pin_can\":1050,\"ty_le\":103.3465},{\"ma_moi\":\"HPG\",\"KV\":\"KV1\",\"Loai_pin\":\"Jinko 585\",\"tong_ton\":16,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"HPG\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 585\",\"tong_ton\":1,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"HPG\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 615\",\"tong_ton\":4,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"HPG\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":82,\"tong_pin_can\":60,\"ty_le\":73.1707},{\"ma_moi\":\"HTH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"tong_ton\":48,\"tong_pin_can\":62,\"ty_le\":129.1667},{\"ma_moi\":\"HTH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"tong_ton\":656,\"tong_pin_can\":651,\"ty_le\":99.2378},{\"ma_moi\":\"HTH\",\"KV\":\"KV1\",\"Loai_pin\":\"Jinko 585\",\"tong_ton\":0,\"tong_pin_can\":0,\"ty_le\":null},{\"ma_moi\":\"HYN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"tong_ton\":31,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"HYN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"tong_ton\":309,\"tong_pin_can\":306,\"ty_le\":99.0291},{\"ma_moi\":\"HYN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"tong_ton\":624,\"tong_pin_can\":873,\"ty_le\":139.9038},{\"ma_moi\":\"HYN\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":360,\"tong_pin_can\":404,\"ty_le\":112.2222},{\"ma_moi\":\"LCI\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"tong_ton\":8,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"LCI\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"tong_ton\":214,\"tong_pin_can\":251,\"ty_le\":117.2897},{\"ma_moi\":\"LCI\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 615\",\"tong_ton\":1,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"LCU\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"tong_ton\":8,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"LCU\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"tong_ton\":126,\"tong_pin_can\":92,\"ty_le\":73.0159},{\"ma_moi\":\"LSN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"tong_ton\":4,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"LSN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"tong_ton\":118,\"tong_pin_can\":100,\"ty_le\":84.7458},{\"ma_moi\":\"LSN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"tong_ton\":577,\"tong_pin_can\":991,\"ty_le\":171.7504},{\"ma_moi\":\"LSN\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":36,\"tong_pin_can\":10,\"ty_le\":27.7778},{\"ma_moi\":\"NAN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"tong_ton\":142,\"tong_pin_can\":73,\"ty_le\":51.4085},{\"ma_moi\":\"NAN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"tong_ton\":565,\"tong_pin_can\":1587,\"ty_le\":280.885},{\"ma_moi\":\"NAN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"tong_ton\":1438,\"tong_pin_can\":2281,\"ty_le\":158.6231},{\"ma_moi\":\"NAN\",\"KV\":\"KV1\",\"Loai_pin\":\"Jinko 585\",\"tong_ton\":1,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"NAN\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":0,\"tong_pin_can\":88,\"ty_le\":null},{\"ma_moi\":\"NBH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"tong_ton\":163,\"tong_pin_can\":161,\"ty_le\":98.773},{\"ma_moi\":\"NBH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"tong_ton\":58,\"tong_pin_can\":56,\"ty_le\":96.5517},{\"ma_moi\":\"NBH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"tong_ton\":1001,\"tong_pin_can\":956,\"ty_le\":95.5045},{\"ma_moi\":\"NBH\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 615\",\"tong_ton\":46,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"NBH\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":268,\"tong_pin_can\":209,\"ty_le\":77.9851},{\"ma_moi\":\"PTO\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"tong_ton\":3,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"PTO\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"tong_ton\":227,\"tong_pin_can\":247,\"ty_le\":108.8106},{\"ma_moi\":\"PTO\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"tong_ton\":1406,\"tong_pin_can\":1557,\"ty_le\":110.7397},{\"ma_moi\":\"PTO\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 585\",\"tong_ton\":6,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"PTO\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":1148,\"tong_pin_can\":772,\"ty_le\":67.2474},{\"ma_moi\":\"QNH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"tong_ton\":17,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"QNH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"tong_ton\":28,\"tong_pin_can\":24,\"ty_le\":85.7143},{\"ma_moi\":\"QNH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"tong_ton\":633,\"tong_pin_can\":983,\"ty_le\":155.2923},{\"ma_moi\":\"QNH\",\"KV\":\"KV1\",\"Loai_pin\":\"Jinko 570\",\"tong_ton\":18,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"QNH\",\"KV\":\"KV1\",\"Loai_pin\":\"Jinko 585\",\"tong_ton\":7,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"SLA\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"tong_ton\":2,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"SLA\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"tong_ton\":72,\"tong_pin_can\":120,\"ty_le\":166.6667},{\"ma_moi\":\"THA\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"tong_ton\":62,\"tong_pin_can\":76,\"ty_le\":122.5806},{\"ma_moi\":\"THA\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"tong_ton\":211,\"tong_pin_can\":280,\"ty_le\":132.7014},{\"ma_moi\":\"THA\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"tong_ton\":1907,\"tong_pin_can\":3605,\"ty_le\":189.0404},{\"ma_moi\":\"THA\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":72,\"tong_pin_can\":86,\"ty_le\":119.4444},{\"ma_moi\":\"TNN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"tong_ton\":20,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"TNN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"tong_ton\":886,\"tong_pin_can\":846,\"ty_le\":95.4853},{\"ma_moi\":\"TNN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"tong_ton\":585,\"tong_pin_can\":837,\"ty_le\":143.0769},{\"ma_moi\":\"TNN\",\"KV\":\"KV1\",\"Loai_pin\":\"Jinko 585\",\"tong_ton\":3,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"TNN\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 585\",\"tong_ton\":10,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"TQG\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"tong_ton\":33,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"TQG\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"tong_ton\":23,\"tong_pin_can\":12,\"ty_le\":52.1739},{\"ma_moi\":\"TQG\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 615\",\"tong_ton\":14,\"tong_pin_can\":12,\"ty_le\":85.7143},{\"ma_moi\":\"TQG\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":566,\"tong_pin_can\":284,\"ty_le\":50.1767},{\"ma_moi\":\"Tổng\",\"KV\":\"Tổng\",\"Loai_pin\":\"Jinko 570\",\"tong_ton\":22,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"Tổng\",\"KV\":\"Tổng\",\"Loai_pin\":\"Jinko 585\",\"tong_ton\":195,\"tong_pin_can\":47,\"ty_le\":24.1026},{\"ma_moi\":\"Tổng\",\"KV\":\"Tổng\",\"Loai_pin\":\"Jinko 625\",\"tong_ton\":9,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"Tổng\",\"KV\":\"Tổng\",\"Loai_pin\":\"Longi 585\",\"tong_ton\":72,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"Tổng\",\"KV\":\"Tổng\",\"Loai_pin\":\"Longi 615\",\"tong_ton\":158,\"tong_pin_can\":80,\"ty_le\":50.6329},{\"ma_moi\":\"Tổng\",\"KV\":\"Tổng\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":29250,\"tong_pin_can\":8457,\"ty_le\":28.9128},{\"ma_moi\":\"0COV3\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 615\",\"tong_ton\":46,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"0COV3\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 620\",\"tong_ton\":68,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"0COV3\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 625\",\"tong_ton\":10980,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"0COV3\",\"KV\":\"KV3\",\"Loai_pin\":\"Jinko 545\",\"tong_ton\":3,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"0COV3\",\"KV\":\"KV3\",\"Loai_pin\":\"Jinko 585\",\"tong_ton\":2,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"0COV3\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 585\",\"tong_ton\":5,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"0COV3\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 615\",\"tong_ton\":19,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"0COV3\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":6408,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"AGG\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 615\",\"tong_ton\":4,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"AGG\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 620\",\"tong_ton\":117,\"tong_pin_can\":114,\"ty_le\":97.4359},{\"ma_moi\":\"AGG\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 615\",\"tong_ton\":0,\"tong_pin_can\":0,\"ty_le\":null},{\"ma_moi\":\"AGG\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":850,\"tong_pin_can\":729,\"ty_le\":85.7647},{\"ma_moi\":\"CMU\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 620\",\"tong_ton\":9,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"CMU\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 625\",\"tong_ton\":74,\"tong_pin_can\":172,\"ty_le\":232.4324},{\"ma_moi\":\"CMU\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 585\",\"tong_ton\":1,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"CMU\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":151,\"tong_pin_can\":154,\"ty_le\":101.9868},{\"ma_moi\":\"CTO\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 615\",\"tong_ton\":5,\"tong_pin_can\":52,\"ty_le\":1040},{\"ma_moi\":\"CTO\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 620\",\"tong_ton\":2840,\"tong_pin_can\":2863,\"ty_le\":100.8099},{\"ma_moi\":\"CTO\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 625\",\"tong_ton\":186,\"tong_pin_can\":193,\"ty_le\":103.7634},{\"ma_moi\":\"CTO\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":645,\"tong_pin_can\":711,\"ty_le\":110.2326},{\"ma_moi\":\"DNI\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 615\",\"tong_ton\":2,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"DNI\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 620\",\"tong_ton\":85,\"tong_pin_can\":63,\"ty_le\":74.1176},{\"ma_moi\":\"DNI\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 625\",\"tong_ton\":1650,\"tong_pin_can\":1508,\"ty_le\":91.3939},{\"ma_moi\":\"DNI\",\"KV\":\"KV3\",\"Loai_pin\":\"Jinko 585\",\"tong_ton\":4,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"DNI\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 585\",\"tong_ton\":1,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"DNI\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":36,\"tong_pin_can\":41,\"ty_le\":113.8889},{\"ma_moi\":\"DTP\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 615\",\"tong_ton\":1,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"DTP\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 620\",\"tong_ton\":242,\"tong_pin_can\":168,\"ty_le\":69.4215},{\"ma_moi\":\"DTP\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 625\",\"tong_ton\":284,\"tong_pin_can\":361,\"ty_le\":127.1127},{\"ma_moi\":\"DTP\",\"KV\":\"KV3\",\"Loai_pin\":\"Jinko 585\",\"tong_ton\":1,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"DTP\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 615\",\"tong_ton\":1,\"tong_pin_can\":1,\"ty_le\":100},{\"ma_moi\":\"DTP\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":852,\"tong_pin_can\":1019,\"ty_le\":119.6009},{\"ma_moi\":\"HCM\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 615\",\"tong_ton\":6,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"HCM\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 620\",\"tong_ton\":111,\"tong_pin_can\":91,\"ty_le\":81.982},{\"ma_moi\":\"HCM\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 625\",\"tong_ton\":867,\"tong_pin_can\":1289,\"ty_le\":148.6736},{\"ma_moi\":\"HCM\",\"KV\":\"KV3\",\"Loai_pin\":\"Jinko 585\",\"tong_ton\":1,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"HCM\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 615\",\"tong_ton\":0,\"tong_pin_can\":0,\"ty_le\":null},{\"ma_moi\":\"HCM\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":770,\"tong_pin_can\":146,\"ty_le\":18.961},{\"ma_moi\":\"TNH\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 615\",\"tong_ton\":2,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"TNH\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 620\",\"tong_ton\":35,\"tong_pin_can\":26,\"ty_le\":74.2857},{\"ma_moi\":\"TNH\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 585\",\"tong_ton\":1,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"TNH\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":1017,\"tong_pin_can\":941,\"ty_le\":92.527},{\"ma_moi\":\"VLG\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 620\",\"tong_ton\":119,\"tong_pin_can\":127,\"ty_le\":106.7227},{\"ma_moi\":\"VLG\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 625\",\"tong_ton\":684,\"tong_pin_can\":494,\"ty_le\":72.2222},{\"ma_moi\":\"VLG\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":442,\"tong_pin_can\":331,\"ty_le\":74.8869},{\"ma_moi\":\"0COV2\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 615\",\"tong_ton\":1,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"0COV2\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 620\",\"tong_ton\":1,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"0COV2\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 625\",\"tong_ton\":4429,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"0COV2\",\"KV\":\"KV2\",\"Loai_pin\":\"Jinko 535\",\"tong_ton\":3,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"0COV2\",\"KV\":\"KV2\",\"Loai_pin\":\"Jinko 585\",\"tong_ton\":1,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"0COV2\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":3348,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"DLK\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 615\",\"tong_ton\":1,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"DLK\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 620\",\"tong_ton\":223,\"tong_pin_can\":24,\"ty_le\":10.7623},{\"ma_moi\":\"DLK\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 625\",\"tong_ton\":252,\"tong_pin_can\":75,\"ty_le\":29.7619},{\"ma_moi\":\"DLK\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 585\",\"tong_ton\":1,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"DLK\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":499,\"tong_pin_can\":293,\"ty_le\":58.7174},{\"ma_moi\":\"DNG\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 615\",\"tong_ton\":15,\"tong_pin_can\":42,\"ty_le\":280},{\"ma_moi\":\"DNG\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 620\",\"tong_ton\":302,\"tong_pin_can\":285,\"ty_le\":94.3709},{\"ma_moi\":\"DNG\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 625\",\"tong_ton\":291,\"tong_pin_can\":293,\"ty_le\":100.6873},{\"ma_moi\":\"DNG\",\"KV\":\"KV2\",\"Loai_pin\":\"Jinko 585\",\"tong_ton\":1,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"DNG\",\"KV\":\"KV2\",\"Loai_pin\":\"Jinko 625\",\"tong_ton\":9,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"DNG\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 615\",\"tong_ton\":3,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"DNG\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":156,\"tong_pin_can\":176,\"ty_le\":112.8205},{\"ma_moi\":\"GLI\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 615\",\"tong_ton\":12,\"tong_pin_can\":4,\"ty_le\":33.3333},{\"ma_moi\":\"GLI\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 620\",\"tong_ton\":25,\"tong_pin_can\":25,\"ty_le\":100},{\"ma_moi\":\"GLI\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 625\",\"tong_ton\":396,\"tong_pin_can\":274,\"ty_le\":69.1919},{\"ma_moi\":\"GLI\",\"KV\":\"KV2\",\"Loai_pin\":\"Jinko 585\",\"tong_ton\":133,\"tong_pin_can\":47,\"ty_le\":35.3383},{\"ma_moi\":\"GLI\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 615\",\"tong_ton\":16,\"tong_pin_can\":16,\"ty_le\":100},{\"ma_moi\":\"GLI\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":126,\"tong_pin_can\":73,\"ty_le\":57.9365},{\"ma_moi\":\"KHA\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 615\",\"tong_ton\":4,\"tong_pin_can\":20,\"ty_le\":500},{\"ma_moi\":\"KHA\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 620\",\"tong_ton\":22,\"tong_pin_can\":30,\"ty_le\":136.3636},{\"ma_moi\":\"KHA\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 625\",\"tong_ton\":452,\"tong_pin_can\":480,\"ty_le\":106.1947},{\"ma_moi\":\"KHA\",\"KV\":\"KV2\",\"Loai_pin\":\"Jinko 585\",\"tong_ton\":4,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"KHA\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 585\",\"tong_ton\":24,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"KHA\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 615\",\"tong_ton\":5,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"LDG\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 615\",\"tong_ton\":8,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"LDG\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 620\",\"tong_ton\":69,\"tong_pin_can\":88,\"ty_le\":127.5362},{\"ma_moi\":\"LDG\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 625\",\"tong_ton\":576,\"tong_pin_can\":1200,\"ty_le\":208.3333},{\"ma_moi\":\"LDG\",\"KV\":\"KV2\",\"Loai_pin\":\"Jinko 585\",\"tong_ton\":18,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"LDG\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 585\",\"tong_ton\":3,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"QNI\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 615\",\"tong_ton\":13,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"QNI\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 620\",\"tong_ton\":77,\"tong_pin_can\":86,\"ty_le\":111.6883},{\"ma_moi\":\"QNI\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 625\",\"tong_ton\":130,\"tong_pin_can\":265,\"ty_le\":203.8462},{\"ma_moi\":\"QNI\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":720,\"tong_pin_can\":290,\"ty_le\":40.2778},{\"ma_moi\":\"QTI\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 615\",\"tong_ton\":63,\"tong_pin_can\":24,\"ty_le\":38.0952},{\"ma_moi\":\"QTI\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 620\",\"tong_ton\":3,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"QTI\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 625\",\"tong_ton\":108,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"QTI\",\"KV\":\"KV2\",\"Loai_pin\":\"Jinko 585\",\"tong_ton\":1,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"QTI\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 585\",\"tong_ton\":10,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"QTI\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":559,\"tong_pin_can\":228,\"ty_le\":40.7871},{\"ma_moi\":\"TTH\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 620\",\"tong_ton\":195,\"tong_pin_can\":217,\"ty_le\":111.2821},{\"ma_moi\":\"TTH\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 625\",\"tong_ton\":36,\"tong_pin_can\":76,\"ty_le\":211.1111},{\"ma_moi\":\"TTH\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 615\",\"tong_ton\":24,\"tong_pin_can\":24,\"ty_le\":100},{\"ma_moi\":\"TTH\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":532,\"tong_pin_can\":632,\"ty_le\":118.797}];\n  var defaultData = {\"ma_moi\":[\"0COV1\",\"HNI\",\"HPG\",\"LCI\",\"NBH\",\"TQG\",\"Tổng\",\"0COV3\",\"AGG\",\"DTP\",\"HCM\",\"DNG\",\"GLI\",\"KHA\",\"TTH\"],\"tong_ton\":[5,20,4,1,46,14,158,19,0,1,0,3,16,5,24],\"tong_pin_can\":[0,27,0,0,0,12,80,0,0,1,0,0,16,0,24],\"ty_le\":[0,135,0,0,0,86,51,0,null,100,null,0,100,0,100],\"kv_groups\":{\"KV\":[\"KV1\",\"Tổng\",\"KV3\",\"KV2\"],\"n_cols\":[6,1,4,4]},\"n_total\":15};\n\n  function getChart() {\n    for (var i = 0; i < Highcharts.charts.length; i++) {\n      var c = Highcharts.charts[i];\n      if (c && c.renderTo && el.contains(c.renderTo)) return c;\n    }\n    return null;\n  }\n\n  function getFilteredData(loaiPin) {\n    var filtered = allData.filter(function(r) {\n      return r.Loai_pin === loaiPin;\n    });\n    filtered.sort(function(a, b) {\n      if (a.KV < b.KV) return -1;\n      if (a.KV > b.KV) return 1;\n      return a.ma_moi < b.ma_moi ? -1 : 1;\n    });\n    var kvMap = {};\n    filtered.forEach(function(r) {\n      if (!kvMap[r.KV]) kvMap[r.KV] = 0;\n      kvMap[r.KV]++;\n    });\n    return {\n      ma_moi       : filtered.map(function(r) { return r.ma_moi; }),\n      tong_ton     : filtered.map(function(r) { return Math.round(r.tong_ton || 0); }),\n      tong_pin_can : filtered.map(function(r) { return Math.round(r.tong_pin_can || 0); }),\n      ty_le        : filtered.map(function(r) { return Math.round(r.ty_le || 0); }),\n      kv_groups    : { KV: Object.keys(kvMap), n_cols: Object.values(kvMap) },\n      n_total      : filtered.length\n    };\n  }\n\n  function drawKVLabels(chart, groups, N, el) {\n    var pLeft   = chart.plotLeft;\n    var pRight  = chart.chartWidth - pLeft - chart.plotWidth;\n    var colW    = chart.plotWidth / N;\n    var nGroups = groups.KV.length;\n    var pullUp  = chart.marginBottom - 25;\n\n    el.style.position = 'relative';\n    el.querySelectorAll('._kv_sep, ._kv_row').forEach(function(o) { o.parentNode.removeChild(o); });\n\n    var cumCols = 0;\n    for (var i = 0; i < nGroups - 1; i++) {\n      cumCols += groups.n_cols[i];\n      var sep = document.createElement('div');\n      sep.className = '_kv_sep';\n      sep.style.cssText = [\n        'position:absolute',\n        'left:' + Math.round(pLeft + cumCols * colW) + 'px',\n        'top:' + chart.plotTop + 'px',\n        'width:1px',\n        'height:' + (chart.plotHeight + 18) + 'px',\n        'border-left:1px dashed #999999',\n        'pointer-events:none',\n        'z-index:3'\n      ].join(';');\n      el.appendChild(sep);\n    }\n\n    var row = document.createElement('div');\n    row.className = '_kv_row';\n    row.style.cssText = [\n      'display:flex',\n      'margin-top:-' + pullUp + 'px',\n      'padding-left:' + pLeft + 'px',\n      'padding-right:' + pRight + 'px',\n      'width:' + chart.chartWidth + 'px',\n      'box-sizing:border-box',\n      'pointer-events:none'\n    ].join(';');\n\n    for (var j = 0; j < nGroups; j++) {\n      var cell = document.createElement('div');\n      cell.textContent = groups.KV[j];\n      cell.style.cssText = [\n        'flex:' + groups.n_cols[j],\n        'text-align:center',\n        'font-size:12px',\n        'font-family:Cambria,serif',\n        'font-weight:bold',\n        'color:#333333',\n        'border-top:2px solid #555555',\n        'padding-top:4px'\n      ].join(';');\n      row.appendChild(cell);\n    }\n    el.appendChild(row);\n  }\n\n  function updateChart(loaiPin) {\n    var d     = getFilteredData(loaiPin);\n    var chart = getChart();\n    if (!chart) return;\n    chart.xAxis[0].setCategories(d.ma_moi, false);\n    chart.series[0].setData(d.tong_ton,     false);\n    chart.series[1].setData(d.tong_pin_can, false);\n    chart.series[2].setData(d.ty_le,        false);\n    chart.redraw();\n    setTimeout(function() {\n      drawKVLabels(chart, d.kv_groups, d.n_total, el);\n    }, 300);\n  }\n\n  function init() {\n  var chart = getChart();\n  if (!chart || !chart.plotWidth) { setTimeout(init, 300); return; }\n\n  // ← Thêm 2 dòng này\n  chart.reflow();\n  window.dispatchEvent(new Event('resize'));\n\n  drawKVLabels(chart, defaultData.kv_groups, defaultData.n_total, el);\n\n  var wrapper = el.closest('.filter-chart-block');\n  var sel = wrapper\n    ? wrapper.querySelector('select')\n    : document.getElementById('filter_loai_pin');\n\n  if (sel) {\n    updateChart(sel.value);\n    sel.addEventListener('change', function() {\n      updateChart(this.value);\n    });\n  }\n}\n\nsetTimeout(init, 300);\nsetTimeout(init, 800);\nsetTimeout(init, 1500);\n\n// ← Thêm reflow khi trang load xong\nwindow.addEventListener('load', function() {\n  setTimeout(function() {\n    var chart = getChart();\n    if (chart) {\n      chart.reflow();\n      window.dispatchEvent(new Event('resize'));\n    }\n  }, 500);\n});\n}\n","data":null}]}}</script>
+<div class="highchart html-widget html-fill-item" id="htmlwidget-3120cdde858bf1ad9a31" style="width:100%;height:500px;"></div>
+<script type="application/json" data-for="htmlwidget-3120cdde858bf1ad9a31">{"x":{"hc_opts":{"chart":{"reflow":true,"type":"column","marginBottom":80},"title":{"text":"Tỷ lệ số pin cần cấp so với số pin tồn kho","margin":20,"align":"center","style":{"color":"black","fontWeight":"bold","fontFamily":"cambria","fontSize":"20px"}},"yAxis":[{"lineWidth":3,"title":{"text":"Số pin","style":{"fontWeight":"bold","fontSize":"15px","fontFamily":"cambria"}},"labels":{"style":{"fontSize":"12px","fontFamily":"cambria"}}},{"showLastLabel":true,"opposite":true,"title":{"text":"%HT","style":{"fontWeight":"bold","fontSize":"15px","fontFamily":"cambria"}},"labels":{"style":{"fontSize":"12px","fontFamily":"cambria"}}}],"credits":{"enabled":false},"exporting":{"enabled":true,"filename":"ton-kho-pin"},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0,"states":{"inactive":{"opacity":0.3}}},"treemap":{"layoutAlgorithm":"squarified"},"column":{"states":{"hover":{"color":null},"inactive":{"opacity":0.3}}}},"xAxis":{"categories":["0COV1","HNI","HPG","LCI","NBH","TQG","Tổng","0COV3","AGG","DTP","HCM","DNG","GLI","KHA","TTH"],"labels":{"style":{"fontSize":"11px","fontFamily":"cambria"}},"crosshair":{"width":40,"color":"rgba(180,180,180,0.2)","zIndex":0}},"series":[{"name":"Tổng pin tồn","data":[5,20,4,1,46,14,158,19,0,1,0,3,16,5,24],"states":{"hover":{"color":"#808080"}}},{"name":"Số pin cần cấp","data":[0,27,0,0,0,12,80,0,0,1,0,0,16,0,24],"states":{"hover":{"color":"#8DB600"}}},{"name":"Tỷ lệ (%)","data":[0,135,0,0,0,86,51,0,null,100,null,0,100,0,100],"type":"spline","yAxis":1,"dataLabels":{"enabled":true,"format":"{y}%"}}],"tooltip":{"shared":true,"useHTML":true,"formatter":"\n      function() {\n        var s = '<b>' + this.x + '<\/b><br/>';\n        var tong_ton = 0, tong_pin_can = 0, ty_le = 0;\n        for (var i = 0; i < this.points.length; i++) {\n          var nm  = this.points[i].series.name;\n          var val = this.points[i].y;\n          if (nm === 'Tổng pin tồn')   tong_ton     = val;\n          if (nm === 'Số pin cần cấp') tong_pin_can = val;\n          if (nm === 'Tỷ lệ (%)')      ty_le        = val;\n        }\n        s += '<span style=\"color:#D9D9D9\">●<\/span> Tổng pin tồn: <b>' +\n               Highcharts.numberFormat(tong_ton, 0, '.', ',') + '<\/b><br/>';\n        s += '<span style=\"color:#C84309\">●<\/span> Số pin cần cấp: <b>' +\n               Highcharts.numberFormat(tong_pin_can, 0, '.', ',') + '<\/b><br/>';\n        s += '<span style=\"color:#645889\">●<\/span> Tỷ lệ (%): <b>' + ty_le + '%<\/b>';\n        return s;\n      }\n    "},"colors":["#D9D9D9","#C84309","#645889"],"legend":{"labels":{"style":{"color":"black","fontWeight":"bold","fontFamily":"cambria","fontSize":"14px"}}}},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadCSV":"Download CSV","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","downloadXLS":"Download XLS","drillUpText":"◁ Back to {series.name}","exitFullscreen":"Exit from full screen","exportData":{"annotationHeader":"Annotations","categoryDatetimeHeader":"DateTime","categoryHeader":"Category"},"hideData":"Hide data table","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbolMagnitude":1000,"numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"shortWeekdays":["Sat","Sun","Mon","Tue","Wed","Thu","Fri"],"thousandsSep":" ","viewData":"View data table","viewFullscreen":"View in full screen","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":"cambria","debug":false},"evals":["hc_opts.tooltip.formatter"],"jsHooks":{"render":[{"code":"\nfunction(el, x) {\n  var allData     = [{\"ma_moi\":\"0COV1\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"tong_ton\":18,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"0COV1\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"tong_ton\":2438,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"0COV1\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"tong_ton\":9255,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"0COV1\",\"KV\":\"KV1\",\"Loai_pin\":\"Jinko 570\",\"tong_ton\":4,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"0COV1\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 615\",\"tong_ton\":5,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"0COV1\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":8732,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"BNH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"tong_ton\":13,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"BNH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"tong_ton\":46,\"tong_pin_can\":46,\"ty_le\":100},{\"ma_moi\":\"BNH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"tong_ton\":668,\"tong_pin_can\":698,\"ty_le\":104.491},{\"ma_moi\":\"BNH\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 585\",\"tong_ton\":9,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"BNH\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":52,\"tong_pin_can\":50,\"ty_le\":96.1538},{\"ma_moi\":\"CBG\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"tong_ton\":174,\"tong_pin_can\":130,\"ty_le\":74.7126},{\"ma_moi\":\"DBN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"tong_ton\":2,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"DBN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"tong_ton\":328,\"tong_pin_can\":209,\"ty_le\":63.7195},{\"ma_moi\":\"HNI\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"tong_ton\":58,\"tong_pin_can\":131,\"ty_le\":225.8621},{\"ma_moi\":\"HNI\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"tong_ton\":663,\"tong_pin_can\":531,\"ty_le\":80.0905},{\"ma_moi\":\"HNI\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"tong_ton\":773,\"tong_pin_can\":1068,\"ty_le\":138.163},{\"ma_moi\":\"HNI\",\"KV\":\"KV1\",\"Loai_pin\":\"Jinko 585\",\"tong_ton\":2,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"HNI\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 615\",\"tong_ton\":20,\"tong_pin_can\":27,\"ty_le\":135},{\"ma_moi\":\"HNI\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":823,\"tong_pin_can\":730,\"ty_le\":88.6999},{\"ma_moi\":\"HPG\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"tong_ton\":85,\"tong_pin_can\":83,\"ty_le\":97.6471},{\"ma_moi\":\"HPG\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"tong_ton\":1016,\"tong_pin_can\":1050,\"ty_le\":103.3465},{\"ma_moi\":\"HPG\",\"KV\":\"KV1\",\"Loai_pin\":\"Jinko 585\",\"tong_ton\":16,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"HPG\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 585\",\"tong_ton\":1,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"HPG\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 615\",\"tong_ton\":4,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"HPG\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":82,\"tong_pin_can\":60,\"ty_le\":73.1707},{\"ma_moi\":\"HTH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"tong_ton\":48,\"tong_pin_can\":62,\"ty_le\":129.1667},{\"ma_moi\":\"HTH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"tong_ton\":656,\"tong_pin_can\":651,\"ty_le\":99.2378},{\"ma_moi\":\"HTH\",\"KV\":\"KV1\",\"Loai_pin\":\"Jinko 585\",\"tong_ton\":0,\"tong_pin_can\":0,\"ty_le\":null},{\"ma_moi\":\"HYN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"tong_ton\":31,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"HYN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"tong_ton\":309,\"tong_pin_can\":306,\"ty_le\":99.0291},{\"ma_moi\":\"HYN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"tong_ton\":624,\"tong_pin_can\":873,\"ty_le\":139.9038},{\"ma_moi\":\"HYN\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":360,\"tong_pin_can\":404,\"ty_le\":112.2222},{\"ma_moi\":\"LCI\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"tong_ton\":8,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"LCI\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"tong_ton\":214,\"tong_pin_can\":251,\"ty_le\":117.2897},{\"ma_moi\":\"LCI\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 615\",\"tong_ton\":1,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"LCU\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"tong_ton\":8,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"LCU\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"tong_ton\":126,\"tong_pin_can\":92,\"ty_le\":73.0159},{\"ma_moi\":\"LSN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"tong_ton\":4,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"LSN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"tong_ton\":118,\"tong_pin_can\":100,\"ty_le\":84.7458},{\"ma_moi\":\"LSN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"tong_ton\":577,\"tong_pin_can\":991,\"ty_le\":171.7504},{\"ma_moi\":\"LSN\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":36,\"tong_pin_can\":10,\"ty_le\":27.7778},{\"ma_moi\":\"NAN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"tong_ton\":142,\"tong_pin_can\":73,\"ty_le\":51.4085},{\"ma_moi\":\"NAN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"tong_ton\":565,\"tong_pin_can\":1587,\"ty_le\":280.885},{\"ma_moi\":\"NAN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"tong_ton\":1438,\"tong_pin_can\":2281,\"ty_le\":158.6231},{\"ma_moi\":\"NAN\",\"KV\":\"KV1\",\"Loai_pin\":\"Jinko 585\",\"tong_ton\":1,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"NAN\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":0,\"tong_pin_can\":88,\"ty_le\":null},{\"ma_moi\":\"NBH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"tong_ton\":163,\"tong_pin_can\":161,\"ty_le\":98.773},{\"ma_moi\":\"NBH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"tong_ton\":58,\"tong_pin_can\":56,\"ty_le\":96.5517},{\"ma_moi\":\"NBH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"tong_ton\":1001,\"tong_pin_can\":956,\"ty_le\":95.5045},{\"ma_moi\":\"NBH\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 615\",\"tong_ton\":46,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"NBH\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":268,\"tong_pin_can\":209,\"ty_le\":77.9851},{\"ma_moi\":\"PTO\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"tong_ton\":3,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"PTO\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"tong_ton\":227,\"tong_pin_can\":247,\"ty_le\":108.8106},{\"ma_moi\":\"PTO\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"tong_ton\":1406,\"tong_pin_can\":1557,\"ty_le\":110.7397},{\"ma_moi\":\"PTO\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 585\",\"tong_ton\":6,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"PTO\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":1148,\"tong_pin_can\":772,\"ty_le\":67.2474},{\"ma_moi\":\"QNH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"tong_ton\":17,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"QNH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"tong_ton\":28,\"tong_pin_can\":24,\"ty_le\":85.7143},{\"ma_moi\":\"QNH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"tong_ton\":633,\"tong_pin_can\":983,\"ty_le\":155.2923},{\"ma_moi\":\"QNH\",\"KV\":\"KV1\",\"Loai_pin\":\"Jinko 570\",\"tong_ton\":18,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"QNH\",\"KV\":\"KV1\",\"Loai_pin\":\"Jinko 585\",\"tong_ton\":7,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"SLA\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"tong_ton\":2,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"SLA\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"tong_ton\":72,\"tong_pin_can\":120,\"ty_le\":166.6667},{\"ma_moi\":\"THA\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"tong_ton\":62,\"tong_pin_can\":76,\"ty_le\":122.5806},{\"ma_moi\":\"THA\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"tong_ton\":211,\"tong_pin_can\":280,\"ty_le\":132.7014},{\"ma_moi\":\"THA\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"tong_ton\":1907,\"tong_pin_can\":3605,\"ty_le\":189.0404},{\"ma_moi\":\"THA\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":72,\"tong_pin_can\":86,\"ty_le\":119.4444},{\"ma_moi\":\"TNN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"tong_ton\":20,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"TNN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"tong_ton\":886,\"tong_pin_can\":846,\"ty_le\":95.4853},{\"ma_moi\":\"TNN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"tong_ton\":585,\"tong_pin_can\":837,\"ty_le\":143.0769},{\"ma_moi\":\"TNN\",\"KV\":\"KV1\",\"Loai_pin\":\"Jinko 585\",\"tong_ton\":3,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"TNN\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 585\",\"tong_ton\":10,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"TQG\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"tong_ton\":33,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"TQG\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"tong_ton\":23,\"tong_pin_can\":12,\"ty_le\":52.1739},{\"ma_moi\":\"TQG\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 615\",\"tong_ton\":14,\"tong_pin_can\":12,\"ty_le\":85.7143},{\"ma_moi\":\"TQG\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":566,\"tong_pin_can\":284,\"ty_le\":50.1767},{\"ma_moi\":\"Tổng\",\"KV\":\"Tổng\",\"Loai_pin\":\"Jinko 570\",\"tong_ton\":22,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"Tổng\",\"KV\":\"Tổng\",\"Loai_pin\":\"Jinko 585\",\"tong_ton\":195,\"tong_pin_can\":47,\"ty_le\":24.1026},{\"ma_moi\":\"Tổng\",\"KV\":\"Tổng\",\"Loai_pin\":\"Jinko 625\",\"tong_ton\":9,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"Tổng\",\"KV\":\"Tổng\",\"Loai_pin\":\"Longi 585\",\"tong_ton\":72,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"Tổng\",\"KV\":\"Tổng\",\"Loai_pin\":\"Longi 615\",\"tong_ton\":158,\"tong_pin_can\":80,\"ty_le\":50.6329},{\"ma_moi\":\"Tổng\",\"KV\":\"Tổng\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":29250,\"tong_pin_can\":8457,\"ty_le\":28.9128},{\"ma_moi\":\"0COV3\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 615\",\"tong_ton\":46,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"0COV3\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 620\",\"tong_ton\":68,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"0COV3\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 625\",\"tong_ton\":10980,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"0COV3\",\"KV\":\"KV3\",\"Loai_pin\":\"Jinko 545\",\"tong_ton\":3,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"0COV3\",\"KV\":\"KV3\",\"Loai_pin\":\"Jinko 585\",\"tong_ton\":2,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"0COV3\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 585\",\"tong_ton\":5,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"0COV3\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 615\",\"tong_ton\":19,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"0COV3\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":6408,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"AGG\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 615\",\"tong_ton\":4,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"AGG\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 620\",\"tong_ton\":117,\"tong_pin_can\":114,\"ty_le\":97.4359},{\"ma_moi\":\"AGG\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 615\",\"tong_ton\":0,\"tong_pin_can\":0,\"ty_le\":null},{\"ma_moi\":\"AGG\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":850,\"tong_pin_can\":729,\"ty_le\":85.7647},{\"ma_moi\":\"CMU\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 620\",\"tong_ton\":9,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"CMU\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 625\",\"tong_ton\":74,\"tong_pin_can\":172,\"ty_le\":232.4324},{\"ma_moi\":\"CMU\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 585\",\"tong_ton\":1,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"CMU\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":151,\"tong_pin_can\":154,\"ty_le\":101.9868},{\"ma_moi\":\"CTO\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 615\",\"tong_ton\":5,\"tong_pin_can\":52,\"ty_le\":1040},{\"ma_moi\":\"CTO\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 620\",\"tong_ton\":2840,\"tong_pin_can\":2863,\"ty_le\":100.8099},{\"ma_moi\":\"CTO\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 625\",\"tong_ton\":186,\"tong_pin_can\":193,\"ty_le\":103.7634},{\"ma_moi\":\"CTO\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":645,\"tong_pin_can\":711,\"ty_le\":110.2326},{\"ma_moi\":\"DNI\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 615\",\"tong_ton\":2,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"DNI\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 620\",\"tong_ton\":85,\"tong_pin_can\":63,\"ty_le\":74.1176},{\"ma_moi\":\"DNI\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 625\",\"tong_ton\":1650,\"tong_pin_can\":1508,\"ty_le\":91.3939},{\"ma_moi\":\"DNI\",\"KV\":\"KV3\",\"Loai_pin\":\"Jinko 585\",\"tong_ton\":4,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"DNI\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 585\",\"tong_ton\":1,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"DNI\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":36,\"tong_pin_can\":41,\"ty_le\":113.8889},{\"ma_moi\":\"DTP\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 615\",\"tong_ton\":1,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"DTP\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 620\",\"tong_ton\":242,\"tong_pin_can\":168,\"ty_le\":69.4215},{\"ma_moi\":\"DTP\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 625\",\"tong_ton\":284,\"tong_pin_can\":361,\"ty_le\":127.1127},{\"ma_moi\":\"DTP\",\"KV\":\"KV3\",\"Loai_pin\":\"Jinko 585\",\"tong_ton\":1,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"DTP\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 615\",\"tong_ton\":1,\"tong_pin_can\":1,\"ty_le\":100},{\"ma_moi\":\"DTP\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":852,\"tong_pin_can\":1019,\"ty_le\":119.6009},{\"ma_moi\":\"HCM\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 615\",\"tong_ton\":6,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"HCM\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 620\",\"tong_ton\":111,\"tong_pin_can\":91,\"ty_le\":81.982},{\"ma_moi\":\"HCM\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 625\",\"tong_ton\":867,\"tong_pin_can\":1289,\"ty_le\":148.6736},{\"ma_moi\":\"HCM\",\"KV\":\"KV3\",\"Loai_pin\":\"Jinko 585\",\"tong_ton\":1,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"HCM\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 615\",\"tong_ton\":0,\"tong_pin_can\":0,\"ty_le\":null},{\"ma_moi\":\"HCM\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":770,\"tong_pin_can\":146,\"ty_le\":18.961},{\"ma_moi\":\"TNH\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 615\",\"tong_ton\":2,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"TNH\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 620\",\"tong_ton\":35,\"tong_pin_can\":26,\"ty_le\":74.2857},{\"ma_moi\":\"TNH\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 585\",\"tong_ton\":1,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"TNH\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":1017,\"tong_pin_can\":941,\"ty_le\":92.527},{\"ma_moi\":\"VLG\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 620\",\"tong_ton\":119,\"tong_pin_can\":127,\"ty_le\":106.7227},{\"ma_moi\":\"VLG\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 625\",\"tong_ton\":684,\"tong_pin_can\":494,\"ty_le\":72.2222},{\"ma_moi\":\"VLG\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":442,\"tong_pin_can\":331,\"ty_le\":74.8869},{\"ma_moi\":\"0COV2\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 615\",\"tong_ton\":1,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"0COV2\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 620\",\"tong_ton\":1,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"0COV2\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 625\",\"tong_ton\":4429,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"0COV2\",\"KV\":\"KV2\",\"Loai_pin\":\"Jinko 535\",\"tong_ton\":3,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"0COV2\",\"KV\":\"KV2\",\"Loai_pin\":\"Jinko 585\",\"tong_ton\":1,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"0COV2\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":3348,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"DLK\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 615\",\"tong_ton\":1,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"DLK\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 620\",\"tong_ton\":223,\"tong_pin_can\":24,\"ty_le\":10.7623},{\"ma_moi\":\"DLK\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 625\",\"tong_ton\":252,\"tong_pin_can\":75,\"ty_le\":29.7619},{\"ma_moi\":\"DLK\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 585\",\"tong_ton\":1,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"DLK\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":499,\"tong_pin_can\":293,\"ty_le\":58.7174},{\"ma_moi\":\"DNG\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 615\",\"tong_ton\":15,\"tong_pin_can\":42,\"ty_le\":280},{\"ma_moi\":\"DNG\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 620\",\"tong_ton\":302,\"tong_pin_can\":285,\"ty_le\":94.3709},{\"ma_moi\":\"DNG\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 625\",\"tong_ton\":291,\"tong_pin_can\":293,\"ty_le\":100.6873},{\"ma_moi\":\"DNG\",\"KV\":\"KV2\",\"Loai_pin\":\"Jinko 585\",\"tong_ton\":1,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"DNG\",\"KV\":\"KV2\",\"Loai_pin\":\"Jinko 625\",\"tong_ton\":9,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"DNG\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 615\",\"tong_ton\":3,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"DNG\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":156,\"tong_pin_can\":176,\"ty_le\":112.8205},{\"ma_moi\":\"GLI\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 615\",\"tong_ton\":12,\"tong_pin_can\":4,\"ty_le\":33.3333},{\"ma_moi\":\"GLI\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 620\",\"tong_ton\":25,\"tong_pin_can\":25,\"ty_le\":100},{\"ma_moi\":\"GLI\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 625\",\"tong_ton\":396,\"tong_pin_can\":274,\"ty_le\":69.1919},{\"ma_moi\":\"GLI\",\"KV\":\"KV2\",\"Loai_pin\":\"Jinko 585\",\"tong_ton\":133,\"tong_pin_can\":47,\"ty_le\":35.3383},{\"ma_moi\":\"GLI\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 615\",\"tong_ton\":16,\"tong_pin_can\":16,\"ty_le\":100},{\"ma_moi\":\"GLI\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":126,\"tong_pin_can\":73,\"ty_le\":57.9365},{\"ma_moi\":\"KHA\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 615\",\"tong_ton\":4,\"tong_pin_can\":20,\"ty_le\":500},{\"ma_moi\":\"KHA\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 620\",\"tong_ton\":22,\"tong_pin_can\":30,\"ty_le\":136.3636},{\"ma_moi\":\"KHA\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 625\",\"tong_ton\":452,\"tong_pin_can\":480,\"ty_le\":106.1947},{\"ma_moi\":\"KHA\",\"KV\":\"KV2\",\"Loai_pin\":\"Jinko 585\",\"tong_ton\":4,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"KHA\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 585\",\"tong_ton\":24,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"KHA\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 615\",\"tong_ton\":5,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"LDG\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 615\",\"tong_ton\":8,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"LDG\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 620\",\"tong_ton\":69,\"tong_pin_can\":88,\"ty_le\":127.5362},{\"ma_moi\":\"LDG\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 625\",\"tong_ton\":576,\"tong_pin_can\":1200,\"ty_le\":208.3333},{\"ma_moi\":\"LDG\",\"KV\":\"KV2\",\"Loai_pin\":\"Jinko 585\",\"tong_ton\":18,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"LDG\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 585\",\"tong_ton\":3,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"QNI\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 615\",\"tong_ton\":13,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"QNI\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 620\",\"tong_ton\":77,\"tong_pin_can\":86,\"ty_le\":111.6883},{\"ma_moi\":\"QNI\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 625\",\"tong_ton\":130,\"tong_pin_can\":265,\"ty_le\":203.8462},{\"ma_moi\":\"QNI\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":720,\"tong_pin_can\":290,\"ty_le\":40.2778},{\"ma_moi\":\"QTI\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 615\",\"tong_ton\":63,\"tong_pin_can\":24,\"ty_le\":38.0952},{\"ma_moi\":\"QTI\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 620\",\"tong_ton\":3,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"QTI\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 625\",\"tong_ton\":108,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"QTI\",\"KV\":\"KV2\",\"Loai_pin\":\"Jinko 585\",\"tong_ton\":1,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"QTI\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 585\",\"tong_ton\":10,\"tong_pin_can\":0,\"ty_le\":0},{\"ma_moi\":\"QTI\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":559,\"tong_pin_can\":228,\"ty_le\":40.7871},{\"ma_moi\":\"TTH\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 620\",\"tong_ton\":195,\"tong_pin_can\":217,\"ty_le\":111.2821},{\"ma_moi\":\"TTH\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 625\",\"tong_ton\":36,\"tong_pin_can\":76,\"ty_le\":211.1111},{\"ma_moi\":\"TTH\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 615\",\"tong_ton\":24,\"tong_pin_can\":24,\"ty_le\":100},{\"ma_moi\":\"TTH\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 620\",\"tong_ton\":532,\"tong_pin_can\":632,\"ty_le\":118.797}];\n  var defaultData = {\"ma_moi\":[\"0COV1\",\"HNI\",\"HPG\",\"LCI\",\"NBH\",\"TQG\",\"Tổng\",\"0COV3\",\"AGG\",\"DTP\",\"HCM\",\"DNG\",\"GLI\",\"KHA\",\"TTH\"],\"tong_ton\":[5,20,4,1,46,14,158,19,0,1,0,3,16,5,24],\"tong_pin_can\":[0,27,0,0,0,12,80,0,0,1,0,0,16,0,24],\"ty_le\":[0,135,0,0,0,86,51,0,null,100,null,0,100,0,100],\"kv_groups\":{\"KV\":[\"KV1\",\"Tổng\",\"KV3\",\"KV2\"],\"n_cols\":[6,1,4,4]},\"n_total\":15};\n\n  function getChart() {\n    for (var i = 0; i < Highcharts.charts.length; i++) {\n      var c = Highcharts.charts[i];\n      if (c && c.renderTo && el.contains(c.renderTo)) return c;\n    }\n    return null;\n  }\n\n  function getFilteredData(loaiPin) {\n    var filtered = allData.filter(function(r) {\n      return r.Loai_pin === loaiPin;\n    });\n    filtered.sort(function(a, b) {\n      if (a.KV < b.KV) return -1;\n      if (a.KV > b.KV) return 1;\n      return a.ma_moi < b.ma_moi ? -1 : 1;\n    });\n    var kvMap = {};\n    filtered.forEach(function(r) {\n      if (!kvMap[r.KV]) kvMap[r.KV] = 0;\n      kvMap[r.KV]++;\n    });\n    return {\n      ma_moi       : filtered.map(function(r) { return r.ma_moi; }),\n      tong_ton     : filtered.map(function(r) { return Math.round(r.tong_ton || 0); }),\n      tong_pin_can : filtered.map(function(r) { return Math.round(r.tong_pin_can || 0); }),\n      ty_le        : filtered.map(function(r) { return Math.round(r.ty_le || 0); }),\n      kv_groups    : { KV: Object.keys(kvMap), n_cols: Object.values(kvMap) },\n      n_total      : filtered.length\n    };\n  }\n\n  function drawKVLabels(chart, groups, N, el) {\n    var pLeft   = chart.plotLeft;\n    var pRight  = chart.chartWidth - pLeft - chart.plotWidth;\n    var colW    = chart.plotWidth / N;\n    var nGroups = groups.KV.length;\n    var pullUp  = chart.marginBottom - 25;\n\n    el.style.position = 'relative';\n    el.querySelectorAll('._kv_sep, ._kv_row').forEach(function(o) { o.parentNode.removeChild(o); });\n\n    var cumCols = 0;\n    for (var i = 0; i < nGroups - 1; i++) {\n      cumCols += groups.n_cols[i];\n      var sep = document.createElement('div');\n      sep.className = '_kv_sep';\n      sep.style.cssText = [\n        'position:absolute',\n        'left:' + Math.round(pLeft + cumCols * colW) + 'px',\n        'top:' + chart.plotTop + 'px',\n        'width:1px',\n        'height:' + (chart.plotHeight + 18) + 'px',\n        'border-left:1px dashed #999999',\n        'pointer-events:none',\n        'z-index:3'\n      ].join(';');\n      el.appendChild(sep);\n    }\n\n    var row = document.createElement('div');\n    row.className = '_kv_row';\n    row.style.cssText = [\n      'display:flex',\n      'margin-top:-' + pullUp + 'px',\n      'padding-left:' + pLeft + 'px',\n      'padding-right:' + pRight + 'px',\n      'width:' + chart.chartWidth + 'px',\n      'box-sizing:border-box',\n      'pointer-events:none'\n    ].join(';');\n\n    for (var j = 0; j < nGroups; j++) {\n      var cell = document.createElement('div');\n      cell.textContent = groups.KV[j];\n      cell.style.cssText = [\n        'flex:' + groups.n_cols[j],\n        'text-align:center',\n        'font-size:12px',\n        'font-family:Cambria,serif',\n        'font-weight:bold',\n        'color:#333333',\n        'border-top:2px solid #555555',\n        'padding-top:4px'\n      ].join(';');\n      row.appendChild(cell);\n    }\n    el.appendChild(row);\n  }\n\n  function updateChart(loaiPin) {\n    var d     = getFilteredData(loaiPin);\n    var chart = getChart();\n    if (!chart) return;\n    chart.xAxis[0].setCategories(d.ma_moi, false);\n    chart.series[0].setData(d.tong_ton,     false);\n    chart.series[1].setData(d.tong_pin_can, false);\n    chart.series[2].setData(d.ty_le,        false);\n    chart.redraw();\n    setTimeout(function() {\n      drawKVLabels(chart, d.kv_groups, d.n_total, el);\n    }, 300);\n  }\n\n  function init() {\n  var chart = getChart();\n  if (!chart || !chart.plotWidth) { setTimeout(init, 300); return; }\n\n  // ← Thêm 2 dòng này\n  chart.reflow();\n  window.dispatchEvent(new Event('resize'));\n\n  drawKVLabels(chart, defaultData.kv_groups, defaultData.n_total, el);\n\n  var wrapper = el.closest('.filter-chart-block');\n  var sel = wrapper\n    ? wrapper.querySelector('select')\n    : document.getElementById('filter_loai_pin');\n\n  if (sel) {\n    updateChart(sel.value);\n    sel.addEventListener('change', function() {\n      updateChart(this.value);\n    });\n  }\n}\n\nsetTimeout(init, 300);\nsetTimeout(init, 800);\nsetTimeout(init, 1500);\n\n// ← Thêm reflow khi trang load xong\nwindow.addEventListener('load', function() {\n  setTimeout(function() {\n    var chart = getChart();\n    if (chart) {\n      chart.reflow();\n      window.dispatchEvent(new Event('resize'));\n    }\n  }, 500);\n});\n}\n","data":null}]}}</script>
 </div>
 </div>
 </div>
@@ -371,8 +325,8 @@ document.addEventListener('DOMContentLoaded', function() {
 <option value="Longi 620">Longi 620</option>
 </select>
 </div>
-<div class="highchart html-widget html-fill-item" id="htmlwidget-3585b540ef96087476bd" style="width:100%;height:500px;"></div>
-<script type="application/json" data-for="htmlwidget-3585b540ef96087476bd">{"x":{"hc_opts":{"chart":{"reflow":true,"type":"column","marginBottom":80},"title":{"text":"Dư pin sau cấp theo tỉnh","align":"center","style":{"color":"black","fontWeight":"bold","fontFamily":"cambria","fontSize":"18px"}},"yAxis":{"title":{"text":"Số pin dư","style":{"fontWeight":"bold","fontSize":"14px","fontFamily":"cambria"}},"labels":{"style":{"fontSize":"12px","fontFamily":"cambria"}},"plotLines":[{"value":0,"color":"#333333","width":1.5,"zIndex":5}]},"credits":{"enabled":false},"exporting":{"enabled":true,"filename":"du-pin-sau-cap"},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0},"treemap":{"layoutAlgorithm":"squarified"},"column":{"borderRadius":3,"states":{"hover":{"brightness":0.1}}}},"xAxis":{"categories":["0COV1","HNI","HPG","LCI","NBH","TQG","DNG","GLI","KHA","TTH","0COV3","AGG","DTP","HCM","Tổng"],"labels":{"style":{"fontSize":"11px","fontFamily":"cambria"}},"crosshair":true},"series":[{"name":"Dư pin sau cấp","data":[{"y":5,"color":"#2ECC71"},{"y":-7,"color":"#E74C3C"},{"y":4,"color":"#2ECC71"},{"y":1,"color":"#2ECC71"},{"y":46,"color":"#2ECC71"},{"y":2,"color":"#2ECC71"},{"y":3,"color":"#2ECC71"},{"y":0,"color":"#2ECC71"},{"y":5,"color":"#2ECC71"},{"y":0,"color":"#2ECC71"},{"y":19,"color":"#2ECC71"},{"y":0,"color":"#2ECC71"},{"y":0,"color":"#2ECC71"},{"y":0,"color":"#2ECC71"},{"y":78,"color":"#2ECC71"}],"showInLegend":false,"dataLabels":{"enabled":true,"format":"{y}","style":{"fontSize":"10px","fontFamily":"cambria","fontWeight":"bold","textOutline":"none"}}}],"tooltip":{"useHTML":true,"formatter":"\n      function() {\n        var color = this.y >= 0 ? '#2ECC71' : '#E74C3C';\n        return '<b>' + this.x + '<\/b><br/>' +\n               '<span style=\"color:' + color + '\">●<\/span> ' +\n               'Dư pin sau cấp: <b>' +\n               Highcharts.numberFormat(this.y, 0, '.', ',') +\n               '<\/b>';\n      }\n    "}},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadCSV":"Download CSV","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","downloadXLS":"Download XLS","drillUpText":"◁ Back to {series.name}","exitFullscreen":"Exit from full screen","exportData":{"annotationHeader":"Annotations","categoryDatetimeHeader":"DateTime","categoryHeader":"Category"},"hideData":"Hide data table","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbolMagnitude":1000,"numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"shortWeekdays":["Sat","Sun","Mon","Tue","Wed","Thu","Fri"],"thousandsSep":" ","viewData":"View data table","viewFullscreen":"View in full screen","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":"cambria","debug":false},"evals":["hc_opts.tooltip.formatter"],"jsHooks":{"render":[{"code":"\nfunction(el, x) {\n  var allData     = [{\"ma_moi\":\"Tổng\",\"KV\":\"Tổng\",\"Loai_pin\":\"Jinko 570\",\"du_pin_saucap\":22},{\"ma_moi\":\"Tổng\",\"KV\":\"Tổng\",\"Loai_pin\":\"Jinko 585\",\"du_pin_saucap\":148},{\"ma_moi\":\"Tổng\",\"KV\":\"Tổng\",\"Loai_pin\":\"Jinko 625\",\"du_pin_saucap\":9},{\"ma_moi\":\"Tổng\",\"KV\":\"Tổng\",\"Loai_pin\":\"Longi 585\",\"du_pin_saucap\":72},{\"ma_moi\":\"Tổng\",\"KV\":\"Tổng\",\"Loai_pin\":\"Longi 615\",\"du_pin_saucap\":78},{\"ma_moi\":\"Tổng\",\"KV\":\"Tổng\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":20793},{\"ma_moi\":\"0COV1\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":18},{\"ma_moi\":\"BNH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":13},{\"ma_moi\":\"HNI\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":-73},{\"ma_moi\":\"HYN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":31},{\"ma_moi\":\"LCI\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":8},{\"ma_moi\":\"LCU\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":8},{\"ma_moi\":\"LSN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":4},{\"ma_moi\":\"NAN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":69},{\"ma_moi\":\"NBH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":2},{\"ma_moi\":\"PTO\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":3},{\"ma_moi\":\"QNH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":17},{\"ma_moi\":\"SLA\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":2},{\"ma_moi\":\"THA\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":-14},{\"ma_moi\":\"TNN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":20},{\"ma_moi\":\"TQG\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":33},{\"ma_moi\":\"0COV2\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":1},{\"ma_moi\":\"DLK\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":1},{\"ma_moi\":\"DNG\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":-27},{\"ma_moi\":\"GLI\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":8},{\"ma_moi\":\"KHA\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":-16},{\"ma_moi\":\"LDG\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":8},{\"ma_moi\":\"QNI\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":13},{\"ma_moi\":\"QTI\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":39},{\"ma_moi\":\"0COV3\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":46},{\"ma_moi\":\"AGG\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":4},{\"ma_moi\":\"CTO\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":-47},{\"ma_moi\":\"DNI\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":2},{\"ma_moi\":\"DTP\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":1},{\"ma_moi\":\"HCM\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":6},{\"ma_moi\":\"TNH\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":2},{\"ma_moi\":\"0COV1\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":2438},{\"ma_moi\":\"BNH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":0},{\"ma_moi\":\"DBN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":2},{\"ma_moi\":\"HNI\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":132},{\"ma_moi\":\"HPG\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":2},{\"ma_moi\":\"HTH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":-14},{\"ma_moi\":\"HYN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":3},{\"ma_moi\":\"LSN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":18},{\"ma_moi\":\"NAN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":-1022},{\"ma_moi\":\"NBH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":2},{\"ma_moi\":\"PTO\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":-20},{\"ma_moi\":\"QNH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":4},{\"ma_moi\":\"THA\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":-69},{\"ma_moi\":\"TNN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":40},{\"ma_moi\":\"TQG\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":11},{\"ma_moi\":\"0COV2\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":1},{\"ma_moi\":\"DLK\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":199},{\"ma_moi\":\"DNG\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":17},{\"ma_moi\":\"GLI\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":0},{\"ma_moi\":\"KHA\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":-8},{\"ma_moi\":\"LDG\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":-19},{\"ma_moi\":\"QNI\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":-9},{\"ma_moi\":\"QTI\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":3},{\"ma_moi\":\"TTH\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":-22},{\"ma_moi\":\"0COV3\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":68},{\"ma_moi\":\"AGG\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":3},{\"ma_moi\":\"CMU\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":9},{\"ma_moi\":\"CTO\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":-23},{\"ma_moi\":\"DNI\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":22},{\"ma_moi\":\"DTP\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":74},{\"ma_moi\":\"HCM\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":20},{\"ma_moi\":\"TNH\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":9},{\"ma_moi\":\"VLG\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":-8},{\"ma_moi\":\"0COV1\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":9255},{\"ma_moi\":\"BNH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":-30},{\"ma_moi\":\"CBG\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":44},{\"ma_moi\":\"DBN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":119},{\"ma_moi\":\"HNI\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":-295},{\"ma_moi\":\"HPG\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":-34},{\"ma_moi\":\"HTH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":5},{\"ma_moi\":\"HYN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":-249},{\"ma_moi\":\"LCI\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":-37},{\"ma_moi\":\"LCU\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":34},{\"ma_moi\":\"LSN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":-414},{\"ma_moi\":\"NAN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":-843},{\"ma_moi\":\"NBH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":45},{\"ma_moi\":\"PTO\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":-151},{\"ma_moi\":\"QNH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":-350},{\"ma_moi\":\"SLA\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":-48},{\"ma_moi\":\"THA\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":-1698},{\"ma_moi\":\"TNN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":-252},{\"ma_moi\":\"0COV2\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":4429},{\"ma_moi\":\"DLK\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":177},{\"ma_moi\":\"DNG\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":-2},{\"ma_moi\":\"GLI\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":122},{\"ma_moi\":\"KHA\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":-28},{\"ma_moi\":\"LDG\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":-624},{\"ma_moi\":\"QNI\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":-135},{\"ma_moi\":\"QTI\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":108},{\"ma_moi\":\"TTH\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":-40},{\"ma_moi\":\"0COV3\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":10980},{\"ma_moi\":\"CMU\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":-98},{\"ma_moi\":\"CTO\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":-7},{\"ma_moi\":\"DNI\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":142},{\"ma_moi\":\"DTP\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":-77},{\"ma_moi\":\"HCM\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":-422},{\"ma_moi\":\"VLG\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":190},{\"ma_moi\":\"0COV2\",\"KV\":\"KV2\",\"Loai_pin\":\"Jinko 535\",\"du_pin_saucap\":3},{\"ma_moi\":\"0COV3\",\"KV\":\"KV3\",\"Loai_pin\":\"Jinko 545\",\"du_pin_saucap\":3},{\"ma_moi\":\"0COV1\",\"KV\":\"KV1\",\"Loai_pin\":\"Jinko 570\",\"du_pin_saucap\":4},{\"ma_moi\":\"QNH\",\"KV\":\"KV1\",\"Loai_pin\":\"Jinko 570\",\"du_pin_saucap\":18},{\"ma_moi\":\"HNI\",\"KV\":\"KV1\",\"Loai_pin\":\"Jinko 585\",\"du_pin_saucap\":2},{\"ma_moi\":\"HPG\",\"KV\":\"KV1\",\"Loai_pin\":\"Jinko 585\",\"du_pin_saucap\":16},{\"ma_moi\":\"HTH\",\"KV\":\"KV1\",\"Loai_pin\":\"Jinko 585\",\"du_pin_saucap\":0},{\"ma_moi\":\"NAN\",\"KV\":\"KV1\",\"Loai_pin\":\"Jinko 585\",\"du_pin_saucap\":1},{\"ma_moi\":\"QNH\",\"KV\":\"KV1\",\"Loai_pin\":\"Jinko 585\",\"du_pin_saucap\":7},{\"ma_moi\":\"TNN\",\"KV\":\"KV1\",\"Loai_pin\":\"Jinko 585\",\"du_pin_saucap\":3},{\"ma_moi\":\"0COV2\",\"KV\":\"KV2\",\"Loai_pin\":\"Jinko 585\",\"du_pin_saucap\":1},{\"ma_moi\":\"DNG\",\"KV\":\"KV2\",\"Loai_pin\":\"Jinko 585\",\"du_pin_saucap\":1},{\"ma_moi\":\"GLI\",\"KV\":\"KV2\",\"Loai_pin\":\"Jinko 585\",\"du_pin_saucap\":86},{\"ma_moi\":\"KHA\",\"KV\":\"KV2\",\"Loai_pin\":\"Jinko 585\",\"du_pin_saucap\":4},{\"ma_moi\":\"LDG\",\"KV\":\"KV2\",\"Loai_pin\":\"Jinko 585\",\"du_pin_saucap\":18},{\"ma_moi\":\"QTI\",\"KV\":\"KV2\",\"Loai_pin\":\"Jinko 585\",\"du_pin_saucap\":1},{\"ma_moi\":\"0COV3\",\"KV\":\"KV3\",\"Loai_pin\":\"Jinko 585\",\"du_pin_saucap\":2},{\"ma_moi\":\"DNI\",\"KV\":\"KV3\",\"Loai_pin\":\"Jinko 585\",\"du_pin_saucap\":4},{\"ma_moi\":\"DTP\",\"KV\":\"KV3\",\"Loai_pin\":\"Jinko 585\",\"du_pin_saucap\":1},{\"ma_moi\":\"HCM\",\"KV\":\"KV3\",\"Loai_pin\":\"Jinko 585\",\"du_pin_saucap\":1},{\"ma_moi\":\"DNG\",\"KV\":\"KV2\",\"Loai_pin\":\"Jinko 625\",\"du_pin_saucap\":9},{\"ma_moi\":\"BNH\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 585\",\"du_pin_saucap\":9},{\"ma_moi\":\"HPG\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 585\",\"du_pin_saucap\":1},{\"ma_moi\":\"PTO\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 585\",\"du_pin_saucap\":6},{\"ma_moi\":\"TNN\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 585\",\"du_pin_saucap\":10},{\"ma_moi\":\"DLK\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 585\",\"du_pin_saucap\":1},{\"ma_moi\":\"KHA\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 585\",\"du_pin_saucap\":24},{\"ma_moi\":\"LDG\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 585\",\"du_pin_saucap\":3},{\"ma_moi\":\"QTI\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 585\",\"du_pin_saucap\":10},{\"ma_moi\":\"0COV3\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 585\",\"du_pin_saucap\":5},{\"ma_moi\":\"CMU\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 585\",\"du_pin_saucap\":1},{\"ma_moi\":\"DNI\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 585\",\"du_pin_saucap\":1},{\"ma_moi\":\"TNH\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 585\",\"du_pin_saucap\":1},{\"ma_moi\":\"0COV1\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 615\",\"du_pin_saucap\":5},{\"ma_moi\":\"HNI\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 615\",\"du_pin_saucap\":-7},{\"ma_moi\":\"HPG\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 615\",\"du_pin_saucap\":4},{\"ma_moi\":\"LCI\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 615\",\"du_pin_saucap\":1},{\"ma_moi\":\"NBH\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 615\",\"du_pin_saucap\":46},{\"ma_moi\":\"TQG\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 615\",\"du_pin_saucap\":2},{\"ma_moi\":\"DNG\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 615\",\"du_pin_saucap\":3},{\"ma_moi\":\"GLI\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 615\",\"du_pin_saucap\":0},{\"ma_moi\":\"KHA\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 615\",\"du_pin_saucap\":5},{\"ma_moi\":\"TTH\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 615\",\"du_pin_saucap\":0},{\"ma_moi\":\"0COV3\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 615\",\"du_pin_saucap\":19},{\"ma_moi\":\"AGG\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 615\",\"du_pin_saucap\":0},{\"ma_moi\":\"DTP\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 615\",\"du_pin_saucap\":0},{\"ma_moi\":\"HCM\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 615\",\"du_pin_saucap\":0},{\"ma_moi\":\"0COV1\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":8732},{\"ma_moi\":\"BNH\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":2},{\"ma_moi\":\"HNI\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":93},{\"ma_moi\":\"HPG\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":22},{\"ma_moi\":\"HYN\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":-44},{\"ma_moi\":\"LSN\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":26},{\"ma_moi\":\"NAN\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":-88},{\"ma_moi\":\"NBH\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":59},{\"ma_moi\":\"PTO\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":376},{\"ma_moi\":\"THA\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":-14},{\"ma_moi\":\"TQG\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":282},{\"ma_moi\":\"0COV2\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":3348},{\"ma_moi\":\"DLK\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":206},{\"ma_moi\":\"DNG\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":-20},{\"ma_moi\":\"GLI\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":53},{\"ma_moi\":\"QNI\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":430},{\"ma_moi\":\"QTI\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":331},{\"ma_moi\":\"TTH\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":-100},{\"ma_moi\":\"0COV3\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":6408},{\"ma_moi\":\"AGG\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":121},{\"ma_moi\":\"CMU\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":-3},{\"ma_moi\":\"CTO\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":-66},{\"ma_moi\":\"DNI\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":-5},{\"ma_moi\":\"DTP\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":-167},{\"ma_moi\":\"HCM\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":624},{\"ma_moi\":\"TNH\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":76},{\"ma_moi\":\"VLG\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":111}];\n  var defaultData = {\"ma_moi\":[\"0COV1\",\"HNI\",\"HPG\",\"LCI\",\"NBH\",\"TQG\",\"DNG\",\"GLI\",\"KHA\",\"TTH\",\"0COV3\",\"AGG\",\"DTP\",\"HCM\",\"Tổng\"],\"du_pin_saucap\":[5,-7,4,1,46,2,3,0,5,0,19,0,0,0,78],\"kv_groups\":{\"KV\":[\"KV1\",\"KV2\",\"KV3\",\"Tổng\"],\"n_cols\":[6,4,4,1]},\"n_total\":15};\n\n  function getChart() {\n    for (var i = 0; i < Highcharts.charts.length; i++) {\n      var c = Highcharts.charts[i];\n      if (c && c.renderTo && el.contains(c.renderTo)) return c;\n    }\n    return null;\n  }\n\n  function makeColoredData(arr) {\n    return arr.map(function(v) {\n      return {\n        y: Math.round(v || 0),\n        color: (v >= 0) ? '#2ECC71' : '#E74C3C'\n      };\n    });\n  }\n\n  function getFilteredData(loaiPin) {\n    var filtered = allData.filter(function(r) {\n      return r.Loai_pin === loaiPin;\n    });\n    filtered.sort(function(a, b) {\n      if (a.KV < b.KV) return -1;\n      if (a.KV > b.KV) return 1;\n      return a.ma_moi < b.ma_moi ? -1 : 1;\n    });\n    var kvMap = {};\n    filtered.forEach(function(r) {\n      if (!kvMap[r.KV]) kvMap[r.KV] = 0;\n      kvMap[r.KV]++;\n    });\n    return {\n      cats      : filtered.map(function(r) { return r.ma_moi; }),\n      vals      : filtered.map(function(r) { return r.du_pin_saucap; }),\n      kv_groups : { KV: Object.keys(kvMap), n_cols: Object.values(kvMap) },\n      n_total   : filtered.length\n    };\n  }\n\n  function drawKVLabels(chart, groups, N, el) {\n    var pLeft   = chart.plotLeft;\n    var pRight  = chart.chartWidth - pLeft - chart.plotWidth;\n    var colW    = chart.plotWidth / N;\n    var nGroups = groups.KV.length;\n    var pullUp  = chart.marginBottom - 25;\n\n    el.style.position = 'relative';\n    el.querySelectorAll('._kv_sep, ._kv_row').forEach(function(o) {\n      o.parentNode.removeChild(o);\n    });\n\n    // Đường nét đứt phân chia KV\n    var cumCols = 0;\n    for (var i = 0; i < nGroups - 1; i++) {\n      cumCols += groups.n_cols[i];\n      var sep = document.createElement('div');\n      sep.className = '_kv_sep';\n      sep.style.cssText = [\n        'position:absolute',\n        'left:' + Math.round(pLeft + cumCols * colW) + 'px',\n        'top:' + chart.plotTop + 'px',\n        'width:1px',\n        'height:' + (chart.plotHeight + 18) + 'px',\n        'border-left:1px dashed #999999',\n        'pointer-events:none',\n        'z-index:3'\n      ].join(';');\n      el.appendChild(sep);\n    }\n\n    // Label tên KV bên dưới\n    var row = document.createElement('div');\n    row.className = '_kv_row';\n    row.style.cssText = [\n      'display:flex',\n      'margin-top:-' + pullUp + 'px',\n      'padding-left:' + pLeft + 'px',\n      'padding-right:' + pRight + 'px',\n      'width:' + chart.chartWidth + 'px',\n      'box-sizing:border-box',\n      'pointer-events:none'\n    ].join(';');\n\n    for (var j = 0; j < nGroups; j++) {\n      var cell = document.createElement('div');\n      cell.textContent = groups.KV[j];\n      cell.style.cssText = [\n        'flex:' + groups.n_cols[j],\n        'text-align:center',\n        'font-size:12px',\n        'font-family:Cambria,serif',\n        'font-weight:bold',\n        'color:#333333',\n        'border-top:2px solid #555555',\n        'padding-top:4px'\n      ].join(';');\n      row.appendChild(cell);\n    }\n    el.appendChild(row);\n  }\n\n  function updateChart(loaiPin) {\n    var d     = getFilteredData(loaiPin);\n    var chart = getChart();\n    if (!chart) return;\n\n    chart.xAxis[0].setCategories(d.cats, false);\n    chart.series[0].setData(makeColoredData(d.vals), false);\n    chart.redraw();\n\n    setTimeout(function() {\n      drawKVLabels(chart, d.kv_groups, d.n_total, el);\n    }, 300);\n  }\n\n  function init() {\n    var chart = getChart();\n    if (!chart || !chart.plotWidth) { setTimeout(init, 300); return; }\n\n    // Vẽ KV labels mặc định\n    drawKVLabels(chart, defaultData.kv_groups, defaultData.n_total, el);\n\n    // Gắn sự kiện filter\n    var wrapper = el.closest('.filter-chart-block-du');\n    var sel = wrapper\n      ? wrapper.querySelector('select')\n      : document.getElementById('filter_loai_pin_du');\n\n    if (sel) {\n      updateChart(sel.value);\n      sel.addEventListener('change', function() {\n        updateChart(this.value);\n      });\n    }\n  }\n\n  setTimeout(init, 300);\n  setTimeout(init, 800);\n  setTimeout(init, 1500);\n}\n","data":null}]}}</script>
+<div class="highchart html-widget html-fill-item" id="htmlwidget-85bda37445b035170ea1" style="width:100%;height:500px;"></div>
+<script type="application/json" data-for="htmlwidget-85bda37445b035170ea1">{"x":{"hc_opts":{"chart":{"reflow":true,"type":"column","marginBottom":80},"title":{"text":"Dư pin sau cấp theo tỉnh","align":"center","style":{"color":"black","fontWeight":"bold","fontFamily":"cambria","fontSize":"18px"}},"yAxis":{"title":{"text":"Số pin dư","style":{"fontWeight":"bold","fontSize":"14px","fontFamily":"cambria"}},"labels":{"style":{"fontSize":"12px","fontFamily":"cambria"}},"plotLines":[{"value":0,"color":"#333333","width":1.5,"zIndex":5}]},"credits":{"enabled":false},"exporting":{"enabled":true,"filename":"du-pin-sau-cap"},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0},"treemap":{"layoutAlgorithm":"squarified"},"column":{"borderRadius":3,"states":{"hover":{"brightness":0.1}}}},"xAxis":{"categories":["0COV1","HNI","HPG","LCI","NBH","TQG","DNG","GLI","KHA","TTH","0COV3","AGG","DTP","HCM","Tổng"],"labels":{"style":{"fontSize":"11px","fontFamily":"cambria"}},"crosshair":true},"series":[{"name":"Dư pin sau cấp","data":[{"y":5,"color":"#2ECC71"},{"y":-7,"color":"#E74C3C"},{"y":4,"color":"#2ECC71"},{"y":1,"color":"#2ECC71"},{"y":46,"color":"#2ECC71"},{"y":2,"color":"#2ECC71"},{"y":3,"color":"#2ECC71"},{"y":0,"color":"#2ECC71"},{"y":5,"color":"#2ECC71"},{"y":0,"color":"#2ECC71"},{"y":19,"color":"#2ECC71"},{"y":0,"color":"#2ECC71"},{"y":0,"color":"#2ECC71"},{"y":0,"color":"#2ECC71"},{"y":78,"color":"#2ECC71"}],"showInLegend":false,"dataLabels":{"enabled":true,"format":"{y}","style":{"fontSize":"10px","fontFamily":"cambria","fontWeight":"bold","textOutline":"none"}}}],"tooltip":{"useHTML":true,"formatter":"\n      function() {\n        var color = this.y >= 0 ? '#2ECC71' : '#E74C3C';\n        return '<b>' + this.x + '<\/b><br/>' +\n               '<span style=\"color:' + color + '\">●<\/span> ' +\n               'Dư pin sau cấp: <b>' +\n               Highcharts.numberFormat(this.y, 0, '.', ',') +\n               '<\/b>';\n      }\n    "}},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadCSV":"Download CSV","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","downloadXLS":"Download XLS","drillUpText":"◁ Back to {series.name}","exitFullscreen":"Exit from full screen","exportData":{"annotationHeader":"Annotations","categoryDatetimeHeader":"DateTime","categoryHeader":"Category"},"hideData":"Hide data table","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbolMagnitude":1000,"numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"shortWeekdays":["Sat","Sun","Mon","Tue","Wed","Thu","Fri"],"thousandsSep":" ","viewData":"View data table","viewFullscreen":"View in full screen","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":"cambria","debug":false},"evals":["hc_opts.tooltip.formatter"],"jsHooks":{"render":[{"code":"\nfunction(el, x) {\n  var allData     = [{\"ma_moi\":\"Tổng\",\"KV\":\"Tổng\",\"Loai_pin\":\"Jinko 570\",\"du_pin_saucap\":22},{\"ma_moi\":\"Tổng\",\"KV\":\"Tổng\",\"Loai_pin\":\"Jinko 585\",\"du_pin_saucap\":148},{\"ma_moi\":\"Tổng\",\"KV\":\"Tổng\",\"Loai_pin\":\"Jinko 625\",\"du_pin_saucap\":9},{\"ma_moi\":\"Tổng\",\"KV\":\"Tổng\",\"Loai_pin\":\"Longi 585\",\"du_pin_saucap\":72},{\"ma_moi\":\"Tổng\",\"KV\":\"Tổng\",\"Loai_pin\":\"Longi 615\",\"du_pin_saucap\":78},{\"ma_moi\":\"Tổng\",\"KV\":\"Tổng\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":20793},{\"ma_moi\":\"0COV1\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":18},{\"ma_moi\":\"BNH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":13},{\"ma_moi\":\"HNI\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":-73},{\"ma_moi\":\"HYN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":31},{\"ma_moi\":\"LCI\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":8},{\"ma_moi\":\"LCU\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":8},{\"ma_moi\":\"LSN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":4},{\"ma_moi\":\"NAN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":69},{\"ma_moi\":\"NBH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":2},{\"ma_moi\":\"PTO\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":3},{\"ma_moi\":\"QNH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":17},{\"ma_moi\":\"SLA\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":2},{\"ma_moi\":\"THA\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":-14},{\"ma_moi\":\"TNN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":20},{\"ma_moi\":\"TQG\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":33},{\"ma_moi\":\"0COV2\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":1},{\"ma_moi\":\"DLK\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":1},{\"ma_moi\":\"DNG\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":-27},{\"ma_moi\":\"GLI\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":8},{\"ma_moi\":\"KHA\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":-16},{\"ma_moi\":\"LDG\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":8},{\"ma_moi\":\"QNI\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":13},{\"ma_moi\":\"QTI\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":39},{\"ma_moi\":\"0COV3\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":46},{\"ma_moi\":\"AGG\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":4},{\"ma_moi\":\"CTO\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":-47},{\"ma_moi\":\"DNI\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":2},{\"ma_moi\":\"DTP\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":1},{\"ma_moi\":\"HCM\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":6},{\"ma_moi\":\"TNH\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 615\",\"du_pin_saucap\":2},{\"ma_moi\":\"0COV1\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":2438},{\"ma_moi\":\"BNH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":0},{\"ma_moi\":\"DBN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":2},{\"ma_moi\":\"HNI\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":132},{\"ma_moi\":\"HPG\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":2},{\"ma_moi\":\"HTH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":-14},{\"ma_moi\":\"HYN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":3},{\"ma_moi\":\"LSN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":18},{\"ma_moi\":\"NAN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":-1022},{\"ma_moi\":\"NBH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":2},{\"ma_moi\":\"PTO\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":-20},{\"ma_moi\":\"QNH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":4},{\"ma_moi\":\"THA\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":-69},{\"ma_moi\":\"TNN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":40},{\"ma_moi\":\"TQG\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":11},{\"ma_moi\":\"0COV2\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":1},{\"ma_moi\":\"DLK\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":199},{\"ma_moi\":\"DNG\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":17},{\"ma_moi\":\"GLI\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":0},{\"ma_moi\":\"KHA\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":-8},{\"ma_moi\":\"LDG\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":-19},{\"ma_moi\":\"QNI\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":-9},{\"ma_moi\":\"QTI\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":3},{\"ma_moi\":\"TTH\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":-22},{\"ma_moi\":\"0COV3\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":68},{\"ma_moi\":\"AGG\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":3},{\"ma_moi\":\"CMU\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":9},{\"ma_moi\":\"CTO\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":-23},{\"ma_moi\":\"DNI\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":22},{\"ma_moi\":\"DTP\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":74},{\"ma_moi\":\"HCM\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":20},{\"ma_moi\":\"TNH\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":9},{\"ma_moi\":\"VLG\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 620\",\"du_pin_saucap\":-8},{\"ma_moi\":\"0COV1\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":9255},{\"ma_moi\":\"BNH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":-30},{\"ma_moi\":\"CBG\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":44},{\"ma_moi\":\"DBN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":119},{\"ma_moi\":\"HNI\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":-295},{\"ma_moi\":\"HPG\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":-34},{\"ma_moi\":\"HTH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":5},{\"ma_moi\":\"HYN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":-249},{\"ma_moi\":\"LCI\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":-37},{\"ma_moi\":\"LCU\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":34},{\"ma_moi\":\"LSN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":-414},{\"ma_moi\":\"NAN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":-843},{\"ma_moi\":\"NBH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":45},{\"ma_moi\":\"PTO\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":-151},{\"ma_moi\":\"QNH\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":-350},{\"ma_moi\":\"SLA\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":-48},{\"ma_moi\":\"THA\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":-1698},{\"ma_moi\":\"TNN\",\"KV\":\"KV1\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":-252},{\"ma_moi\":\"0COV2\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":4429},{\"ma_moi\":\"DLK\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":177},{\"ma_moi\":\"DNG\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":-2},{\"ma_moi\":\"GLI\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":122},{\"ma_moi\":\"KHA\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":-28},{\"ma_moi\":\"LDG\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":-624},{\"ma_moi\":\"QNI\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":-135},{\"ma_moi\":\"QTI\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":108},{\"ma_moi\":\"TTH\",\"KV\":\"KV2\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":-40},{\"ma_moi\":\"0COV3\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":10980},{\"ma_moi\":\"CMU\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":-98},{\"ma_moi\":\"CTO\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":-7},{\"ma_moi\":\"DNI\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":142},{\"ma_moi\":\"DTP\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":-77},{\"ma_moi\":\"HCM\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":-422},{\"ma_moi\":\"VLG\",\"KV\":\"KV3\",\"Loai_pin\":\"JA 625\",\"du_pin_saucap\":190},{\"ma_moi\":\"0COV2\",\"KV\":\"KV2\",\"Loai_pin\":\"Jinko 535\",\"du_pin_saucap\":3},{\"ma_moi\":\"0COV3\",\"KV\":\"KV3\",\"Loai_pin\":\"Jinko 545\",\"du_pin_saucap\":3},{\"ma_moi\":\"0COV1\",\"KV\":\"KV1\",\"Loai_pin\":\"Jinko 570\",\"du_pin_saucap\":4},{\"ma_moi\":\"QNH\",\"KV\":\"KV1\",\"Loai_pin\":\"Jinko 570\",\"du_pin_saucap\":18},{\"ma_moi\":\"HNI\",\"KV\":\"KV1\",\"Loai_pin\":\"Jinko 585\",\"du_pin_saucap\":2},{\"ma_moi\":\"HPG\",\"KV\":\"KV1\",\"Loai_pin\":\"Jinko 585\",\"du_pin_saucap\":16},{\"ma_moi\":\"HTH\",\"KV\":\"KV1\",\"Loai_pin\":\"Jinko 585\",\"du_pin_saucap\":0},{\"ma_moi\":\"NAN\",\"KV\":\"KV1\",\"Loai_pin\":\"Jinko 585\",\"du_pin_saucap\":1},{\"ma_moi\":\"QNH\",\"KV\":\"KV1\",\"Loai_pin\":\"Jinko 585\",\"du_pin_saucap\":7},{\"ma_moi\":\"TNN\",\"KV\":\"KV1\",\"Loai_pin\":\"Jinko 585\",\"du_pin_saucap\":3},{\"ma_moi\":\"0COV2\",\"KV\":\"KV2\",\"Loai_pin\":\"Jinko 585\",\"du_pin_saucap\":1},{\"ma_moi\":\"DNG\",\"KV\":\"KV2\",\"Loai_pin\":\"Jinko 585\",\"du_pin_saucap\":1},{\"ma_moi\":\"GLI\",\"KV\":\"KV2\",\"Loai_pin\":\"Jinko 585\",\"du_pin_saucap\":86},{\"ma_moi\":\"KHA\",\"KV\":\"KV2\",\"Loai_pin\":\"Jinko 585\",\"du_pin_saucap\":4},{\"ma_moi\":\"LDG\",\"KV\":\"KV2\",\"Loai_pin\":\"Jinko 585\",\"du_pin_saucap\":18},{\"ma_moi\":\"QTI\",\"KV\":\"KV2\",\"Loai_pin\":\"Jinko 585\",\"du_pin_saucap\":1},{\"ma_moi\":\"0COV3\",\"KV\":\"KV3\",\"Loai_pin\":\"Jinko 585\",\"du_pin_saucap\":2},{\"ma_moi\":\"DNI\",\"KV\":\"KV3\",\"Loai_pin\":\"Jinko 585\",\"du_pin_saucap\":4},{\"ma_moi\":\"DTP\",\"KV\":\"KV3\",\"Loai_pin\":\"Jinko 585\",\"du_pin_saucap\":1},{\"ma_moi\":\"HCM\",\"KV\":\"KV3\",\"Loai_pin\":\"Jinko 585\",\"du_pin_saucap\":1},{\"ma_moi\":\"DNG\",\"KV\":\"KV2\",\"Loai_pin\":\"Jinko 625\",\"du_pin_saucap\":9},{\"ma_moi\":\"BNH\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 585\",\"du_pin_saucap\":9},{\"ma_moi\":\"HPG\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 585\",\"du_pin_saucap\":1},{\"ma_moi\":\"PTO\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 585\",\"du_pin_saucap\":6},{\"ma_moi\":\"TNN\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 585\",\"du_pin_saucap\":10},{\"ma_moi\":\"DLK\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 585\",\"du_pin_saucap\":1},{\"ma_moi\":\"KHA\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 585\",\"du_pin_saucap\":24},{\"ma_moi\":\"LDG\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 585\",\"du_pin_saucap\":3},{\"ma_moi\":\"QTI\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 585\",\"du_pin_saucap\":10},{\"ma_moi\":\"0COV3\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 585\",\"du_pin_saucap\":5},{\"ma_moi\":\"CMU\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 585\",\"du_pin_saucap\":1},{\"ma_moi\":\"DNI\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 585\",\"du_pin_saucap\":1},{\"ma_moi\":\"TNH\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 585\",\"du_pin_saucap\":1},{\"ma_moi\":\"0COV1\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 615\",\"du_pin_saucap\":5},{\"ma_moi\":\"HNI\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 615\",\"du_pin_saucap\":-7},{\"ma_moi\":\"HPG\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 615\",\"du_pin_saucap\":4},{\"ma_moi\":\"LCI\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 615\",\"du_pin_saucap\":1},{\"ma_moi\":\"NBH\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 615\",\"du_pin_saucap\":46},{\"ma_moi\":\"TQG\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 615\",\"du_pin_saucap\":2},{\"ma_moi\":\"DNG\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 615\",\"du_pin_saucap\":3},{\"ma_moi\":\"GLI\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 615\",\"du_pin_saucap\":0},{\"ma_moi\":\"KHA\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 615\",\"du_pin_saucap\":5},{\"ma_moi\":\"TTH\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 615\",\"du_pin_saucap\":0},{\"ma_moi\":\"0COV3\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 615\",\"du_pin_saucap\":19},{\"ma_moi\":\"AGG\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 615\",\"du_pin_saucap\":0},{\"ma_moi\":\"DTP\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 615\",\"du_pin_saucap\":0},{\"ma_moi\":\"HCM\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 615\",\"du_pin_saucap\":0},{\"ma_moi\":\"0COV1\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":8732},{\"ma_moi\":\"BNH\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":2},{\"ma_moi\":\"HNI\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":93},{\"ma_moi\":\"HPG\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":22},{\"ma_moi\":\"HYN\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":-44},{\"ma_moi\":\"LSN\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":26},{\"ma_moi\":\"NAN\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":-88},{\"ma_moi\":\"NBH\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":59},{\"ma_moi\":\"PTO\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":376},{\"ma_moi\":\"THA\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":-14},{\"ma_moi\":\"TQG\",\"KV\":\"KV1\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":282},{\"ma_moi\":\"0COV2\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":3348},{\"ma_moi\":\"DLK\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":206},{\"ma_moi\":\"DNG\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":-20},{\"ma_moi\":\"GLI\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":53},{\"ma_moi\":\"QNI\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":430},{\"ma_moi\":\"QTI\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":331},{\"ma_moi\":\"TTH\",\"KV\":\"KV2\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":-100},{\"ma_moi\":\"0COV3\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":6408},{\"ma_moi\":\"AGG\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":121},{\"ma_moi\":\"CMU\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":-3},{\"ma_moi\":\"CTO\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":-66},{\"ma_moi\":\"DNI\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":-5},{\"ma_moi\":\"DTP\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":-167},{\"ma_moi\":\"HCM\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":624},{\"ma_moi\":\"TNH\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":76},{\"ma_moi\":\"VLG\",\"KV\":\"KV3\",\"Loai_pin\":\"Longi 620\",\"du_pin_saucap\":111}];\n  var defaultData = {\"ma_moi\":[\"0COV1\",\"HNI\",\"HPG\",\"LCI\",\"NBH\",\"TQG\",\"DNG\",\"GLI\",\"KHA\",\"TTH\",\"0COV3\",\"AGG\",\"DTP\",\"HCM\",\"Tổng\"],\"du_pin_saucap\":[5,-7,4,1,46,2,3,0,5,0,19,0,0,0,78],\"kv_groups\":{\"KV\":[\"KV1\",\"KV2\",\"KV3\",\"Tổng\"],\"n_cols\":[6,4,4,1]},\"n_total\":15};\n\n  function getChart() {\n    for (var i = 0; i < Highcharts.charts.length; i++) {\n      var c = Highcharts.charts[i];\n      if (c && c.renderTo && el.contains(c.renderTo)) return c;\n    }\n    return null;\n  }\n\n  function makeColoredData(arr) {\n    return arr.map(function(v) {\n      return {\n        y: Math.round(v || 0),\n        color: (v >= 0) ? '#2ECC71' : '#E74C3C'\n      };\n    });\n  }\n\n  function getFilteredData(loaiPin) {\n    var filtered = allData.filter(function(r) {\n      return r.Loai_pin === loaiPin;\n    });\n    filtered.sort(function(a, b) {\n      if (a.KV < b.KV) return -1;\n      if (a.KV > b.KV) return 1;\n      return a.ma_moi < b.ma_moi ? -1 : 1;\n    });\n    var kvMap = {};\n    filtered.forEach(function(r) {\n      if (!kvMap[r.KV]) kvMap[r.KV] = 0;\n      kvMap[r.KV]++;\n    });\n    return {\n      cats      : filtered.map(function(r) { return r.ma_moi; }),\n      vals      : filtered.map(function(r) { return r.du_pin_saucap; }),\n      kv_groups : { KV: Object.keys(kvMap), n_cols: Object.values(kvMap) },\n      n_total   : filtered.length\n    };\n  }\n\n  function drawKVLabels(chart, groups, N, el) {\n    var pLeft   = chart.plotLeft;\n    var pRight  = chart.chartWidth - pLeft - chart.plotWidth;\n    var colW    = chart.plotWidth / N;\n    var nGroups = groups.KV.length;\n    var pullUp  = chart.marginBottom - 25;\n\n    el.style.position = 'relative';\n    el.querySelectorAll('._kv_sep, ._kv_row').forEach(function(o) {\n      o.parentNode.removeChild(o);\n    });\n\n    // Đường nét đứt phân chia KV\n    var cumCols = 0;\n    for (var i = 0; i < nGroups - 1; i++) {\n      cumCols += groups.n_cols[i];\n      var sep = document.createElement('div');\n      sep.className = '_kv_sep';\n      sep.style.cssText = [\n        'position:absolute',\n        'left:' + Math.round(pLeft + cumCols * colW) + 'px',\n        'top:' + chart.plotTop + 'px',\n        'width:1px',\n        'height:' + (chart.plotHeight + 18) + 'px',\n        'border-left:1px dashed #999999',\n        'pointer-events:none',\n        'z-index:3'\n      ].join(';');\n      el.appendChild(sep);\n    }\n\n    // Label tên KV bên dưới\n    var row = document.createElement('div');\n    row.className = '_kv_row';\n    row.style.cssText = [\n      'display:flex',\n      'margin-top:-' + pullUp + 'px',\n      'padding-left:' + pLeft + 'px',\n      'padding-right:' + pRight + 'px',\n      'width:' + chart.chartWidth + 'px',\n      'box-sizing:border-box',\n      'pointer-events:none'\n    ].join(';');\n\n    for (var j = 0; j < nGroups; j++) {\n      var cell = document.createElement('div');\n      cell.textContent = groups.KV[j];\n      cell.style.cssText = [\n        'flex:' + groups.n_cols[j],\n        'text-align:center',\n        'font-size:12px',\n        'font-family:Cambria,serif',\n        'font-weight:bold',\n        'color:#333333',\n        'border-top:2px solid #555555',\n        'padding-top:4px'\n      ].join(';');\n      row.appendChild(cell);\n    }\n    el.appendChild(row);\n  }\n\n  function updateChart(loaiPin) {\n    var d     = getFilteredData(loaiPin);\n    var chart = getChart();\n    if (!chart) return;\n\n    chart.xAxis[0].setCategories(d.cats, false);\n    chart.series[0].setData(makeColoredData(d.vals), false);\n    chart.redraw();\n\n    setTimeout(function() {\n      drawKVLabels(chart, d.kv_groups, d.n_total, el);\n    }, 300);\n  }\n\n  function init() {\n    var chart = getChart();\n    if (!chart || !chart.plotWidth) { setTimeout(init, 300); return; }\n\n    // Vẽ KV labels mặc định\n    drawKVLabels(chart, defaultData.kv_groups, defaultData.n_total, el);\n\n    // Gắn sự kiện filter\n    var wrapper = el.closest('.filter-chart-block-du');\n    var sel = wrapper\n      ? wrapper.querySelector('select')\n      : document.getElementById('filter_loai_pin_du');\n\n    if (sel) {\n      updateChart(sel.value);\n      sel.addEventListener('change', function() {\n        updateChart(this.value);\n      });\n    }\n  }\n\n  setTimeout(init, 300);\n  setTimeout(init, 800);\n  setTimeout(init, 1500);\n}\n","data":null}]}}</script>
 </div>
 </div>
 </div>
@@ -385,236 +339,243 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
       }
+      return false;
     }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
       }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
         }
       }
       return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
     });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
     }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
         }
-        return container.innerHTML
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -622,185 +583,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
