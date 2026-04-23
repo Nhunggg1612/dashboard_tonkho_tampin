@@ -1,12 +1,5 @@
 [
   {
-    "objectID": "posts/welcome/index.html",
-    "href": "posts/welcome/index.html",
-    "title": "Welcome",
-    "section": "",
-    "text": "This is a starter post. You can include R code chunks:\n\nx &lt;- c(1,2,3,4,5)\nmean(x)\n\n[1] 3"
-  },
-  {
     "objectID": "home.html",
     "href": "home.html",
     "title": "Báo cáo Tồn kho tấm pin",
@@ -14,10 +7,17 @@
     "text": "Loại pin\n\n-- Tất cả --\nJA 615\nJA 620\nJA 625\nJinko 535\nJinko 545\nJinko 570\nJinko 585\nJinko 625\nLongi 585\nLongi 615\nLongi 620\n\n\n\n🔄 Reset\n\n\n⬇ Tải Excel\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLoại pin:\n\nJA 615\nJA 620\nJA 625\nJinko 535\nJinko 545\nJinko 570\nJinko 585\nJinko 625\nLongi 585\nLongi 615\nLongi 620\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLoại pin:\n\nJA 615\nJA 620\nJA 625\nJinko 535\nJinko 545\nJinko 570\nJinko 585\nJinko 625\nLongi 585\nLongi 615\nLongi 620"
   },
   {
-    "objectID": "home.html#i.-tồn-kho-tấm-pin-đến-23042026-114815",
-    "href": "home.html#i.-tồn-kho-tấm-pin-đến-23042026-114815",
+    "objectID": "home.html#i.-tồn-kho-tấm-pin-đến-23042026-155203",
+    "href": "home.html#i.-tồn-kho-tấm-pin-đến-23042026-155203",
     "title": "Báo cáo Tồn kho tấm pin",
     "section": "",
     "text": "Loại pin\n\n-- Tất cả --\nJA 615\nJA 620\nJA 625\nJinko 535\nJinko 545\nJinko 570\nJinko 585\nJinko 625\nLongi 585\nLongi 615\nLongi 620\n\n\n\n🔄 Reset\n\n\n⬇ Tải Excel\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLoại pin:\n\nJA 615\nJA 620\nJA 625\nJinko 535\nJinko 545\nJinko 570\nJinko 585\nJinko 625\nLongi 585\nLongi 615\nLongi 620\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLoại pin:\n\nJA 615\nJA 620\nJA 625\nJinko 535\nJinko 545\nJinko 570\nJinko 585\nJinko 625\nLongi 585\nLongi 615\nLongi 620"
+  },
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome",
+    "section": "",
+    "text": "This is a starter post. You can include R code chunks:\n\nx &lt;- c(1,2,3,4,5)\nmean(x)\n\n[1] 3"
   }
 ]
